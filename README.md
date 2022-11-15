@@ -4,3 +4,4 @@
 ### - Maxime EY
 ### - Eddy AMANI
 ### - Louis DUMONT
+### - Guillaume HARNIST

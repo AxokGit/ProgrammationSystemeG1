@@ -117,13 +117,28 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="Backup" xml:space="preserve">
+    <value>Renfort</value>
+  </data>
   <data name="Hello" xml:space="preserve">
-    <value>Hello</value>
+    <value>Bonjour</value>
+  </data>
+  <data name="Here are your options:" xml:space="preserve">
+    <value>Voici vos possibilités :</value>
+  </data>
+  <data name="How many" xml:space="preserve">
+    <value>Combien</value>
+  </data>
+  <data name="Languages" xml:space="preserve">
+    <value>Langues</value>
+  </data>
+  <data name="Saves" xml:space="preserve">
+    <value>Sauvegardes</value>
+  </data>
+  <data name="Settings" xml:space="preserve">
+    <value>Paramètres</value>
   </data>
   <data name="Sir" xml:space="preserve">
-    <value>Sir</value>
-  </data>
-  <data name="World" xml:space="preserve">
-    <value>World</value>
+    <value>Monsieur</value>
   </data>
 </root>

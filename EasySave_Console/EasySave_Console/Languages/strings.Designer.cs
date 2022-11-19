@@ -59,5 +59,32 @@ namespace EasySave_Console.Languages {
                 resourceCulture = value;
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Hello.
+        /// </summary>
+        internal static string Hello {
+            get {
+                return ResourceManager.GetString("Hello", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sir.
+        /// </summary>
+        internal static string Sir {
+            get {
+                return ResourceManager.GetString("Sir", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to World.
+        /// </summary>
+        internal static string World {
+            get {
+                return ResourceManager.GetString("World", resourceCulture);
+            }
+        }
     }
 }

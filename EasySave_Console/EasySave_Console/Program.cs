@@ -17,10 +17,11 @@ internal class Program
         Console.WriteLine("Version: " + version + "\n");
         Console.WriteLine("What Language would you like to use?: ");
         Console.WriteLine("1 - English");
-        Console.WriteLine("2 - French");
+        Console.WriteLine("2 - Français");
         Console.WriteLine("\n");
         Console.Write("Options (1-2):");
         LanguageNumber = Console.ReadLine();
+        Console.Clear();
         if (LanguageNumber != null && LanguageNumber == "1")
         {
             LangHelper.ChangeLanguage("en");

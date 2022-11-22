@@ -7,19 +7,8 @@
     <Nullable>enable</Nullable>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <StartupObject>Program</StartupObject>
+    <Version>1.0</Version>
   </PropertyGroup>
-
-  <ItemGroup>
-    <Compile Remove="Controllers\**" />
-    <Compile Remove="Models\**" />
-    <Compile Remove="Views\**" />
-    <EmbeddedResource Remove="Controllers\**" />
-    <EmbeddedResource Remove="Models\**" />
-    <EmbeddedResource Remove="Views\**" />
-    <None Remove="Controllers\**" />
-    <None Remove="Models\**" />
-    <None Remove="Views\**" />
-  </ItemGroup>
 
   <ItemGroup>
     <Compile Update="Languages\strings.Designer.cs">
@@ -34,6 +23,10 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>strings.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Models\Interfaces\" />
   </ItemGroup>
 
 </Project>

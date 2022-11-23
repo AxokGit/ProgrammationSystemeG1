@@ -11,8 +11,6 @@ namespace EasySave_Console
         {
             var serializedObject = JsonConvert.SerializeObject("test 2");
         }
-
-        
     }
 
     public class Save

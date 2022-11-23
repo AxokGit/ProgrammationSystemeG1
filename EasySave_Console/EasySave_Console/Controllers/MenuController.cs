@@ -1,31 +1,53 @@
-﻿using EasySave_Console.Views;
+﻿using EasySave_Console.Models;
+using EasySave_Console.Views;
 using System;
+using System.Collections.Generic;
 
 namespace EasySave_Console.Controllers
 {
     class MenuController
     {
-        private MenuView menuView;
+        MenuView menuView = new MenuView();
+        LanguageMenuView languageMenuView = new LanguageMenuView();
 
         public MenuController()
         {
-            menuView = new MenuView();
-            LanguageMenuView languageMenuView = new LanguageMenuView();
-            menuView.OnBootMessage();
-            
-
-            string languageOption = languageMenuView.PromptLanguageOption();
-            if (languageOption == "1") { LangHelper.ChangeLanguage("fr"); }
-            else if (languageOption == "2") { LangHelper.ChangeLanguage("en"); }
-            else
+            bool languageSelected = false;
+            while (!languageSelected)
             {
                 menuView.ClearConsole();
                 menuView.OnBootMessage();
-                languageOption = languageMenuView.PromptLanguageOption();
+                string languageOption = languageMenuView.PromptLanguageOption();
+                if (languageOption == "1")
+                {
+                    LangHelper.ChangeLanguage("fr");
+                    languageSelected = true;
+                }
+                else if (languageOption == "2")
+                { 
+                    LangHelper.ChangeLanguage("en");
+                    languageSelected = true;
+                }
             }
 
-            menuView.ClearConsole();
-            menuView.PromptMainMenu();
+            bool optionSelected = false;
+            while (!optionSelected)
+            {
+                menuView.ClearConsole();
+                menuView.PromptMainMenu();
+                string menuOption = menuView.PromptMainMenu();
+                if (menuOption == "1")
+                {
+                    menuView.Print("TODO");
+                }
+                else if (menuOption == "2")
+                {
+                    BackupWorksEditView backupWorksEditView = new BackupWorksEditView();
+                    JsonHelper jsonHelper = new JsonHelper();
+                    List<BackupWork>? backupWorks = jsonHelper.ReadBackupWorkFromJson("C:/BackupWorks.json");
+                    backupWorksEditView.PromptEditBackupWorks(backupWorks);
+                }
+            }
         }
     }
 }

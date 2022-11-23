@@ -8,20 +8,14 @@ namespace EasySave_Console.Views
     class LanguageMenuView
     {
         public LanguageMenuView() { }
-        public string promptLanguageOption()
+        public string PromptLanguageOption()
         {
-            string option = "0";
-
             Console.WriteLine("Select language:");
             Console.WriteLine("1: Français");
             Console.WriteLine("2: English");
             Console.WriteLine();
             Console.Write("Choose: ");
-            option = Console.ReadLine();
-
-            return option;
-
+            return Console.ReadLine();
         }
-
     }
 }

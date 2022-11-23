@@ -8,7 +8,11 @@ namespace EasySave_Console.Views
     class MenuView
     {
         public MenuView() { }
-        public void onBootMessage()
+        public void ClearConsole()
+        {
+            Console.Clear();
+        }
+        public void OnBootMessage()
         {
             Console.WriteLine("|-------------------------------|");
             Console.WriteLine("|---  EasySave Console Mode  ---|");
@@ -16,10 +20,19 @@ namespace EasySave_Console.Views
             Console.WriteLine("Version: " + Assembly.GetExecutingAssembly().GetName().Version);
             Console.WriteLine();
         }
-
-        public void clearConsole()
+        public string PromptMainMenu()
         {
-            Console.Clear();
+            Console.WriteLine(LangHelper.GetString("welcome_message"));
+            Console.WriteLine($"{LangHelper.GetString("Here are your options:")}");
+            Console.WriteLine($"1: {LangHelper.GetString("run_work")}");
+            Console.WriteLine($"2: {LangHelper.GetString("define_work")}");
+            Console.WriteLine($"3: {LangHelper.GetString("open_log_folder")}");
+            Console.WriteLine($"4: {LangHelper.GetString("change_language")}");
+            Console.WriteLine("\n");
+            Console.Write("Options (1-4):");
+            return Console.ReadLine();
         }
+
+        
     }
 }

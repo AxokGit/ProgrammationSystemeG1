@@ -1,31 +1,48 @@
-﻿using EasySave_Console.Views;
+﻿using EasySave_Console.Models;
+using EasySave_Console.Views;
 using System;
+using System.Collections.Generic;
 
 namespace EasySave_Console.Controllers
 {
     class MenuController
     {
-        private MenuView menuView;
+        MenuView menuView = new MenuView();
 
         public MenuController()
         {
-            menuView = new MenuView();
-            LanguageMenuView languageMenuView = new LanguageMenuView();
-            menuView.OnBootMessage();
-            
+            new LanguageController();
 
-            string languageOption = languageMenuView.PromptLanguageOption();
-            if (languageOption == "1") { LangHelper.ChangeLanguage("fr"); }
-            else if (languageOption == "2") { LangHelper.ChangeLanguage("en"); }
-            else
+            bool optionSelected = false;
+            while (!optionSelected)
             {
                 menuView.ClearConsole();
-                menuView.OnBootMessage();
-                languageOption = languageMenuView.PromptLanguageOption();
+                string menuOption = menuView.PromptMainMenu();
+                if (menuOption == "1")
+                {
+                    menuView.Print("TODO");
+                    menuView.Wait();
+                }
+                else if (menuOption == "2")
+                {
+                    optionSelected = true;
+                    new BackupWorksEditController();
+                }
+                else if (menuOption == "3")
+                {
+                    menuView.Print("TODO");
+                    menuView.Wait();
+                }
+                else if (menuOption == "4")
+                {
+                    menuView.Print("TODO");
+                    menuView.Wait();
+                }
+                else if (menuOption == "5")
+                {
+                    Environment.Exit(0);
+                }
             }
-
-            menuView.ClearConsole();
-            menuView.PromptMainMenu();
         }
     }
 }

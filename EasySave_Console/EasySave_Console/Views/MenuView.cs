@@ -23,16 +23,27 @@ namespace EasySave_Console.Views
         public string PromptMainMenu()
         {
             Console.WriteLine(LangHelper.GetString("welcome_message"));
-            Console.WriteLine($"{LangHelper.GetString("Here are your options:")}");
             Console.WriteLine($"1: {LangHelper.GetString("run_work")}");
             Console.WriteLine($"2: {LangHelper.GetString("define_work")}");
             Console.WriteLine($"3: {LangHelper.GetString("open_log_folder")}");
             Console.WriteLine($"4: {LangHelper.GetString("change_language")}");
+            Console.WriteLine($"5: {LangHelper.GetString("exit_program")}");
             Console.WriteLine("\n");
-            Console.Write("Options (1-4):");
+            Console.Write("Options (1-5):");
             return Console.ReadLine();
         }
 
-        
+        public void Print(string message)
+        {
+            Console.WriteLine(message);
+        }
+
+        public void Wait()
+        {
+            Console.ReadKey();
+        }
+
+
+
     }
 }

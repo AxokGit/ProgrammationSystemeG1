@@ -120,6 +120,9 @@
   <data name="backup" xml:space="preserve">
     <value>Backup</value>
   </data>
+  <data name="backups_work_edit_menu" xml:space="preserve">
+    <value>Backup works edit menu</value>
+  </data>
   <data name="change_language" xml:space="preserve">
     <value>Change language</value>
   </data>

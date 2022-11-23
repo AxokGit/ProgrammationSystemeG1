@@ -121,7 +121,7 @@
     <value>Sauvegardes</value>
   </data>
   <data name="change_language" xml:space="preserve">
-    <value>Changer de langue</value>
+    <value>Changer la langue</value>
   </data>
   <data name="define_work" xml:space="preserve">
     <value>Définir travail de sauvegarde</value>

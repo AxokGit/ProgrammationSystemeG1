@@ -5,7 +5,7 @@ namespace EasySave_Console
 {
     public static class LangHelper
     {
-        private static ResourceManager _rm;
+        private static ResourceManager _rm = new ResourceManager("EasySave_Console.Languages.en", Assembly.GetExecutingAssembly());
 
         public static string? GetString(string name)
         {

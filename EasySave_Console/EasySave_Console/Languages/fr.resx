@@ -117,25 +117,43 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Backup" xml:space="preserve">
-    <value>Renfort</value>
-  </data>
-  <data name="Hello" xml:space="preserve">
-    <value>Bonjour</value>
-  </data>
-  <data name="Here are your options:" xml:space="preserve">
-    <value>Voici vos options</value>
-  </data>
-  <data name="Languages" xml:space="preserve">
-    <value>Langues</value>
-  </data>
-  <data name="Saves" xml:space="preserve">
+  <data name="backup" xml:space="preserve">
     <value>Sauvegardes</value>
   </data>
-  <data name="Settings" xml:space="preserve">
+  <data name="change_language" xml:space="preserve">
+    <value>Changer la langue</value>
+  </data>
+  <data name="define_work" xml:space="preserve">
+    <value>Définir travail de sauvegarde</value>
+  </data>
+  <data name="exit_program" xml:space="preserve">
+    <value>Quitter</value>
+  </data>
+  <data name="here_your_options" xml:space="preserve">
+    <value>Voici vos options</value>
+  </data>
+  <data name="languages" xml:space="preserve">
+    <value>Langues</value>
+  </data>
+  <data name="open_log_folder" xml:space="preserve">
+    <value>Ouvrir dossier log</value>
+  </data>
+  <data name="run_work" xml:space="preserve">
+    <value>Lancer travail de sauvegarde</value>
+  </data>
+  <data name="saves" xml:space="preserve">
+    <value>Sauvegardes</value>
+  </data>
+  <data name="settings" xml:space="preserve">
     <value>Paramètres</value>
   </data>
-  <data name="Sir" xml:space="preserve">
+  <data name="sir" xml:space="preserve">
     <value>Monsieur</value>
+  </data>
+  <data name="welcome_message" xml:space="preserve">
+    <value>Bienvenue dans EasySave !</value>
+  </data>
+  <data name="world" xml:space="preserve">
+    <value>Monde</value>
   </data>
 </root>

@@ -117,28 +117,46 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Backup" xml:space="preserve">
+  <data name="backup" xml:space="preserve">
     <value>Backup</value>
   </data>
-  <data name="Hello" xml:space="preserve">
-    <value>Hello</value>
+  <data name="backups_work_edit_menu" xml:space="preserve">
+    <value>Backup works edit menu</value>
   </data>
-  <data name="Here are your options:" xml:space="preserve">
+  <data name="change_language" xml:space="preserve">
+    <value>Change language</value>
+  </data>
+  <data name="define_work" xml:space="preserve">
+    <value>Define backup job(s)</value>
+  </data>
+  <data name="exit_program" xml:space="preserve">
+    <value>Exit</value>
+  </data>
+  <data name="here_your_options" xml:space="preserve">
     <value>Here are your options:</value>
   </data>
-  <data name="Languages" xml:space="preserve">
+  <data name="languages" xml:space="preserve">
     <value>Languages</value>
   </data>
-  <data name="Saves" xml:space="preserve">
+  <data name="open_log_folder" xml:space="preserve">
+    <value>Open log folder</value>
+  </data>
+  <data name="run_work" xml:space="preserve">
+    <value>Start backup job(s)</value>
+  </data>
+  <data name="saves" xml:space="preserve">
     <value>Saves</value>
   </data>
-  <data name="Settings" xml:space="preserve">
+  <data name="settings" xml:space="preserve">
     <value>Settings</value>
   </data>
-  <data name="Sir" xml:space="preserve">
+  <data name="sir" xml:space="preserve">
     <value>Sir</value>
   </data>
-  <data name="World" xml:space="preserve">
+  <data name="welcome_message" xml:space="preserve">
+    <value>Welcome in EasySave</value>
+  </data>
+  <data name="world" xml:space="preserve">
     <value>World</value>
   </data>
 </root>

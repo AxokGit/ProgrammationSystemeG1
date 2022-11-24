@@ -11,10 +11,15 @@ namespace EasySave_Console.Controllers
         MenuView menuView = new MenuView();
         BackupWorksEditView backupWorksEditView = new BackupWorksEditView();
         JsonHelper jsonHelper = new JsonHelper();
-        string filepath_backup_works_config = "D:/BackupWorks.json";
+        string filepath_backup_works_config = @"%AppData%/BackupWorks.json";
+
+
+
 
         public BackupWorksEditController()
         {
+            filepath_backup_works_config = Environment.ExpandEnvironmentVariables(filepath_backup_works_config);
+
             List<BackupWork>? backupWorks = jsonHelper.ReadBackupWorkFromJson(filepath_backup_works_config);
 
             if (backupWorks == null)

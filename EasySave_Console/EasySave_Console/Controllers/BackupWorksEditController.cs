@@ -17,8 +17,6 @@ namespace EasySave_Console.Controllers
         {
             return Environment.ExpandEnvironmentVariables(path);
         }
-
-
         public BackupWorksEditController()
         {
             filepath_bw_config = FormatFilePath(filepath_bw_config);
@@ -36,8 +34,31 @@ namespace EasySave_Console.Controllers
                 jsonHelper.WriteBackupWorkToJson(filepath_bw_config, list_temp);
                 backupWorks = jsonHelper.ReadBackupWorkFromJson(filepath_bw_config);
             }
-            menuView.ClearConsole();
-            backupWorksEditView.PromptEditBackupWorks(backupWorks);
+            bool optionSelected = false;
+            while (!optionSelected)
+            {
+                
+                menuView.ClearConsole();
+                string menuBWOption = backupWorksEditView.PromptEditBackupWorks(backupWorks);
+                if (menuBWOption == "1" || menuBWOption == "2" || menuBWOption == "3" || menuBWOption == "4" || menuBWOption == "5")
+                {
+                    int i = Convert.ToInt32(menuBWOption)-1;
+                    menuView.ClearConsole();
+                    backupWorks[i].Name = backupWorksEditView.PromptEditBackupWorksName(backupWorks[i]);
+                    menuView.Print("");
+                    backupWorks[i].Src_folder = backupWorksEditView.PromptEditBackupWorksSrcFolder(backupWorks[i]);
+                    menuView.Print("");
+                    backupWorks[i].Dst_folder = backupWorksEditView.PromptEditBackupWorksDstFolder(backupWorks[i]);
+                    menuView.Print("");
+                    backupWorks[i].Type = backupWorksEditView.PromptEditBackupWorksType(backupWorks[i]);
+                }
+                else if (menuBWOption == "6")
+                {
+                    return;
+                }
+                
+            }
+            
         }
     }
 }

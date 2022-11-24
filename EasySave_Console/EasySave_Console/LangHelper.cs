@@ -7,9 +7,10 @@ namespace EasySave_Console
     {
         private static ResourceManager _rm = new ResourceManager("EasySave_Console.Languages.en", Assembly.GetExecutingAssembly());
 
-        public static string? GetString(string name)
+        public static string GetString(string name)
         {
-            return _rm.GetString(name);
+            string? value = _rm.GetString(name);
+            return value == null ? "" : value;
         }
 
         public static void ChangeLanguage(string language)

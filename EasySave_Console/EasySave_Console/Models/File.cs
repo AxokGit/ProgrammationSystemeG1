@@ -7,23 +7,26 @@ namespace EasySave_Console.Models
 {
     class File
     {
-        public string? filepath { get; set; }
-        public string? text { get; set; }
-        public string? dest_path { get; set; }
-
-        public void Copy(string? filepath, string dest_path)
+        public string? DestFileName { get; set; }
+        public string? SrcFilePath { get; set; }
+        public string? Text { get; set; }
+        public string? DestPath { get; set; }
+        public string? FilePath { get; set; }
+        public void Copy(string FilePath, string DestFileName)
         {
-            text = System.IO.File.ReadAllText(filepath);
+            Text = System.IO.File.ReadAllText(FilePath);
 
-            var jsonSettings = new Newtonsoft.Json.JsonSerializerSettings();
-            jsonSettings.TypeNameHandling = Newtonsoft.Json.TypeNameHandling.All;
+            var jsonSettings = new Newtonsoft.Json.JsonSerializerSettings
+            {
+                TypeNameHandling = Newtonsoft.Json.TypeNameHandling.All
+            };
 
-            var serializedObject = JsonConvert.SerializeObject(text, Newtonsoft.Json.Formatting.Indented, jsonSettings);
+            var serializedObject = JsonConvert.SerializeObject(Text, Newtonsoft.Json.Formatting.Indented, jsonSettings);
 
             //Save to file
-            dest_path = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+            DestPath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
 
-            string FilePath = Path.Combine(dest_path, "saveFile.json");
+            FilePath = Path.Combine(DestPath, DestFileName);
 
             using (StreamWriter sw = new StreamWriter(FilePath))
             {
@@ -31,11 +34,9 @@ namespace EasySave_Console.Models
             }
 
             //Read from file
-            string content = null;
-
             using (StreamReader sr = new StreamReader(FilePath))
             {
-                content = sr.ReadToEnd();
+                string content = sr.ReadToEnd();
             }
         }
     }

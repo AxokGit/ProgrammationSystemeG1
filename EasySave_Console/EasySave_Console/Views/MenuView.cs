@@ -38,6 +38,10 @@ namespace EasySave_Console.Views
             Console.WriteLine(message);
         }
 
+        public void Wait()
+        {
+            Console.ReadKey();
+        }
 
 
     }

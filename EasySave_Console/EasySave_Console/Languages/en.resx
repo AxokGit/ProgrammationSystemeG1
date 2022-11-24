@@ -129,6 +129,9 @@
   <data name="define_work" xml:space="preserve">
     <value>Define backup job(s)</value>
   </data>
+  <data name="exit_program" xml:space="preserve">
+    <value>Exit</value>
+  </data>
   <data name="here_your_options" xml:space="preserve">
     <value>Here are your options:</value>
   </data>

@@ -24,7 +24,6 @@ namespace EasySave_Console.Controllers
                 }
                 else if (menuOption == "2")
                 {
-                    optionSelected = true;
                     new BackupWorksEditController();
                 }
                 else if (menuOption == "3")
@@ -34,8 +33,7 @@ namespace EasySave_Console.Controllers
                 }
                 else if (menuOption == "4")
                 {
-                    menuView.Print("TODO");
-                    menuView.Wait();
+                    new LanguageController();
                 }
                 else if (menuOption == "5")
                 {

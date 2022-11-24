@@ -19,15 +19,12 @@ namespace EasySave_Console
             if (File.Exists(filepath))
             {
                 string json = File.ReadAllText($@"{filepath}");
-                List<BackupWork>? backupWorks = JsonConvert.DeserializeObject<List<BackupWork>>(json);
-                return backupWorks;
+                return JsonConvert.DeserializeObject<List<BackupWork>>(json);
             } 
             else
             {
                 return null;
             }
-            
-            
         }
     }
 }

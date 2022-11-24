@@ -5,7 +5,7 @@ using System.IO;
 
 namespace EasySave_Console.Models
 {
-    class File
+    class FileModel
     {
         public string? DestFileName { get; set; }
         public string? SrcFilePath { get; set; }

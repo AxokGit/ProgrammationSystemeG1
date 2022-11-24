@@ -1,7 +1,6 @@
 ﻿using EasySave_Console.Models;
 using EasySave_Console.Views;
 using System;
-using System.Collections.Generic;
 
 namespace EasySave_Console.Controllers
 {

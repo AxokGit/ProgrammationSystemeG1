@@ -11,16 +11,19 @@ namespace EasySave_Console.Controllers
         MenuView menuView = new MenuView();
         BackupWorksEditView backupWorksEditView = new BackupWorksEditView();
         JsonHelper jsonHelper = new JsonHelper();
-        string filepath_backup_works_config = @"%AppData%/BackupWorks.json";
+        string filepath_bw_config = @"%AppData%/BackupWorks.json";
 
-
+        public string FormatFilePath(string path)
+        {
+            return Environment.ExpandEnvironmentVariables(path);
+        }
 
 
         public BackupWorksEditController()
         {
-            filepath_backup_works_config = Environment.ExpandEnvironmentVariables(filepath_backup_works_config);
+            filepath_bw_config = FormatFilePath(filepath_bw_config);
 
-            List<BackupWork>? backupWorks = jsonHelper.ReadBackupWorkFromJson(filepath_backup_works_config);
+            List<BackupWork>? backupWorks = jsonHelper.ReadBackupWorkFromJson(filepath_bw_config);
 
             if (backupWorks == null)
             {
@@ -30,8 +33,8 @@ namespace EasySave_Console.Controllers
                     list_temp.Add(new BackupWork(null, null, null, null));
                 }
 
-                jsonHelper.WriteBackupWorkToJson(filepath_backup_works_config, list_temp);
-                backupWorks = jsonHelper.ReadBackupWorkFromJson(filepath_backup_works_config);
+                jsonHelper.WriteBackupWorkToJson(filepath_bw_config, list_temp);
+                backupWorks = jsonHelper.ReadBackupWorkFromJson(filepath_bw_config);
             }
             menuView.ClearConsole();
             backupWorksEditView.PromptEditBackupWorks(backupWorks);

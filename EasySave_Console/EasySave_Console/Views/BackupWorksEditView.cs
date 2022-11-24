@@ -11,12 +11,12 @@ namespace EasySave_Console.Views
         {
             Console.WriteLine(LangHelper.GetString("backups_work_edit_menu") + ":");
 
-            for (int i = 1; i < backupWorks.Count; i++)
+            for (int i = 0; i < backupWorks.Count; i++)
             {
-                Console.WriteLine($"{i}: {backupWorks[i].Name}");
+                Console.WriteLine($"{i + 1}: {(backupWorks[i].Name == null ? "NONE" : backupWorks[i].Name)}");
             }
             Console.WriteLine("\n");
-            Console.Write("Options (1-4):");
+            Console.Write("Options (1-5):");
             return Console.ReadLine();
         }
     }

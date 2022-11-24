@@ -120,8 +120,14 @@
   <data name="backup" xml:space="preserve">
     <value>Sauvegardes</value>
   </data>
+  <data name="backups_work_edit_menu" xml:space="preserve">
+    <value>Menu d'édition de travail de sauvegarde</value>
+  </data>
   <data name="change_language" xml:space="preserve">
     <value>Changer la langue</value>
+  </data>
+  <data name="choose_backup_work_to_edit" xml:space="preserve">
+    <value>Choisissez un travail de sauvegarde à modifier</value>
   </data>
   <data name="define_work" xml:space="preserve">
     <value>Définir travail de sauvegarde</value>

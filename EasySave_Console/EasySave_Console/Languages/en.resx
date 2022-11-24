@@ -126,6 +126,9 @@
   <data name="change_language" xml:space="preserve">
     <value>Change language</value>
   </data>
+  <data name="choose_backup_work_to_edit" xml:space="preserve">
+    <value>Choose backup work to edit</value>
+  </data>
   <data name="define_work" xml:space="preserve">
     <value>Define backup job(s)</value>
   </data>

@@ -7,7 +7,6 @@ namespace EasySave_Console.Controllers
     class MenuController
     {
         MenuView menuView = new MenuView();
-
         public MenuController()
         {
             new LanguageController();

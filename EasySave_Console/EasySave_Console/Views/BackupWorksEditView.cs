@@ -27,10 +27,10 @@ namespace EasySave_Console.Views
 
             for (int i = 0; i < backupWorks.Count; i++)
             {
-                string name = backupWorks[i].Name ?? "NONE";
-                string src_folder = backupWorks[i].Src_folder ?? "NONE";
-                string dst_folder = backupWorks[i].Dst_folder ?? "NONE";
-                string type = backupWorks[i].Type ?? "NONE";
+                string name = backupWorks[i].Name ?? "-";
+                string src_folder = backupWorks[i].SrcFolder ?? "-";
+                string dst_folder = backupWorks[i].DstFolder ?? "-";
+                string type = backupWorks[i].Type ?? "-";
 
                 tableView.PrintRow(
                     Convert.ToString(i + 1),
@@ -51,7 +51,7 @@ namespace EasySave_Console.Views
 
         public string PromptEditBackupWorksName(BackupWork backupWork)
         {
-            Console.WriteLine(LangHelper.GetString("actual_name_backup_work"));
+            Console.WriteLine(LangHelper.GetString("actual_name_backup_work") + ": " + backupWork.Name);
             Console.Write(LangHelper.GetString("name") + ": ");
             return Console.ReadLine();
         }

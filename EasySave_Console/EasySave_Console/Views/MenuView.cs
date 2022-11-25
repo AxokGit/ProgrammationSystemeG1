@@ -43,7 +43,5 @@ namespace EasySave_Console.Views
         {
             Console.ReadKey();
         }
-
-
     }
 }

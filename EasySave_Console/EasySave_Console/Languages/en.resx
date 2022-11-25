@@ -166,7 +166,7 @@
     <value>Name</value>
   </data>
   <data name="name_or_none" xml:space="preserve">
-    <value>Name (or nothing to keep)</value>
+    <value>Name (nothing to keep, 'r' to reset)</value>
   </data>
   <data name="number" xml:space="preserve">
     <value>No.</value>

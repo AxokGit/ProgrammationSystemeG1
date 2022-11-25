@@ -43,22 +43,56 @@ namespace EasySave_Console.Controllers
                 if (menuBWOption == "1" || menuBWOption == "2" || menuBWOption == "3" || menuBWOption == "4" || menuBWOption == "5")
                 {
                     int i = Convert.ToInt32(menuBWOption)-1;
+
+                    string previousName = backupWorks[i].Name ?? "";
                     menuView.ClearConsole();
                     backupWorks[i].Name = backupWorksEditView.PromptEditBackupWorksName(backupWorks[i]);
-                    menuView.Print("");
-                    backupWorks[i].Src_folder = backupWorksEditView.PromptEditBackupWorksSrcFolder(backupWorks[i]);
-                    menuView.Print("");
-                    backupWorks[i].Dst_folder = backupWorksEditView.PromptEditBackupWorksDstFolder(backupWorks[i]);
-                    menuView.Print("");
-                    backupWorks[i].Type = backupWorksEditView.PromptEditBackupWorksType(backupWorks[i]);
+                    if (backupWorks[i].Name == "r")
+                    {
+                        backupWorks[i].Name = null;
+                        backupWorks[i].SrcFolder = null;
+                        backupWorks[i].DstFolder = null;
+                        backupWorks[i].Type = null;
+                    } else
+                    {
+                        if (backupWorks[i].Name == "" && previousName != "")
+                        {
+                            backupWorks[i].Name = previousName;
+                        }
+
+                        string previousSrcFolder = backupWorks[i].SrcFolder ?? "";
+                        menuView.ClearConsole();
+                        backupWorks[i].SrcFolder = backupWorksEditView.PromptEditBackupWorksSrcFolder(backupWorks[i]);
+                        if (backupWorks[i].SrcFolder == "" && previousSrcFolder != "")
+                        {
+                            backupWorks[i].SrcFolder = previousSrcFolder;
+                        }
+
+                        string previousDstFolder = backupWorks[i].DstFolder ?? "";
+                        menuView.ClearConsole();
+                        backupWorks[i].DstFolder = backupWorksEditView.PromptEditBackupWorksDstFolder(backupWorks[i]);
+                        if (backupWorks[i].DstFolder == "" && previousDstFolder != "")
+                        {
+                            backupWorks[i].DstFolder = previousDstFolder;
+                        }
+
+                        string previousType = backupWorks[i].Type ?? "";
+                        menuView.ClearConsole();
+                        backupWorks[i].Type = backupWorksEditView.PromptEditBackupWorksType(backupWorks[i]);
+                        if (backupWorks[i].Type == "" && previousType != "")
+                        {
+                            backupWorks[i].Type = previousType;
+                        }
+
+                        jsonHelper.WriteBackupWorkToJson(filepath_bw_config, backupWorks);
+
+                    }
                 }
                 else if (menuBWOption == "6")
                 {
-                    return;
+                    optionSelected = true;
                 }
-                
             }
-            
         }
     }
 }

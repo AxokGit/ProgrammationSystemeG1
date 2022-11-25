@@ -16,12 +16,7 @@ namespace EasySave_Console.Models
         {
             Text = System.IO.File.ReadAllText(FilePath);
 
-            var jsonSettings = new Newtonsoft.Json.JsonSerializerSettings
-            {
-                TypeNameHandling = Newtonsoft.Json.TypeNameHandling.All
-            };
-
-            var serializedObject = JsonConvert.SerializeObject(Text, Newtonsoft.Json.Formatting.Indented, jsonSettings);
+            var serializedObject = JsonConvert.SerializeObject(Text, Newtonsoft.Json.Formatting.Indented);
 
             //Save to file
             DestPath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);

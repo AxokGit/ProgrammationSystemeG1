@@ -117,18 +117,6 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="actual_dst_folder_backup_work" xml:space="preserve">
-    <value>Destination folder of backup work</value>
-  </data>
-  <data name="actual_name_backup_work" xml:space="preserve">
-    <value>Actual name of backup work</value>
-  </data>
-  <data name="actual_src_folder_backup_work" xml:space="preserve">
-    <value>Source folder of backup work</value>
-  </data>
-  <data name="actual_type_backup_work" xml:space="preserve">
-    <value>Type of backup work</value>
-  </data>
   <data name="backup" xml:space="preserve">
     <value>Backup</value>
   </data>
@@ -147,14 +135,17 @@
   <data name="dst_folder" xml:space="preserve">
     <value>Destination folder</value>
   </data>
+  <data name="dst_folder_backup_work" xml:space="preserve">
+    <value>Destination folder of backup work</value>
+  </data>
   <data name="exit_menu" xml:space="preserve">
     <value>Exit</value>
   </data>
   <data name="exit_program" xml:space="preserve">
     <value>Quit program</value>
   </data>
-  <data name="folder" xml:space="preserve">
-    <value>Folder</value>
+  <data name="folder_or_none" xml:space="preserve">
+    <value>Folder (none to keep)</value>
   </data>
   <data name="here_your_options" xml:space="preserve">
     <value>Here are your options:</value>
@@ -165,8 +156,11 @@
   <data name="name" xml:space="preserve">
     <value>Name</value>
   </data>
+  <data name="name_backup_work" xml:space="preserve">
+    <value>Name of backup work</value>
+  </data>
   <data name="name_or_none" xml:space="preserve">
-    <value>Name (nothing to keep, 'r' to reset)</value>
+    <value>Name (none to keep, 'r' to reset)</value>
   </data>
   <data name="number" xml:space="preserve">
     <value>No.</value>
@@ -189,8 +183,14 @@
   <data name="src_folder" xml:space="preserve">
     <value>Source folder</value>
   </data>
-  <data name="type" xml:space="preserve">
-    <value>Type</value>
+  <data name="src_folder_backup_work" xml:space="preserve">
+    <value>Source folder of backup work</value>
+  </data>
+  <data name="type_backup_work" xml:space="preserve">
+    <value>Type of backup work</value>
+  </data>
+  <data name="type_or_none" xml:space="preserve">
+    <value>Type (none to keep)</value>
   </data>
   <data name="welcome_message" xml:space="preserve">
     <value>Welcome in EasySave</value>

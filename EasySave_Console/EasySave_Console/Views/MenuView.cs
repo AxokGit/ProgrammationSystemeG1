@@ -30,7 +30,7 @@ namespace EasySave_Console.Views
             Console.WriteLine($"4: {LangHelper.GetString("change_language")}");
             Console.WriteLine($"5: {LangHelper.GetString("exit_program")}");
             Console.WriteLine();
-            Console.Write("Options (1-5):");
+            Console.Write("Options (1-5): ");
             return Console.ReadLine();
         }
 

@@ -117,18 +117,6 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="actual_dst_folder_backup_work" xml:space="preserve">
-    <value>Dossier de destination actuel du travail de sauvergarde</value>
-  </data>
-  <data name="actual_name_backup_work" xml:space="preserve">
-    <value>Nom actuel du travail de sauvegarde</value>
-  </data>
-  <data name="actual_src_folder_backup_work" xml:space="preserve">
-    <value>Dossier source actuel du travail de sauvegarde</value>
-  </data>
-  <data name="actual_type_backup_work" xml:space="preserve">
-    <value>Type actuel du travail de sauvegarde</value>
-  </data>
   <data name="backup" xml:space="preserve">
     <value>Sauvegardes</value>
   </data>
@@ -147,14 +135,17 @@
   <data name="dst_folder" xml:space="preserve">
     <value>Dossier de destination</value>
   </data>
+  <data name="dst_folder_backup_work" xml:space="preserve">
+    <value>Dossier de destination du travail de sauvergarde</value>
+  </data>
   <data name="exit_menu" xml:space="preserve">
     <value>Quitter</value>
   </data>
   <data name="exit_program" xml:space="preserve">
     <value>Quitter le programme</value>
   </data>
-  <data name="folder" xml:space="preserve">
-    <value>Dossier</value>
+  <data name="folder_or_none" xml:space="preserve">
+    <value>Dossier (rien pour garder)</value>
   </data>
   <data name="here_your_options" xml:space="preserve">
     <value>Voici vos options</value>
@@ -165,8 +156,11 @@
   <data name="name" xml:space="preserve">
     <value>Nom</value>
   </data>
+  <data name="name_backup_work" xml:space="preserve">
+    <value>Nom du travail de sauvegarde</value>
+  </data>
   <data name="name_or_none" xml:space="preserve">
-    <value>Nom</value>
+    <value>Nom (rien pour garder, 'r' pour réinitialiser)</value>
   </data>
   <data name="number" xml:space="preserve">
     <value>N°</value>
@@ -189,8 +183,14 @@
   <data name="src_folder" xml:space="preserve">
     <value>Dossier source</value>
   </data>
-  <data name="type" xml:space="preserve">
-    <value>Type</value>
+  <data name="src_folder_backup_work" xml:space="preserve">
+    <value>Dossier source du travail de sauvegarde</value>
+  </data>
+  <data name="type_backup_work" xml:space="preserve">
+    <value>Type du travail de sauvegarde</value>
+  </data>
+  <data name="type_or_none" xml:space="preserve">
+    <value>Type (rien pour garder)</value>
   </data>
   <data name="welcome_message" xml:space="preserve">
     <value>Bienvenue dans EasySave !</value>

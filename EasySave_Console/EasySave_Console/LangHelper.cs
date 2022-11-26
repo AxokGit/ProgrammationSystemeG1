@@ -1,31 +1,21 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Resources;
+﻿using System.Resources;
 using System.Reflection;
-using System.Globalization;
 
 namespace EasySave_Console
 {
     public static class LangHelper
     {
-        private static ResourceManager _rm;
+        private static ResourceManager _rm = new ResourceManager("EasySave_Console.Languages.en", Assembly.GetExecutingAssembly());
 
-        static LangHelper()
+        public static string GetString(string name)
         {
-            _rm = new ResourceManager("EasySave_Console.Languages.strings", Assembly.GetExecutingAssembly());
+            string? value = _rm.GetString(name);
+            return value == null ? "" : value;
         }
 
-        public static string? GetString(string name)
-        {
-            return _rm.GetString(name);
-        }
         public static void ChangeLanguage(string language)
         {
-            var cultureInfo = new CultureInfo(language);
-
-            CultureInfo.CurrentCulture = cultureInfo;
-            CultureInfo.CurrentUICulture = cultureInfo;
+            _rm = new ResourceManager("EasySave_Console.Languages."+language, Assembly.GetExecutingAssembly());
         }
     }
 }

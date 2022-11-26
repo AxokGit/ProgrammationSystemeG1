@@ -14,9 +14,5 @@
             this.DstFolder = dst_folder;
             this.Type = type;
         }
-
-        public BackupWork()
-        {
-        }
     }
 }

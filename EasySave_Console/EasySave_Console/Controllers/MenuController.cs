@@ -18,8 +18,7 @@ namespace EasySave_Console.Controllers
                 string menuOption = menuView.PromptMainMenu();
                 if (menuOption == "1")
                 {
-                    menuView.Print("TODO");
-                    menuView.Wait();
+                    new BackupWorksRunController();
                 }
                 else if (menuOption == "2")
                 {

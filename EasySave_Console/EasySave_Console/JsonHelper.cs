@@ -26,5 +26,15 @@ namespace EasySave_Console
                 return null;
             }
         }
+
+        public void WriteLogToJson()
+        {
+
+        }
+
+        public void ReadLogToJson()
+        {
+
+        }
     }
 }

@@ -20,7 +20,7 @@ namespace EasySave_Console.Models
         {
             string LogPath = ConfigurationManager.AppSettings["logPath"];
 
-            using(StreamWriter writer = new StreamWriter(LogPath, true))
+            //using (StreamWriter writer = new StreamWriter(LogPath, true)) 
         }
 
     }

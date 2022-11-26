@@ -8,34 +8,21 @@ using System.Text;
 
 namespace EasySave_Console.Models
 {
-    public class Logs : BackupWork
+    public class Logs
     {
-        public string? FileSource { get; set; }
-        public string? FileTarget { get; set; }
         public string? DestPath { get; set; }
         public int? FileSize { get; set; }
         public int? FileTransferTime { get; set; }
         public string? Time { get; set; }
-        BackupWork bw = new BackupWork();
-        public string GenerateLog(object bw)
+        public static string GenerateLog(BackupWork BO)
         {
-            string strResultJson = JsonConvert.SerializeObject(bw);
+            //BackupWork MyObjet = new BackupWork();
+            string strResultJson = JsonConvert.SerializeObject(BO);
             File.WriteAllText(@"logs.json", strResultJson);
             Console.WriteLine("Stored!");
 
-            strResultJson = String.Empty;
-            strResultJson = File.ReadAllText(@"logs.json");
-
-            var dictionnary = JsonConvert.DeserializeObject<IDictionary>(strResultJson);
-            foreach (DictionaryEntry entry in dictionnary)
-            {
-                Console.WriteLine(entry.Key + ": " + entry.Value);
-            }            
-            
-            return string.Format("Logs: \n\tName: {0}," + " FileSource: {1}," + " FileTarget: {2},"
-                                  + " DestPath: {3}," + " FileSize: {4}," + "FileTransferTime: {5},"
-                                  + "Time: {6}"
-                                  ,Name, FileSource, FileTarget, DestPath, FileSize, FileTransferTime, Time);
+            return string.Format("Logs information:\n\tName: {0}, Source foler: {1}, Destination folder: {2}, Type : {3}, Size: {4}, Transfer Time: {5}, Time: {6}",
+                                   BO.Name, BO.SrcFolder, BO.DstFolder, BO.Type, BO.FileSize, BO.FileTransferTime, BO.Time);
         }
 
     }

@@ -1,6 +1,6 @@
 ﻿namespace EasySave_Console.Models
 {
-    public class BackupWork
+    public class BackupWork : Logs
     {
         public string? Name { get; set; }
         public string? SrcFolder { get; set; }

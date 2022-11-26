@@ -12,7 +12,7 @@ namespace EasySave_Console.Views
             Console.WriteLine("1: Français");
             Console.WriteLine("2: English");
             Console.WriteLine();
-            Console.Write("Choose: ");
+            Console.Write("Options (1-2): ");
             return Console.ReadLine();
         }
     }

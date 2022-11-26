@@ -15,8 +15,6 @@ namespace EasySave_Console.Controllers
             bool languageSelected = false;
             while (!languageSelected)
             {
-                menuView.ClearConsole();
-                menuView.OnBootMessage();
                 string languageOption = languageMenuView.PromptLanguageOption();
                 if (languageOption == "1")
                 {

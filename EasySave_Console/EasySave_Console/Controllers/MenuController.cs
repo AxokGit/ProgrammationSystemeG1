@@ -9,6 +9,7 @@ namespace EasySave_Console.Controllers
         MenuView menuView = new MenuView();
         public MenuController()
         {
+            menuView.OnBootMessage();
             new LanguageController();
 
             bool optionSelected = false;
@@ -18,8 +19,7 @@ namespace EasySave_Console.Controllers
                 string menuOption = menuView.PromptMainMenu();
                 if (menuOption == "1")
                 {
-                    menuView.Print("TODO");
-                    menuView.Wait();
+                    new BackupWorksRunController();
                 }
                 else if (menuOption == "2")
                 {
@@ -32,11 +32,12 @@ namespace EasySave_Console.Controllers
                 }
                 else if (menuOption == "4")
                 {
+                    menuView.ClearConsole();
                     new LanguageController();
                 }
                 else if (menuOption == "5")
                 {
-                    Environment.Exit(0);
+                    optionSelected = true;
                 }
             }
         }

@@ -123,11 +123,17 @@
   <data name="backups_work_edit_menu" xml:space="preserve">
     <value>Backup works edit menu</value>
   </data>
+  <data name="backups_work_run_menu" xml:space="preserve">
+    <value>Backup work run menu</value>
+  </data>
   <data name="change_language" xml:space="preserve">
     <value>Change language</value>
   </data>
   <data name="choose_backup_work_to_edit" xml:space="preserve">
     <value>Choose backup work to edit</value>
+  </data>
+  <data name="choose_backup_work_to_run" xml:space="preserve">
+    <value>Choose backup work to run</value>
   </data>
   <data name="define_work" xml:space="preserve">
     <value>Define backup job(s)</value>

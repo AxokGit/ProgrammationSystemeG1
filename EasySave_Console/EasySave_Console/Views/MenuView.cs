@@ -14,9 +14,28 @@ namespace EasySave_Console.Views
         }
         public void OnBootMessage()
         {
-            Console.WriteLine("|-------------------------------|");
-            Console.WriteLine("|---  EasySave Console Mode  ---|");
-            Console.WriteLine("|-------------------------------|");
+            //Console.WriteLine("|-------------------------------|");
+            //Console.WriteLine("|---  EasySave Console Mode  ---|");
+            //Console.WriteLine("|-------------------------------|");
+            //Console.WriteLine("Version: " + Assembly.GetExecutingAssembly().GetName().Version);
+            //Console.WriteLine();
+
+            //Console.WriteLine("███████  █████  ███████ ██    ██ ███████  █████  ██    ██ ███████ ");
+            //Console.WriteLine("██      ██   ██ ██       ██  ██  ██      ██   ██ ██    ██ ██      ");
+            //Console.WriteLine("█████   ███████ ███████   ████   ███████ ███████ ██    ██ █████   ");
+            //Console.WriteLine("██      ██   ██      ██    ██         ██ ██   ██  ██  ██  ██      ");
+            //Console.WriteLine("███████ ██   ██ ███████    ██    ███████ ██   ██   ████   ███████ ");
+            //Console.WriteLine();
+
+            Console.WriteLine(@"  ______                 _____                 ");
+            Console.WriteLine(@" |  ____|               / ____|                ");
+            Console.WriteLine(@" | |__   __ _ ___ _   _| (___   __ ___   _____ ");
+            Console.WriteLine(@" |  __| / _` / __| | | |\___ \ / _` \ \ / / _ \");
+            Console.WriteLine(@" | |___| (_| \__ \ |_| |____) | (_| |\ V /  __/");
+            Console.WriteLine(@" |______\__,_|___/\__, |_____/ \__,_| \_/ \___|");
+            Console.WriteLine(@"                   __/ |                       ");
+            Console.WriteLine(@"                  |___/                        ");
+            Console.WriteLine();
             Console.WriteLine("Version: " + Assembly.GetExecutingAssembly().GetName().Version);
             Console.WriteLine();
         }
@@ -32,6 +51,12 @@ namespace EasySave_Console.Views
             Console.WriteLine();
             Console.Write("Options (1-5): ");
             return Console.ReadLine();
+        }
+
+        public void ChangeColor(ConsoleColor bg, ConsoleColor fg)
+        {
+            Console.BackgroundColor = bg;
+            Console.ForegroundColor = fg;
         }
 
         public void Print(string message)

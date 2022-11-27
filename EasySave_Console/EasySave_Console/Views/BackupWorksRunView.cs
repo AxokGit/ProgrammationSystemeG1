@@ -45,8 +45,14 @@ namespace EasySave_Console.Views
             Console.WriteLine();
             Console.WriteLine("6:" + LangHelper.GetString("exit_menu"));
             Console.WriteLine();
-            Console.Write(LangHelper.GetString("number") + " (1-6): ");
+            Console.Write(LangHelper.GetString("number_or_all") + " (1-6): ");
             return Console.ReadLine();
+        }
+        public void ErrorMsgEmptyBW()
+        {
+            Console.WriteLine(LangHelper.GetString("err_empty_bw"));
+            Console.Write(LangHelper.GetString("type_enter_to_continue"));
+            Console.ReadKey();
         }
     }
 }

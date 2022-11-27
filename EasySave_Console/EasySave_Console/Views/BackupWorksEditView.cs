@@ -56,7 +56,7 @@ namespace EasySave_Console.Views
             Console.WriteLine(backupWork.Name);
             Console.WriteLine();
             Console.Write(LangHelper.GetString("name_or_none") + ": ");
-            return Console.ReadLine();
+            return Console.ReadLine() ?? "";
         }
         public string PromptEditBackupWorksSrcFolder(BackupWork backupWork)
         {
@@ -65,7 +65,7 @@ namespace EasySave_Console.Views
             Console.WriteLine(backupWork.SrcFolder);
             Console.WriteLine();
             Console.Write(LangHelper.GetString("folder_or_none") + ": ");
-            return Console.ReadLine();
+            return Console.ReadLine() ?? "";
         }
         public string PromptEditBackupWorksDstFolder(BackupWork backupWork)
         {
@@ -74,7 +74,7 @@ namespace EasySave_Console.Views
             Console.WriteLine(backupWork.DstFolder);
             Console.WriteLine();
             Console.Write(LangHelper.GetString("folder_or_none") + ": ");
-            return Console.ReadLine();
+            return Console.ReadLine() ?? "";
         }
         public string PromptEditBackupWorksType(BackupWork backupWork)
         {
@@ -83,7 +83,7 @@ namespace EasySave_Console.Views
             Console.WriteLine(backupWork.Type);
             Console.WriteLine();
             Console.Write(LangHelper.GetString("type_or_none") + ": ");
-            return Console.ReadLine();
+            return Console.ReadLine() ?? "";
         }
     }
 }

@@ -123,11 +123,17 @@
   <data name="backups_work_edit_menu" xml:space="preserve">
     <value>Menu d'édition de travail de sauvegarde</value>
   </data>
+  <data name="backups_work_run_menu" xml:space="preserve">
+    <value>Menu d'exécution de travail de sauvegarde</value>
+  </data>
   <data name="change_language" xml:space="preserve">
     <value>Changer la langue</value>
   </data>
   <data name="choose_backup_work_to_edit" xml:space="preserve">
     <value>Choisissez un travail de sauvegarde à modifier</value>
+  </data>
+  <data name="choose_backup_work_to_run" xml:space="preserve">
+    <value>Choisissez un travail de sauvegarde à exécuter</value>
   </data>
   <data name="define_work" xml:space="preserve">
     <value>Définir travail de sauvegarde</value>
@@ -137,6 +143,9 @@
   </data>
   <data name="dst_folder_backup_work" xml:space="preserve">
     <value>Dossier de destination du travail de sauvergarde</value>
+  </data>
+  <data name="err_empty_bw" xml:space="preserve">
+    <value>Erreur, le travail de sauvegarde n'a pas été configuré</value>
   </data>
   <data name="exit_menu" xml:space="preserve">
     <value>Quitter</value>
@@ -165,6 +174,9 @@
   <data name="number" xml:space="preserve">
     <value>N°</value>
   </data>
+  <data name="number_or_all" xml:space="preserve">
+    <value>N° ('a' pour tous)</value>
+  </data>
   <data name="open_log_folder" xml:space="preserve">
     <value>Ouvrir dossier log</value>
   </data>
@@ -188,6 +200,9 @@
   </data>
   <data name="type_backup_work" xml:space="preserve">
     <value>Type du travail de sauvegarde</value>
+  </data>
+  <data name="type_enter_to_continue" xml:space="preserve">
+    <value>Tapez ENTRER pour continuer</value>
   </data>
   <data name="type_or_none" xml:space="preserve">
     <value>Type (rien pour garder)</value>

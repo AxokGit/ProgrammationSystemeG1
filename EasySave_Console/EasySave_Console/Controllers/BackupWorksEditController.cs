@@ -121,8 +121,14 @@ namespace EasySave_Console.Controllers
                             backupWorks[i].Type = previousType;
                             validType = true;
                         }
-                        else if (backupWorks[i].Type != "")
+                        else if (backupWorks[i].Type == "1")
                         {
+                            backupWorks[i].Type = "complete";
+                            validType = true;
+                        }
+                        else if (backupWorks[i].Type == "2")
+                        {
+                            backupWorks[i].Type = "differencial";
                             validType = true;
                         }
                     }

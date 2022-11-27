@@ -79,8 +79,9 @@ namespace EasySave_Console.Controllers
                                 {
                                     jsonHelper.WriteStateLogToJson(filepath_statelog, stateLog);
 
+
                                     menuView.ClearConsole();
-                                    backupWorksRunView.CopyMessage(stateLog, file.Name);
+                                    backupWorksRunView.CopyMessage(stateLog, file);
                                     try
                                     {
                                         var relativePathFile = Path.GetRelativePath(backupWorks[i].SrcFolder, file.FullPath);
@@ -100,6 +101,7 @@ namespace EasySave_Console.Controllers
                                 watch.Stop();
                                 stateLog.Active = false;
                                 jsonHelper.WriteStateLogToJson(filepath_statelog, stateLog);
+                                menuView.ClearConsole();
                                 backupWorksRunView.CopyMessage(stateLog, null);
 
                             }
@@ -107,7 +109,6 @@ namespace EasySave_Console.Controllers
                             {
                                 Console.WriteLine(e.Message);
                             }
-                            Console.ReadKey();
                         }
                         else if (backupWorks[i].Type == "differencial")
                         {

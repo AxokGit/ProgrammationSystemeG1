@@ -55,14 +55,37 @@ namespace EasySave_Console.Views
             Console.ReadKey();
         }
 
-        public void CopyMessage(StateLog stateLog, string? filename)
+        public void CopyMessage(StateLog stateLog, FileModel? file)
         {
             Console.WriteLine(LangHelper.GetString("copy_monitor") + " :");
             Console.WriteLine();
-            Console.WriteLine(LangHelper.GetString("backup_work_name") + " : " + stateLog.BackupWorkName);
-            Console.WriteLine(LangHelper.GetString("copy_status") + " : " + (stateLog.Active == true ? LangHelper.GetString("finished") : LangHelper.GetString("running")));
-
-            Console.WriteLine(filename + " - " + LangHelper.GetString("starting_copy"));
+            tableView.PrintLine();
+            tableView.PrintRow(LangHelper.GetString("backup_work_name"), stateLog.BackupWorkName);
+            tableView.PrintLine();
+            tableView.PrintRow(LangHelper.GetString("copy_status"), stateLog.Active == true ? LangHelper.GetString("running") : LangHelper.GetString("finished"));
+            tableView.PrintLine();
+            tableView.PrintRow(LangHelper.GetString("start_time"), stateLog.StartTimestamp);
+            tableView.PrintLine();
+            tableView.PrintRow(LangHelper.GetString("total_file_number"), stateLog.TotalFiles + " (" + stateLog.TotalSize + " " + LangHelper.GetString("bytes") + ")");
+            tableView.PrintLine();
+            tableView.PrintRow(LangHelper.GetString("remaining_file_number"), stateLog.RemainingFiles + " (" + stateLog.RemainingSize + " " + LangHelper.GetString("bytes") + ")");
+            tableView.PrintLine();
+            if (file != null)
+                tableView.PrintRow(LangHelper.GetString("current_file_in_copy"), file.Name + " (" + file.Size + " " + LangHelper.GetString("bytes") + ")");
+            else
+                tableView.PrintRow(LangHelper.GetString("current_file_in_copy"), "-");
+            tableView.PrintLine();
+            tableView.PrintRow(LangHelper.GetString("src_folder"), stateLog.SrcFolder);
+            tableView.PrintLine();
+            tableView.PrintRow(LangHelper.GetString("dst_folder"), stateLog.DstFolder);
+            tableView.PrintLine();
+            
+            if (file == null)
+            {
+                Console.Write(LangHelper.GetString("type_enter_to_continue"));
+                Console.ReadKey();
+            }
+                
         }
     }
 }

@@ -142,7 +142,7 @@
     <value>Choose backup work to run</value>
   </data>
   <data name="choose_log" xml:space="preserve">
-    <value>Which log would you like to open?</value>
+    <value>Which log file would you like to open?</value>
   </data>
   <data name="copy_monitor" xml:space="preserve">
     <value>Copy monitor</value>

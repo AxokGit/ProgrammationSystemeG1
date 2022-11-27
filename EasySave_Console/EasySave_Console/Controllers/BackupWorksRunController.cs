@@ -17,6 +17,7 @@ namespace EasySave_Console.Controllers
         public BackupWorksRunController()
         {
             string filepath_bw_config = fileHelper.FormatFilePath(fileHelper.filepath_bw_config);
+            string filepath_statelog = fileHelper.FormatFilePath(fileHelper.filepath_statelog);
 
             List<BackupWork>? backupWorks = jsonHelper.ReadBackupWorkFromJson(filepath_bw_config);
 
@@ -61,7 +62,7 @@ namespace EasySave_Console.Controllers
                                 }
                                 StateLog stateLog = new StateLog(
                                     backupWorks[i].Name, //BW name
-                                    new DateTime(), // TimeStamp
+                                    DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss"), // TimeStamp
                                     true, // Active
                                     files.Count, // Totalfile
                                     filesSize, // List of file size
@@ -71,12 +72,15 @@ namespace EasySave_Console.Controllers
                                     backupWorks[i].DstFolder // Dst folder
                                 );
 
+                                var watch = new System.Diagnostics.Stopwatch();
+                                watch.Start();
+                                
                                 foreach (FileModel file in files)
                                 {
-                                    var watch = new System.Diagnostics.Stopwatch();
+                                    jsonHelper.WriteStateLogToJson(filepath_statelog, stateLog);
 
-                                    watch.Start();
-
+                                    menuView.ClearConsole();
+                                    backupWorksRunView.CopyMessage(stateLog, file.Name);
                                     try
                                     {
                                         var relativePathFile = Path.GetRelativePath(backupWorks[i].SrcFolder, file.FullPath);
@@ -89,17 +93,15 @@ namespace EasySave_Console.Controllers
                                         Console.WriteLine(iox.Message);
                                     }
 
-                                    watch.Stop();
-
-                                    Console.WriteLine(file.Name);
                                     stateLog.RemainingFiles--;
                                     stateLog.RemainingSize -= file.Size;
-
-                                    Console.WriteLine(stateLog.RemainingFiles);
-                                    Console.WriteLine(stateLog.RemainingSize);
-                                    Console.ReadKey();
+                                    jsonHelper.WriteStateLogToJson(filepath_statelog, stateLog);
                                 }
+                                watch.Stop();
                                 stateLog.Active = false;
+                                jsonHelper.WriteStateLogToJson(filepath_statelog, stateLog);
+                                backupWorksRunView.CopyMessage(stateLog, null);
+
                             }
                             catch (Exception e)
                             {
@@ -112,7 +114,6 @@ namespace EasySave_Console.Controllers
                             Console.WriteLine("Differencial backup TODO");
                             Console.ReadKey();
                         }
-                        
                     }
                 }
                 else if (menuBWOption == "6")

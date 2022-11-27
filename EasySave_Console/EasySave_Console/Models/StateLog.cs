@@ -7,16 +7,16 @@ namespace EasySave_Console.Models
     class StateLog
     {
         public string BackupWorkName;
-        public DateTime StartTimestamp;
+        public string StartTimestamp;
         public bool Active;
         public int TotalFiles;
         public long TotalSize;
         public int RemainingFiles;
         public long RemainingSize;
         public string SrcFolder;
-        public string DstFolder;
+        public string DstFolder; 
 
-        public StateLog(string backupWorkName, DateTime startTimestamp, bool active, int totalFiles, long fileSize, int remainingFiles, long remainingSize, string srcFolder, string dstFolder)
+        public StateLog(string backupWorkName, string startTimestamp, bool active, int totalFiles, long fileSize, int remainingFiles, long remainingSize, string srcFolder, string dstFolder)
         {
             this.BackupWorkName = backupWorkName;
             this.StartTimestamp = startTimestamp;

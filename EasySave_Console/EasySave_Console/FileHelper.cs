@@ -9,6 +9,7 @@ namespace EasySave_Console
     class FileHelper
     {
         public string filepath_bw_config { get; set; } = @"%AppData%\EasySave\BackupWorks.json";
+        public string filepath_statelog { get; set; } = @"%AppData%\EasySave\StateLog.json";
         public string FormatPath(string path)
         {
             return Path.GetFullPath(path);

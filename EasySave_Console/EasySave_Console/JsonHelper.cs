@@ -32,14 +32,28 @@ namespace EasySave_Console
             }
         }
 
-        public void WriteStateLogToJson()
+        public void WriteStateLogToJson(string filepath, StateLog content)
         {
+            string json = JsonConvert.SerializeObject(content, Formatting.Indented);
 
+            string directoryName = Path.GetDirectoryName(filepath);
+
+            if (!Directory.Exists(directoryName))
+                Directory.CreateDirectory(directoryName);
+            File.WriteAllText($@"{filepath}", json);
         }
 
-        public void ReadStateLogToJson()
+        public StateLog? ReadStateLogToJson(string filepath)
         {
-
+            if (File.Exists(filepath))
+            {
+                string json = File.ReadAllText($@"{filepath}");
+                return JsonConvert.DeserializeObject<StateLog>(json);
+            }
+            else
+            {
+                return null;
+            }
         }
     }
 }

@@ -135,6 +135,9 @@
   <data name="choose_backup_work_to_run" xml:space="preserve">
     <value>Choisissez un travail de sauvegarde à exécuter</value>
   </data>
+  <data name="choose_log" xml:space="preserve">
+    <value>Quel fichier log souhaitez-vous ouvrir ?</value>
+  </data>
   <data name="define_work" xml:space="preserve">
     <value>Définir travail de sauvegarde</value>
   </data>

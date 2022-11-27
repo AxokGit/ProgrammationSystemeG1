@@ -141,6 +141,9 @@
   <data name="choose_backup_work_to_run" xml:space="preserve">
     <value>Choose backup work to run</value>
   </data>
+  <data name="choose_log" xml:space="preserve">
+    <value>Which log would you like to open?</value>
+  </data>
   <data name="copy_monitor" xml:space="preserve">
     <value>Copy monitor</value>
   </data>

@@ -79,6 +79,7 @@ namespace EasySave_Console.Controllers
                                 {
                                     jsonHelper.WriteStateLogToJson(filepath_statelog, stateLog);
 
+
                                     menuView.ClearConsole();
                                     backupWorksRunView.CopyMessage(stateLog, file.Name);
                                     try

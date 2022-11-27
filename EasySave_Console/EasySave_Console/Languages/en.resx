@@ -135,8 +135,17 @@
   <data name="choose_backup_work_to_run" xml:space="preserve">
     <value>Choose backup work to run</value>
   </data>
+  <data name="copy_monitor" xml:space="preserve">
+    <value>Copy monitor</value>
+  </data>
+  <data name="copy_status" xml:space="preserve">
+    <value>Status</value>
+  </data>
   <data name="define_work" xml:space="preserve">
     <value>Define backup job(s)</value>
+  </data>
+  <data name="done" xml:space="preserve">
+    <value>DONE</value>
   </data>
   <data name="dst_folder" xml:space="preserve">
     <value>Destination folder</value>
@@ -152,6 +161,9 @@
   </data>
   <data name="exit_program" xml:space="preserve">
     <value>Quit program</value>
+  </data>
+  <data name="finished" xml:space="preserve">
+    <value>Finished</value>
   </data>
   <data name="folder_or_none" xml:space="preserve">
     <value>Folder (none to keep)</value>
@@ -180,6 +192,9 @@
   <data name="open_log_folder" xml:space="preserve">
     <value>Open log folder</value>
   </data>
+  <data name="running" xml:space="preserve">
+    <value>Running</value>
+  </data>
   <data name="run_work" xml:space="preserve">
     <value>Start backup job(s)</value>
   </data>
@@ -197,6 +212,9 @@
   </data>
   <data name="src_folder_backup_work" xml:space="preserve">
     <value>Source folder of backup work</value>
+  </data>
+  <data name="starting_copy" xml:space="preserve">
+    <value>Copying</value>
   </data>
   <data name="type_backup_work" xml:space="preserve">
     <value>Type of backup work</value>

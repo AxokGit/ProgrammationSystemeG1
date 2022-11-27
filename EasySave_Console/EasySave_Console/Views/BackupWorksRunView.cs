@@ -54,5 +54,15 @@ namespace EasySave_Console.Views
             Console.Write(LangHelper.GetString("type_enter_to_continue"));
             Console.ReadKey();
         }
+
+        public void CopyMessage(StateLog stateLog, string? filename)
+        {
+            Console.WriteLine(LangHelper.GetString("copy_monitor") + " :");
+            Console.WriteLine();
+            Console.WriteLine(LangHelper.GetString("backup_work_name") + " : " + stateLog.BackupWorkName);
+            Console.WriteLine(LangHelper.GetString("copy_status") + " : " + (stateLog.Active == true ? LangHelper.GetString("finished") : LangHelper.GetString("running")));
+
+            Console.WriteLine(filename + " - " + LangHelper.GetString("starting_copy"));
+        }
     }
 }

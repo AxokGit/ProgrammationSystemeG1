@@ -126,6 +126,12 @@
   <data name="backups_work_run_menu" xml:space="preserve">
     <value>Backup work run menu</value>
   </data>
+  <data name="backup_work_name" xml:space="preserve">
+    <value>Backup Work name</value>
+  </data>
+  <data name="bytes" xml:space="preserve">
+    <value>Bytes</value>
+  </data>
   <data name="change_language" xml:space="preserve">
     <value>Change language</value>
   </data>
@@ -140,6 +146,9 @@
   </data>
   <data name="copy_status" xml:space="preserve">
     <value>Status</value>
+  </data>
+  <data name="current_file_in_copy" xml:space="preserve">
+    <value>Current file in copy</value>
   </data>
   <data name="define_work" xml:space="preserve">
     <value>Define backup job(s)</value>
@@ -192,6 +201,9 @@
   <data name="open_log_folder" xml:space="preserve">
     <value>Open log folder</value>
   </data>
+  <data name="remaining_file_number" xml:space="preserve">
+    <value>Remaining file number</value>
+  </data>
   <data name="running" xml:space="preserve">
     <value>Running</value>
   </data>
@@ -216,14 +228,26 @@
   <data name="starting_copy" xml:space="preserve">
     <value>Copying</value>
   </data>
+  <data name="start_time" xml:space="preserve">
+    <value>Start time</value>
+  </data>
+  <data name="total_file_number" xml:space="preserve">
+    <value>Total file number</value>
+  </data>
   <data name="type_backup_work" xml:space="preserve">
     <value>Type of backup work</value>
+  </data>
+  <data name="type_complete" xml:space="preserve">
+    <value>Complete</value>
+  </data>
+  <data name="type_differencial" xml:space="preserve">
+    <value>Differencial</value>
   </data>
   <data name="type_enter_to_continue" xml:space="preserve">
     <value>Type ENTER to continue</value>
   </data>
-  <data name="type_or_none" xml:space="preserve">
-    <value>Type (none to keep)</value>
+  <data name="type_option_or_none" xml:space="preserve">
+    <value>Type (1:complete / 2:differencial / none to keep)</value>
   </data>
   <data name="welcome_message" xml:space="preserve">
     <value>Welcome in EasySave</value>

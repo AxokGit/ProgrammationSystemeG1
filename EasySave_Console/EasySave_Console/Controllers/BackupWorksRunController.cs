@@ -2,6 +2,7 @@
 using EasySave_Console.Views;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Text;
 
 namespace EasySave_Console.Controllers
@@ -51,12 +52,42 @@ namespace EasySave_Console.Controllers
                         {
                             List<FileModel> files = fileHelper.GetAllFileFromFolderPath(backupWorks[i].SrcFolder);
                             backupWorks[i].Files = files;
-
+                            List<long> fileSizes = new List<long>();
                             foreach (FileModel file in files)
                             {
+                                fileSizes.Add(file.Size);
+                            }
+                            StateLog stateLog = new StateLog(
+                                backupWorks[i].Name,
+                                new DateTime(),
+                                true,
+                                files.Count,
+                                fileSizes,
+                                files.Count,
+                                fileSizes,
+                                backupWorks[i].SrcFolder,
+                                backupWorks[i].DstFolder
+                            );
+                            
+                            foreach (FileModel file in files)
+                            {
+                                var watch = new System.Diagnostics.Stopwatch();
+
+                                watch.Start();
+
+                                try
+                                {
+                                    File.Copy(file.FullPath, backupWorks[i].DstFolder+@"\"+file.Name, true);
+                                }
+                                catch (IOException iox)
+                                {
+                                    Console.WriteLine(iox.Message);
+                                }
+
+                                watch.Stop();
+
                                 Console.WriteLine(file.Name);
                             }
-                            
                         }
                         catch (Exception e)
                         {

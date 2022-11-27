@@ -2,13 +2,14 @@
 
 namespace EasySave_Console.Models
 {
-    public class BackupWork : Logs
+    class BackupWork
     {
         public string? Name;
         public string? SrcFolder;
         public string? DstFolder;
         public string? Type;
-        public List<FileModel>? Files; 
+        public List<FileModel>? Files;
+        public List<StateLog>? Logs;
 
         public BackupWork(string? name, string? src_folder, string? dst_folder, string? type)
         {

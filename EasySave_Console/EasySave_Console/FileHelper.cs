@@ -8,7 +8,7 @@ namespace EasySave_Console
 {
     class FileHelper
     {
-        public string filepath_bw_config { get; set; } = @"%AppData%\BackupWorks.json";
+        public string filepath_bw_config { get; set; } = @"%AppData%\EasySave\BackupWorks.json";
         public string FormatPath(string path)
         {
             return Path.GetFullPath(path);
@@ -20,12 +20,12 @@ namespace EasySave_Console
         public List<FileModel> GetAllFileFromFolderPath(string folderPath)
         {
             DirectoryInfo d = new DirectoryInfo(folderPath);
-            FileInfo[] fileInfo = d.GetFiles("*.*", SearchOption.AllDirectories);
+            FileInfo[] fileInfo = d.GetFiles("*.*"); //d.GetFiles("*.*", SearchOption.AllDirectories);
             List<FileModel> files = new List<FileModel>();
             
             foreach (FileInfo file in fileInfo)
             {
-                files.Add(new FileModel(file.Name, file.Name, file.Length));
+                files.Add(new FileModel(file.Name, file.FullName, file.Length));
             }
 
             return files;

@@ -53,7 +53,7 @@ namespace EasySave_Console.Controllers
                         {
                             try
                             {
-                                List<FileModel> files = fileHelper.GetAllFileFromFolderPath(backupWorks[i].SrcFolder);
+                                List<FileModel> files = fileHelper.GetAllFile(backupWorks[i].SrcFolder);
                                 backupWorks[i].Files = files;
                                 long filesSize = new long();
                                 foreach (FileModel file in files)
@@ -105,15 +105,31 @@ namespace EasySave_Console.Controllers
                                 backupWorksRunView.CopyMessage(stateLog, null);
 
                             }
-                            catch (Exception e)
-                            {
-                                Console.WriteLine(e.Message);
-                            }
+                            catch (Exception e) { }
                         }
                         else if (backupWorks[i].Type == "differencial")
                         {
-                            Console.WriteLine("Differencial backup TODO");
-                            Console.ReadKey();
+                            try
+                            {
+                                if (fileHelper.DirectoryExists(backupWorks[i].DstFolder + @"\complete")) {
+                                    List<FileModel> files = fileHelper.GetAllEditedFile(backupWorks[i].SrcFolder, backupWorks[i].DstFolder + @"\complete");
+                                    foreach (FileModel file in files)
+                                    {
+                                        Console.WriteLine(file.Name);
+                                    }
+                                    Console.ReadKey();
+                                } 
+                                else
+                                {
+                                    fileHelper.CreateDirectory(backupWorks[i].DstFolder, @"\complete");
+                                }
+                                
+                                
+                            }
+                            catch (Exception e) { }
+
+
+                            
                         }
                     }
                 }

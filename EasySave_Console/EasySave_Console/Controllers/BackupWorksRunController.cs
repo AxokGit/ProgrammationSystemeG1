@@ -26,12 +26,50 @@ namespace EasySave_Console.Controllers
                 {
                     list_temp.Add(new BackupWork(null, null, null, null));
                 }
-
                 jsonHelper.WriteBackupWorkToJson(filepath_bw_config, list_temp);
                 backupWorks = jsonHelper.ReadBackupWorkFromJson(filepath_bw_config);
             }
-            menuView.ClearConsole();
-            backupWorksRunView.PromptRunBackupWorks(backupWorks);
+            
+
+            bool optionSelected = false;
+            while (!optionSelected)
+            {
+                menuView.ClearConsole();
+                string menuBWOption = backupWorksRunView.PromptRunBackupWorks(backupWorks);
+                if (menuBWOption == "1" || menuBWOption == "2" || menuBWOption == "3" || menuBWOption == "4" || menuBWOption == "5")
+                {
+                    int i = Convert.ToInt32(menuBWOption) - 1;
+
+                    if (backupWorks[i].IsEmpty())
+                    {
+                        menuView.ClearConsole();
+                        backupWorksRunView.ErrorMsgEmptyBW();
+                    }
+                    else
+                    {
+                        try
+                        {
+                            List<FileModel> files = fileHelper.GetAllFileFromFolderPath(backupWorks[i].SrcFolder);
+                            backupWorks[i].Files = files;
+
+                            foreach (FileModel file in files)
+                            {
+                                Console.WriteLine(file.Name);
+                            }
+                            
+                        }
+                        catch (Exception e)
+                        {
+                            Console.WriteLine(e.Message);
+                        }
+                        Console.ReadKey();
+                    }
+                }
+                else if (menuBWOption == "6")
+                {
+                    optionSelected = true;
+                }
+            }
         }
     }
 }

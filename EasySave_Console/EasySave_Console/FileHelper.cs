@@ -1,5 +1,7 @@
-﻿using System;
+﻿using EasySave_Console.Models;
+using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Text;
 
 namespace EasySave_Console
@@ -14,6 +16,19 @@ namespace EasySave_Console
         public string FormatFilePath(string path)
         {
             return Environment.ExpandEnvironmentVariables(path);
+        }
+        public List<FileModel> GetAllFileFromFolderPath(string folderPath)
+        {
+            DirectoryInfo d = new DirectoryInfo(folderPath);
+            FileInfo[] fileInfo = d.GetFiles("*.*", SearchOption.AllDirectories);
+            List<FileModel> files = new List<FileModel>();
+            
+            foreach (FileInfo file in fileInfo)
+            {
+                files.Add(new FileModel(file.Name, file.Name, file.Length));
+            }
+
+            return files;
         }
 
     }

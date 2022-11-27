@@ -25,7 +25,7 @@ namespace EasySave_Console
             {
                 string json = File.ReadAllText($@"{filepath}");
                 return JsonConvert.DeserializeObject<List<BackupWork>>(json);
-            } 
+            }
             else
             {
                 return null;

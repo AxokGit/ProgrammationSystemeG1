@@ -20,7 +20,7 @@ namespace EasySave_Console
         public List<FileModel> GetAllFileFromFolderPath(string folderPath)
         {
             DirectoryInfo d = new DirectoryInfo(folderPath);
-            FileInfo[] fileInfo = d.GetFiles("*.*"); //d.GetFiles("*.*", SearchOption.AllDirectories);
+            FileInfo[] fileInfo = d.GetFiles("*.*", SearchOption.AllDirectories);
             List<FileModel> files = new List<FileModel>();
             
             foreach (FileInfo file in fileInfo)

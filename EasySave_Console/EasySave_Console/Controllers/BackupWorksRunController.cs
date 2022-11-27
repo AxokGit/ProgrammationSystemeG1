@@ -48,52 +48,71 @@ namespace EasySave_Console.Controllers
                     }
                     else
                     {
-                        try
+                        if (backupWorks[i].Type == "complete")
                         {
-                            List<FileModel> files = fileHelper.GetAllFileFromFolderPath(backupWorks[i].SrcFolder);
-                            backupWorks[i].Files = files;
-                            List<long> fileSizes = new List<long>();
-                            foreach (FileModel file in files)
+                            try
                             {
-                                fileSizes.Add(file.Size);
+                                List<FileModel> files = fileHelper.GetAllFileFromFolderPath(backupWorks[i].SrcFolder);
+                                backupWorks[i].Files = files;
+                                long filesSize = new long();
+                                foreach (FileModel file in files)
+                                {
+                                    filesSize += file.Size;
+                                }
+                                StateLog stateLog = new StateLog(
+                                    backupWorks[i].Name, //BW name
+                                    new DateTime(), // TimeStamp
+                                    true, // Active
+                                    files.Count, // Totalfile
+                                    filesSize, // List of file size
+                                    files.Count, // Remaining file
+                                    filesSize, // List of remaining file size
+                                    backupWorks[i].SrcFolder, // Src folder
+                                    backupWorks[i].DstFolder // Dst folder
+                                );
+
+                                foreach (FileModel file in files)
+                                {
+                                    var watch = new System.Diagnostics.Stopwatch();
+
+                                    watch.Start();
+
+                                    try
+                                    {
+                                        var relativePathFile = Path.GetRelativePath(backupWorks[i].SrcFolder, file.FullPath);
+                                        if (!Directory.Exists(backupWorks[i].DstFolder + @"\" + relativePathFile))
+                                            Directory.CreateDirectory(Path.GetDirectoryName(backupWorks[i].DstFolder + @"\" + relativePathFile));
+                                        File.Copy(file.FullPath, backupWorks[i].DstFolder + @"\" + relativePathFile, true);
+                                    }
+                                    catch (IOException iox)
+                                    {
+                                        Console.WriteLine(iox.Message);
+                                    }
+
+                                    watch.Stop();
+
+                                    Console.WriteLine(file.Name);
+                                    stateLog.RemainingFiles--;
+                                    stateLog.RemainingSize -= file.Size;
+
+                                    Console.WriteLine(stateLog.RemainingFiles);
+                                    Console.WriteLine(stateLog.RemainingSize);
+                                    Console.ReadKey();
+                                }
+                                stateLog.Active = false;
                             }
-                            StateLog stateLog = new StateLog(
-                                backupWorks[i].Name,
-                                new DateTime(),
-                                true,
-                                files.Count,
-                                fileSizes,
-                                files.Count,
-                                fileSizes,
-                                backupWorks[i].SrcFolder,
-                                backupWorks[i].DstFolder
-                            );
-                            
-                            foreach (FileModel file in files)
+                            catch (Exception e)
                             {
-                                var watch = new System.Diagnostics.Stopwatch();
-
-                                watch.Start();
-
-                                try
-                                {
-                                    File.Copy(file.FullPath, backupWorks[i].DstFolder+@"\"+file.Name, true);
-                                }
-                                catch (IOException iox)
-                                {
-                                    Console.WriteLine(iox.Message);
-                                }
-
-                                watch.Stop();
-
-                                Console.WriteLine(file.Name);
+                                Console.WriteLine(e.Message);
                             }
+                            Console.ReadKey();
                         }
-                        catch (Exception e)
+                        else if (backupWorks[i].Type == "differencial")
                         {
-                            Console.WriteLine(e.Message);
+                            Console.WriteLine("Differencial backup TODO");
+                            Console.ReadKey();
                         }
-                        Console.ReadKey();
+                        
                     }
                 }
                 else if (menuBWOption == "6")

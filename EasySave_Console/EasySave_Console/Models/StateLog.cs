@@ -6,25 +6,25 @@ namespace EasySave_Console.Models
 {
     class StateLog
     {
-        string BackupWorkName;
-        DateTime StartTimestamp;
-        bool State;
-        int? TotalFiles;
-        List<long>? FileSize;
-        int RemainingFiles;
-        List<long>? RemainingFileSize;
-        string SrcFolder;
-        string DstFolder;
+        public string BackupWorkName;
+        public DateTime StartTimestamp;
+        public bool Active;
+        public int TotalFiles;
+        public long TotalSize;
+        public int RemainingFiles;
+        public long RemainingSize;
+        public string SrcFolder;
+        public string DstFolder;
 
-        public StateLog(string backupWorkName, DateTime startTimestamp, bool state, int? totalFiles, List<long>? fileSize, int remainingFiles, List<long>? remainingFileSize, string srcFolder, string dstFolder)
+        public StateLog(string backupWorkName, DateTime startTimestamp, bool active, int totalFiles, long fileSize, int remainingFiles, long remainingSize, string srcFolder, string dstFolder)
         {
             this.BackupWorkName = backupWorkName;
             this.StartTimestamp = startTimestamp;
-            this.State = state;
+            this.Active = active;
             this.TotalFiles = totalFiles;
-            this.FileSize = fileSize;
+            this.TotalSize = fileSize;
             this.RemainingFiles = remainingFiles;
-            this.RemainingFileSize = remainingFileSize;
+            this.RemainingSize = remainingSize;
             this.SrcFolder = srcFolder;
             this.DstFolder = dstFolder;
         }

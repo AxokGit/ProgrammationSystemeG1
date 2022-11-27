@@ -4,7 +4,7 @@ using System.Text;
 
 namespace EasySave_Console.Models
 {
-    class DailyLog
+    class Log
     {
         public string? BackupWorkName;
         public DateTime TimeAndDate;
@@ -13,7 +13,7 @@ namespace EasySave_Console.Models
         public string? DestFolder;
         public long TimeTransfer;
 
-        public DailyLog(string? BackupWorkName, DateTime TimeAndDate, int FileSize, string? SrcFolder, string? DestFolder, long TimeTransfer)
+        public Log(string? BackupWorkName, DateTime TimeAndDate, int FileSize, string? SrcFolder, string? DestFolder, long TimeTransfer)
         {
             this.BackupWorkName = BackupWorkName;
             this.TimeAndDate = TimeAndDate;

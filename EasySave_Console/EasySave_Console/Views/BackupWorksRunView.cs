@@ -32,6 +32,19 @@ namespace EasySave_Console.Views
                 string dst_folder = backupWorks[i].DstFolder ?? "-";
                 string type = backupWorks[i].Type ?? "-";
 
+                if (type == "complete")
+                {
+                    type = LangHelper.GetString("type_complete");
+                }
+                else if (type == "differencial")
+                {
+                    type = LangHelper.GetString("type_differencial");
+                }
+                else
+                {
+                    type = "-";
+                }
+
                 tableView.PrintRow(
                     Convert.ToString(i + 1),
                     name,

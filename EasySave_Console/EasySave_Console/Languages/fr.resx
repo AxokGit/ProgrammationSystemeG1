@@ -207,6 +207,12 @@
   <data name="type_backup_work" xml:space="preserve">
     <value>Type du travail de sauvegarde</value>
   </data>
+  <data name="type_complete" xml:space="preserve">
+    <value>Complète</value>
+  </data>
+  <data name="type_differencial" xml:space="preserve">
+    <value>Différencielle</value>
+  </data>
   <data name="type_enter_to_continue" xml:space="preserve">
     <value>Tapez ENTRER pour continuer</value>
   </data>

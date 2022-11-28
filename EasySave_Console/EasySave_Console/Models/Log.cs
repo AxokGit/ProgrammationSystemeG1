@@ -6,21 +6,21 @@ namespace EasySave_Console.Models
 {
     class Log
     {
-        public string? BackupWorkName;
-        public DateTime TimeAndDate;
-        public int FileSize;
-        public string? SrcFolder;
-        public string? DestFolder;
+        public string BackupWorkName;
+        public string DateTime;
+        public long FileSize;
+        public string SrcFilePath;
+        public string DstFilePath;
         public long TimeTransfer;
 
-        public Log(string? BackupWorkName, DateTime TimeAndDate, int FileSize, string? SrcFolder, string? DestFolder, long TimeTransfer)
+        public Log(string BackupWorkName, string dateTime, long FileSize, string srcFilePath, string dstFilePath, long TimeTransfer)
         {
             this.BackupWorkName = BackupWorkName;
-            this.TimeAndDate = TimeAndDate;
+            this.DateTime = dateTime;
             this.FileSize = FileSize;
-            this.SrcFolder = SrcFolder;
+            this.SrcFilePath = srcFilePath;
             this.FileSize = FileSize;
-            this.DestFolder = DestFolder;
+            this.DstFilePath = dstFilePath;
             this.TimeTransfer = TimeTransfer;
         }
     }

@@ -177,6 +177,9 @@
   <data name="exit_program" xml:space="preserve">
     <value>Quit program</value>
   </data>
+  <data name="file_opened" xml:space="preserve">
+    <value>File opened</value>
+  </data>
   <data name="finished" xml:space="preserve">
     <value>Finished</value>
   </data>

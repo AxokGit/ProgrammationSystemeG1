@@ -2,6 +2,7 @@
 using EasySave_Console.Views;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Text;
 
 namespace EasySave_Console.Controllers
@@ -88,6 +89,7 @@ namespace EasySave_Console.Controllers
                         }
                         else if (backupWorks[i].SrcFolder != "")
                         {
+                            backupWorks[i].SrcFolder = fileHelper.FormatPath(backupWorks[i].SrcFolder);
                             validSrcFolder = true;
                         }
                     }
@@ -104,6 +106,7 @@ namespace EasySave_Console.Controllers
                         }
                         else if (backupWorks[i].DstFolder != "")
                         {
+                            backupWorks[i].DstFolder = fileHelper.FormatPath(backupWorks[i].DstFolder);
                             validDstFolder = true;
                         }
                     }
@@ -118,8 +121,14 @@ namespace EasySave_Console.Controllers
                             backupWorks[i].Type = previousType;
                             validType = true;
                         }
-                        else if (backupWorks[i].Type != "")
+                        else if (backupWorks[i].Type == "1")
                         {
+                            backupWorks[i].Type = "complete";
+                            validType = true;
+                        }
+                        else if (backupWorks[i].Type == "2")
+                        {
+                            backupWorks[i].Type = "differencial";
                             validType = true;
                         }
                     }

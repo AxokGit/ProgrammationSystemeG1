@@ -9,9 +9,11 @@ namespace EasySave_Console
 {
     class FileHelper
     {
-        public string filepath_bw_config { get; set; } = @"%AppData%\EasySave\BackupWorks.json";
-        public string filepath_statelog { get; set; } = @"%AppData%\EasySave\StateLog.json";
-        public string filepath_log { get; set; } = @"%AppData%\EasySave\Logs\EasySave_Log_{}.json";
+        public string filepath_settings = @"%AppData%\EasySave\Settings.json";
+        public string filepath_bw_config = @"%AppData%\EasySave\BackupWorks.json";
+        public string filepath_statelog = @"%AppData%\EasySave\StateLog.json";
+        public string filepath_log = @"%AppData%\EasySave\Logs\EasySave_Log_{}.json";
+
         public string FormatPath(string path)
         {
             return Path.GetFullPath(path);
@@ -81,6 +83,11 @@ namespace EasySave_Console
         public bool DirectoryExists(string path)
         {
             return Directory.Exists(path);
+        }
+
+        public bool FileExists(string filepath)
+        {
+            return File.Exists(filepath);
         }
 
     }

@@ -37,7 +37,7 @@ namespace EasySave_Console.Controllers
                 else if (menuOption == "4")
                 {
                     menuView.ClearConsole();
-                    new LanguageController();
+                    new LanguageController().SelectLanguage();
                 }
                 else if (menuOption == "5")
                 {

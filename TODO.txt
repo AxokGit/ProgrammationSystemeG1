@@ -1,2 +1,1 @@
-check correct value when edit backupwork TYPE
 Menu N°3 : open backup log file

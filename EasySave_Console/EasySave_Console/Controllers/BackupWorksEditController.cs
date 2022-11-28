@@ -111,7 +111,7 @@ namespace EasySave_Console.Controllers
                         string previousType = backupWorks[i].Type ?? "";
                         menuView.ClearConsole();
                         backupWorks[i].Type = backupWorksEditView.PromptEditBackupWorksType(backupWorks[i]);
-                        if (backupWorks[i].Type == "" && previousType != "")
+                        if (backupWorks[i].Type == "" && (previousType == "complete" || previousType == "differencial"))
                         {
                             backupWorks[i].Type = previousType;
                             validType = true;
@@ -125,6 +125,10 @@ namespace EasySave_Console.Controllers
                         {
                             backupWorks[i].Type = "differencial";
                             validType = true;
+                        }
+                        else
+                        {
+                            backupWorks[i].Type = "";
                         }
                     }
                     jsonHelper.WriteBackupWorkToJson(filepath_bw_config, backupWorks);

@@ -13,7 +13,6 @@ namespace EasySave_Console.Controllers
         BackupWorksEditView backupWorksEditView = new BackupWorksEditView();
         JsonHelper jsonHelper = new JsonHelper();
         FileHelper fileHelper = new FileHelper();
-        
 
         public BackupWorksEditController()
         {

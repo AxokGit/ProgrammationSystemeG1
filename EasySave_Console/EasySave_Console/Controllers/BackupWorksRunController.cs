@@ -114,10 +114,7 @@ namespace EasySave_Console.Controllers
                                 Directory.CreateDirectory(Path.GetDirectoryName(backupWork.DstFolder + @"\" + relativePathFile));
                             File.Copy(file.FullPath, backupWork.DstFolder + @"\" + relativePathFile, true);
                         }
-                        catch (IOException iox)
-                        {
-                            Console.WriteLine(iox.Message);
-                        }
+                        catch { }
                         watch.Stop();
 
                         Log log = new Log(
@@ -138,7 +135,7 @@ namespace EasySave_Console.Controllers
                     menuView.ClearConsole();
                     backupWorksRunView.CopyMessage(stateLog, null, enterToContinue);
                 }
-                catch (Exception e) { }
+                catch { }
             }
             else if (backupWork.Type == "differencial")
             {
@@ -191,10 +188,7 @@ namespace EasySave_Console.Controllers
                                 Directory.CreateDirectory(Path.GetDirectoryName(backupWork.DstFolder + @"\" + subDstPath + @"\" + relativePathFile));
                             File.Copy(file.FullPath, backupWork.DstFolder + @"\" + subDstPath + @"\" + relativePathFile, true);
                         }
-                        catch (IOException iox)
-                        {
-                            Console.WriteLine(iox.Message);
-                        }
+                        catch { }
                         watch.Stop();
 
                         Log log = new Log(
@@ -215,7 +209,7 @@ namespace EasySave_Console.Controllers
                     menuView.ClearConsole();
                     backupWorksRunView.CopyMessage(stateLog, null, enterToContinue);
                 }
-                catch (Exception e) { }
+                catch { }
             }
         }
     }

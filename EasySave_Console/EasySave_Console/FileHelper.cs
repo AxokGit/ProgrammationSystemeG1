@@ -62,7 +62,6 @@ namespace EasySave_Console
             }
             return files;
         }
-
         public string GetFileNameAndMD5Hash(FileInfo file)
         {
             using (var md5 = MD5.Create())
@@ -74,24 +73,19 @@ namespace EasySave_Console
                 }
             }
         }
-
         public void CreateDirectory(string path, string foldername)
         {
             path += foldername;
             Directory.CreateDirectory(path);
         }
-
         public bool DirectoryExists(string path)
         {
             return Directory.Exists(path);
         }
-
         public bool FileExists(string filepath)
         {
             return File.Exists(filepath);
         }
-         
-        
         public static void OpenFile(FileModel fileModel)
         {
            var p = new Process();

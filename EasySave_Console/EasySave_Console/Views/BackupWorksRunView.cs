@@ -65,7 +65,6 @@ namespace EasySave_Console.Views
             Console.Write(LangHelper.GetString("type_enter_to_continue"));
             Console.ReadKey();
         }
-
         public void CopyMessage(StateLog stateLog, FileModel? file, bool enterToContinue=true)
         {
             Console.WriteLine(LangHelper.GetString("copy_monitor") + " :");

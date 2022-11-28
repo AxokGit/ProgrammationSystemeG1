@@ -11,12 +11,10 @@ namespace EasySave_Console.Views
         {
             this.TableWidth = tableWidth;
         }
-        
         public void PrintLine()
         {
             Console.WriteLine(new string('-', TableWidth+1));
         }
-
         public void PrintRow(params string[] columns)
         {
             int width = (TableWidth - columns.Length) / columns.Length;

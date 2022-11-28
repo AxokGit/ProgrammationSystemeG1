@@ -57,7 +57,6 @@ namespace EasySave_Console.Views
             Console.Write(LangHelper.GetString("number") +" (0-5): ");
             return Console.ReadLine();
         }
-
         public string PromptEditBackupWorksName(BackupWork backupWork)
         {
             Console.WriteLine(LangHelper.GetString("name_backup_work") + ":");

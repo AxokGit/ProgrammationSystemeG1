@@ -52,18 +52,15 @@ namespace EasySave_Console.Views
             Console.Write("Options (0-4): ");
             return Console.ReadLine();
         }
-
         public void ChangeColor(ConsoleColor bg, ConsoleColor fg)
         {
             Console.BackgroundColor = bg;
             Console.ForegroundColor = fg;
         }
-
         public void Print(string message)
         {
             Console.WriteLine(message);
         }
-
         public void Wait()
         {
             Console.ReadKey();

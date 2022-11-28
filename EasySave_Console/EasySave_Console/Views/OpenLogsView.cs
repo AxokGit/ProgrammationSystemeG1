@@ -24,7 +24,6 @@ namespace EasySave_Console.Views
             Console.Write(LangHelper.GetString("number") + " (0-" + fileModels.Count + ") : ");
             return Console.ReadLine();
         }
-
         public void FileOpened()
         {
             Console.WriteLine();

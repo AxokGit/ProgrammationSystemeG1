@@ -43,41 +43,44 @@ namespace EasySave_Console
             File.WriteAllText($@"{filepath}", json);
         }
 
-        public StateLog? ReadStateLogToJson(string filepath)
+        //public StateLog? ReadStateLogToJson(string filepath)
+        //{
+        //    if (File.Exists(filepath))
+        //    {
+        //        string json = File.ReadAllText($@"{filepath}");
+        //        return JsonConvert.DeserializeObject<StateLog>(json);
+        //    }
+        //    else
+        //    {
+        //        return null;
+        //    }
+        //}
+
+        public List<Log>? ReadLogToJson(string filepath)
         {
             if (File.Exists(filepath))
             {
                 string json = File.ReadAllText($@"{filepath}");
-                return JsonConvert.DeserializeObject<StateLog>(json);
+                return JsonConvert.DeserializeObject<List<Log>>(json);
             }
             else
             {
                 return null;
             }
         }
-
-        public void WriteLogToJson(string filepath, StateLog content)
+        public void WriteLogToJson(string filepath, Log content)
         {
-            string json = JsonConvert.SerializeObject(content, Formatting.Indented);
+            var logs_in_file = ReadLogToJson(filepath) ?? new List<Log>();
+
+            logs_in_file.Add(content);
+
+            string json = JsonConvert.SerializeObject(logs_in_file.ToArray(), Formatting.Indented);
 
             string directoryName = Path.GetDirectoryName(filepath);
 
             if (!Directory.Exists(directoryName))
                 Directory.CreateDirectory(directoryName);
             File.WriteAllText($@"{filepath}", json);
-        }
-
-        public StateLog? ReadLogToJson(string filepath)
-        {
-            if (File.Exists(filepath))
-            {
-                string json = File.ReadAllText($@"{filepath}");
-                return JsonConvert.DeserializeObject<StateLog>(json);
-            }
-            else
-            {
-                return null;
-            }
         }
     }
 }

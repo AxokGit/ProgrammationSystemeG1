@@ -11,6 +11,7 @@ namespace EasySave_Console
     {
         public string filepath_bw_config { get; set; } = @"%AppData%\EasySave\BackupWorks.json";
         public string filepath_statelog { get; set; } = @"%AppData%\EasySave\StateLog.json";
+        public string filepath_log { get; set; } = @"%AppData%\EasySave\Logs\EasySave_Log_{}.json";
         public string FormatPath(string path)
         {
             return Path.GetFullPath(path);

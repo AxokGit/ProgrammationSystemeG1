@@ -18,6 +18,7 @@ namespace EasySave_Console.Controllers
         {
             string filepath_bw_config = fileHelper.FormatFilePath(fileHelper.filepath_bw_config);
             string filepath_statelog = fileHelper.FormatFilePath(fileHelper.filepath_statelog);
+            string filepath_log = fileHelper.FormatFilePath(fileHelper.filepath_log).Replace("{}", DateTime.Now.ToString("yyyyMMdd"));
 
             List<BackupWork>? backupWorks = jsonHelper.ReadBackupWorkFromJson(filepath_bw_config);
 
@@ -71,20 +72,19 @@ namespace EasySave_Console.Controllers
                                     backupWorks[i].SrcFolder, // Src folder
                                     backupWorks[i].DstFolder // Dst folder
                                 );
-
-                                var watch = new System.Diagnostics.Stopwatch();
-                                watch.Start();
                                 
                                 foreach (FileModel file in files)
                                 {
                                     jsonHelper.WriteStateLogToJson(filepath_statelog, stateLog);
 
-
                                     menuView.ClearConsole();
                                     backupWorksRunView.CopyMessage(stateLog, file);
+
+                                    var watch = new System.Diagnostics.Stopwatch();
+                                    watch.Start();
+                                    string relativePathFile = Path.GetRelativePath(backupWorks[i].SrcFolder, file.FullPath);
                                     try
                                     {
-                                        var relativePathFile = Path.GetRelativePath(backupWorks[i].SrcFolder, file.FullPath);
                                         if (!Directory.Exists(backupWorks[i].DstFolder + @"\" + relativePathFile))
                                             Directory.CreateDirectory(Path.GetDirectoryName(backupWorks[i].DstFolder + @"\" + relativePathFile));
                                         File.Copy(file.FullPath, backupWorks[i].DstFolder + @"\" + relativePathFile, true);
@@ -93,12 +93,22 @@ namespace EasySave_Console.Controllers
                                     {
                                         Console.WriteLine(iox.Message);
                                     }
+                                    watch.Stop();
 
+                                    Log log = new Log(
+                                        backupWorks[i].Name,
+                                        DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss"),
+                                        file.Size,
+                                        file.FullPath,
+                                        backupWorks[i].DstFolder + @"\" + relativePathFile,
+                                        watch.ElapsedMilliseconds
+                                    );
+
+                                    jsonHelper.WriteLogToJson(filepath_log, log);
                                     stateLog.RemainingFiles--;
                                     stateLog.RemainingSize -= file.Size;
                                     jsonHelper.WriteStateLogToJson(filepath_statelog, stateLog);
                                 }
-                                watch.Stop();
                                 stateLog.Active = false;
                                 jsonHelper.WriteStateLogToJson(filepath_statelog, stateLog);
                                 menuView.ClearConsole();

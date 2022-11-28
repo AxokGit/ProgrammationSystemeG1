@@ -32,7 +32,8 @@ namespace EasySave_Console.Models
             }
             for (int i = 0; i < ObjectArray.Length; i++)
             {
-                Console.WriteLine("{0}, {1}, {2}", ObjectArray[i].Order, ObjectArray[i].FilePath, ObjectArray[i].FileName);
+                
+                Console.WriteLine("{0} - {1}", ObjectArray[i].Order, System.IO.Path.GetFileNameWithoutExtension(ObjectArray[i].FileName));
             }
             return ObjectArray;
         }

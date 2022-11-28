@@ -1,1 +1,2 @@
-Menu N°3 : open backup log file
+Finish complete traduction for French
+Add functionnality to open config folder in MenuView (%appdata%\EasySave)

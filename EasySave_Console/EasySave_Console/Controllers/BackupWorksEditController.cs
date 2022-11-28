@@ -13,7 +13,6 @@ namespace EasySave_Console.Controllers
         BackupWorksEditView backupWorksEditView = new BackupWorksEditView();
         JsonHelper jsonHelper = new JsonHelper();
         FileHelper fileHelper = new FileHelper();
-        
 
         public BackupWorksEditController()
         {
@@ -34,7 +33,11 @@ namespace EasySave_Console.Controllers
             while (!optionSelected)
             {                menuView.ClearConsole();
                 string menuBWOption = backupWorksEditView.PromptEditBackupWorks(backupWorks);
-                if (menuBWOption == "1" || menuBWOption == "2" || menuBWOption == "3" || menuBWOption == "4" || menuBWOption == "5")
+                if (menuBWOption == "0")
+                {
+                    optionSelected = true;
+                }
+                else if (menuBWOption == "1" || menuBWOption == "2" || menuBWOption == "3" || menuBWOption == "4" || menuBWOption == "5")
                 {
                     int i = Convert.ToInt32(menuBWOption)-1;
                     bool validName = false;
@@ -132,10 +135,6 @@ namespace EasySave_Console.Controllers
                         }
                     }
                     jsonHelper.WriteBackupWorkToJson(filepath_bw_config, backupWorks);
-                }
-                else if (menuBWOption == "6")
-                {
-                    optionSelected = true;
                 }
             }
         }

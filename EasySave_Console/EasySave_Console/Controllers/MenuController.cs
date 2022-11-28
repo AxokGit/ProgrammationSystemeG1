@@ -16,7 +16,11 @@ namespace EasySave_Console.Controllers
             {
                 menuView.ClearConsole();
                 string menuOption = menuView.PromptMainMenu();
-                if (menuOption == "1")
+                if (menuOption == "0")
+                {
+                    optionSelected = true;
+                }
+                else if (menuOption == "1")
                 {
                     new BackupWorksRunController();
                 }
@@ -27,16 +31,11 @@ namespace EasySave_Console.Controllers
                 else if (menuOption == "3")
                 {
                     new OpenLogsController();
-
                 }
                 else if (menuOption == "4")
                 {
                     menuView.ClearConsole();
                     new LanguageController().SelectLanguage();
-                }
-                else if (menuOption == "5")
-                {
-                    optionSelected = true;
                 }
             }
         }

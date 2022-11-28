@@ -177,6 +177,9 @@
   <data name="exit_program" xml:space="preserve">
     <value>Quit program</value>
   </data>
+  <data name="file_opened" xml:space="preserve">
+    <value>File opened</value>
+  </data>
   <data name="finished" xml:space="preserve">
     <value>Finished</value>
   </data>
@@ -219,6 +222,9 @@
   <data name="saves" xml:space="preserve">
     <value>Saves</value>
   </data>
+  <data name="select_language" xml:space="preserve">
+    <value>Select language</value>
+  </data>
   <data name="settings" xml:space="preserve">
     <value>Settings</value>
   </data>
@@ -236,9 +242,6 @@
   </data>
   <data name="start_time" xml:space="preserve">
     <value>Start time</value>
-  </data>
-  <data name="String" xml:space="preserve">
-    <value>all_wb_finished</value>
   </data>
   <data name="total_file_number" xml:space="preserve">
     <value>Total file number</value>

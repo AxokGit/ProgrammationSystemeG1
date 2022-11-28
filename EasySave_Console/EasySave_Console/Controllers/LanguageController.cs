@@ -33,6 +33,7 @@ namespace EasySave_Console.Controllers
             }
             else
             {
+                LangHelper.ChangeLanguage("en");
                 SelectLanguage();
             }
         }
@@ -47,7 +48,11 @@ namespace EasySave_Console.Controllers
             {
                 menuView.ClearConsole();
                 string languageOption = languageMenuView.PromptLanguageOption();
-                if (languageOption == "1")
+                if (languageOption == "0")
+                {
+                    languageSelected = true;
+                }
+                else if (languageOption == "1")
                 {
                     Settings settings = new Settings("fr");
                     jsonHelper.WriteSettingsToJson(filepath_settings, settings);

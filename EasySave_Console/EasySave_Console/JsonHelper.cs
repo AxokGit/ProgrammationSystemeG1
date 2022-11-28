@@ -56,7 +56,6 @@ namespace EasySave_Console
                 return null;
             }
         }
-
         public void WriteStateLogToJson(string filepath, StateLog content)
         {
             string json = JsonConvert.SerializeObject(content, Formatting.Indented);
@@ -68,7 +67,6 @@ namespace EasySave_Console
             }
             File.WriteAllText($@"{filepath}", json);
         }
-
         public List<Log>? ReadLogToJson(string filepath)
         {
             if (File.Exists(filepath))

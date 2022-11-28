@@ -41,7 +41,11 @@ namespace EasySave_Console.Controllers
             {
                 menuView.ClearConsole();
                 string menuBWOption = backupWorksRunView.PromptRunBackupWorks(backupWorks);
-                if (menuBWOption == "1" || menuBWOption == "2" || menuBWOption == "3" || menuBWOption == "4" || menuBWOption == "5")
+                if (menuBWOption == "0")
+                {
+                    optionSelected = true;
+                }
+                else if (menuBWOption == "1" || menuBWOption == "2" || menuBWOption == "3" || menuBWOption == "4" || menuBWOption == "5")
                 {
                     int i = Convert.ToInt32(menuBWOption) - 1;
                     if (backupWorks[i].IsEmpty())
@@ -62,10 +66,6 @@ namespace EasySave_Console.Controllers
                     RunCopy(backupWorks[3], false);
                     RunCopy(backupWorks[4], false);
                     backupWorksRunView.MsgAllBackupWorkFinished();
-                }
-                else if (menuBWOption == "6")
-                {
-                    optionSelected = true;
                 }
             }
         }
@@ -114,10 +114,7 @@ namespace EasySave_Console.Controllers
                                 Directory.CreateDirectory(Path.GetDirectoryName(backupWork.DstFolder + @"\" + relativePathFile));
                             File.Copy(file.FullPath, backupWork.DstFolder + @"\" + relativePathFile, true);
                         }
-                        catch (IOException iox)
-                        {
-                            Console.WriteLine(iox.Message);
-                        }
+                        catch { }
                         watch.Stop();
 
                         Log log = new Log(
@@ -138,7 +135,7 @@ namespace EasySave_Console.Controllers
                     menuView.ClearConsole();
                     backupWorksRunView.CopyMessage(stateLog, null, enterToContinue);
                 }
-                catch (Exception e) { }
+                catch { }
             }
             else if (backupWork.Type == "differencial")
             {
@@ -191,10 +188,7 @@ namespace EasySave_Console.Controllers
                                 Directory.CreateDirectory(Path.GetDirectoryName(backupWork.DstFolder + @"\" + subDstPath + @"\" + relativePathFile));
                             File.Copy(file.FullPath, backupWork.DstFolder + @"\" + subDstPath + @"\" + relativePathFile, true);
                         }
-                        catch (IOException iox)
-                        {
-                            Console.WriteLine(iox.Message);
-                        }
+                        catch { }
                         watch.Stop();
 
                         Log log = new Log(
@@ -215,7 +209,7 @@ namespace EasySave_Console.Controllers
                     menuView.ClearConsole();
                     backupWorksRunView.CopyMessage(stateLog, null, enterToContinue);
                 }
-                catch (Exception e) { }
+                catch { }
             }
         }
     }

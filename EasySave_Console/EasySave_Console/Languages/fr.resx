@@ -192,6 +192,9 @@
   <data name="saves" xml:space="preserve">
     <value>Sauvegardes</value>
   </data>
+  <data name="select_language" xml:space="preserve">
+    <value>Selectionnez une langue</value>
+  </data>
   <data name="settings" xml:space="preserve">
     <value>Paramètres</value>
   </data>

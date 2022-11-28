@@ -3,7 +3,6 @@ using EasySave_Console.Views;
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Text;
 
 namespace EasySave_Console.Controllers
 {
@@ -16,14 +15,32 @@ namespace EasySave_Console.Controllers
         FileHelper fileHelper = new FileHelper();
         public OpenLogsController()
         {
-            string path_log = Path.GetDirectoryName(fileHelper.FormatFilePath(fileHelper.filepath_log));
-            List<FileModel> fileModels = fileHelper.GetAllFile(path_log);
+            string filepath_log = fileHelper.FormatFilePath(fileHelper.filepath_log);
+            string dirpath_log = Path.GetDirectoryName(filepath_log);
 
-            menuView.ClearConsole();
-            
-            string choice = openLogsView.DiplayLogChoice(fileModels);
+            List<FileModel> fileModels = fileHelper.GetAllFile(dirpath_log);
 
-            FileHelper.OpenFile(fileModels[Convert.ToInt32(choice) - 1]);
+            bool optionSelected = false;
+            while (!optionSelected)
+            {
+                menuView.ClearConsole();
+                string option_str = openLogsView.PromptLogFiles(fileModels);
+                try
+                {
+                    int option = Convert.ToInt32(option_str);
+
+                    if (option >= 1 && option <= fileModels.Count)
+                    {
+                        FileHelper.OpenFile(fileModels[option-1]);
+                        openLogsView.FileOpened();
+                    }
+                    else if (option == 0)
+                    {
+                        optionSelected = true;
+                    }
+                }
+                catch { }
+            }
         }
     }
 }

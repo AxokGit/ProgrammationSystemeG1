@@ -52,12 +52,11 @@ namespace EasySave_Console.Views
             }
             tableView.PrintLine();
             Console.WriteLine();
-            Console.WriteLine("6:" + LangHelper.GetString("exit_menu"));
+            Console.WriteLine("0: " + LangHelper.GetString("exit_menu"));
             Console.WriteLine();
-            Console.Write(LangHelper.GetString("number") +" (1-6): ");
+            Console.Write(LangHelper.GetString("number") +" (0-5): ");
             return Console.ReadLine();
         }
-
         public string PromptEditBackupWorksName(BackupWork backupWork)
         {
             Console.WriteLine(LangHelper.GetString("name_backup_work") + ":");

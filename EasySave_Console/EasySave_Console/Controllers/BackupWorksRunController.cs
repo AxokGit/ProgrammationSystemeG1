@@ -111,25 +111,76 @@ namespace EasySave_Console.Controllers
                         {
                             try
                             {
-                                if (fileHelper.DirectoryExists(backupWorks[i].DstFolder + @"\complete")) {
-                                    List<FileModel> files = fileHelper.GetAllEditedFile(backupWorks[i].SrcFolder, backupWorks[i].DstFolder + @"\complete");
-                                    foreach (FileModel file in files)
-                                    {
-                                        Console.WriteLine(file.Name);
-                                    }
-                                    Console.ReadKey();
-                                } 
-                                else
+                                string subDstPath = "";
+                                if (!fileHelper.DirectoryExists(backupWorks[i].DstFolder + @"\complete"))
                                 {
                                     fileHelper.CreateDirectory(backupWorks[i].DstFolder, @"\complete");
+                                    subDstPath = @"\complete";
+                                } else
+                                {
+                                    subDstPath = @"\partial_"+DateTime.Now.ToString("yyyyMMdd_HHmmss");
                                 }
-                                
-                                
+                                List<FileModel> files = fileHelper.GetAllEditedFile(backupWorks[i].SrcFolder, backupWorks[i].DstFolder + @"\complete");
+                                backupWorks[i].Files = files;
+                                long filesSize = new long();
+                                foreach (FileModel file in files)
+                                {
+                                    filesSize += file.Size;
+                                }
+                                StateLog stateLog = new StateLog(
+                                    backupWorks[i].Name, //BW name
+                                    DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss"), // TimeStamp
+                                    true, // Active
+                                    files.Count, // Totalfile
+                                    filesSize, // List of file size
+                                    files.Count, // Remaining file
+                                    filesSize, // List of remaining file size
+                                    backupWorks[i].SrcFolder, // Src folder
+                                    backupWorks[i].DstFolder + subDstPath // Dst folder
+                                );
+
+                                foreach (FileModel file in files)
+                                {
+                                    jsonHelper.WriteStateLogToJson(filepath_statelog, stateLog);
+
+                                    menuView.ClearConsole();
+                                    backupWorksRunView.CopyMessage(stateLog, file);
+
+                                    var watch = new System.Diagnostics.Stopwatch();
+                                    watch.Start();
+                                    string relativePathFile = Path.GetRelativePath(backupWorks[i].SrcFolder, file.FullPath);
+                                    try
+                                    {
+                                        if (!Directory.Exists(backupWorks[i].DstFolder + @"\"+ subDstPath + @"\" + relativePathFile))
+                                            Directory.CreateDirectory(Path.GetDirectoryName(backupWorks[i].DstFolder + @"\" + subDstPath + @"\" + relativePathFile));
+                                        File.Copy(file.FullPath, backupWorks[i].DstFolder + @"\" + subDstPath + @"\" + relativePathFile, true);
+                                    }
+                                    catch (IOException iox)
+                                    {
+                                        Console.WriteLine(iox.Message);
+                                    }
+                                    watch.Stop();
+
+                                    Log log = new Log(
+                                        backupWorks[i].Name,
+                                        DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss"),
+                                        file.Size,
+                                        file.FullPath,
+                                        backupWorks[i].DstFolder + @"\" + subDstPath + @"\" + relativePathFile,
+                                        watch.ElapsedMilliseconds
+                                    );
+
+                                    jsonHelper.WriteLogToJson(filepath_log, log);
+                                    stateLog.RemainingFiles--;
+                                    stateLog.RemainingSize -= file.Size;
+                                    jsonHelper.WriteStateLogToJson(filepath_statelog, stateLog);
+                                }
+                                stateLog.Active = false;
+                                jsonHelper.WriteStateLogToJson(filepath_statelog, stateLog);
+                                menuView.ClearConsole();
+                                backupWorksRunView.CopyMessage(stateLog, null);
                             }
                             catch (Exception e) { }
-
-
-                            
                         }
                     }
                 }

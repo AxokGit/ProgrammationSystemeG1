@@ -46,11 +46,11 @@ namespace EasySave_Console
 
             foreach (FileInfo file in dstFileInfo)
             {
-                dstFileDict.Add(GetMD5Hash(file), file.Name);
+                dstFileDict.Add(GetFileNameAndMD5Hash(file), file.Name);
             }
             foreach (FileInfo file in srcFileInfo)
             {
-                var md5 = GetMD5Hash(file);
+                var md5 = GetFileNameAndMD5Hash(file);
                 if (!dstFileDict.ContainsKey(md5))
                 {
                     files.Add(new FileModel(file.Name, file.FullName, file.Length));
@@ -59,14 +59,14 @@ namespace EasySave_Console
             return files;
         }
 
-        public string GetMD5Hash(FileInfo file)
+        public string GetFileNameAndMD5Hash(FileInfo file)
         {
             using (var md5 = MD5.Create())
             {
                 using (var stream = File.OpenRead(file.FullName))
                 {
                     var hash = md5.ComputeHash(stream);
-                    return BitConverter.ToString(hash).Replace("-", "").ToLowerInvariant();
+                    return (file.Name+BitConverter.ToString(hash).Replace("-", "").ToLowerInvariant());
                 }
             }
         }

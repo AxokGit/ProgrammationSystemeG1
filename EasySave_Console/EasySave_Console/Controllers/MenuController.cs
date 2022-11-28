@@ -11,7 +11,6 @@ namespace EasySave_Console.Controllers
         {
             menuView.OnBootMessage();
             new LanguageController();
-
             bool optionSelected = false;
             while (!optionSelected)
             {

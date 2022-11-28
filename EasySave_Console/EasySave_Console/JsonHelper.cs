@@ -12,13 +12,14 @@ namespace EasySave_Console
         public void WriteBackupWorkToJson(string filepath, List<BackupWork> content)
         {
             string json = JsonConvert.SerializeObject(content.ToArray(), Formatting.Indented);
-
             string directoryName = Path.GetDirectoryName(filepath);
-
             if (!Directory.Exists(directoryName))
+            {
                 Directory.CreateDirectory(directoryName);
+            }
             File.WriteAllText($@"{filepath}", json);
         }
+
         public List<BackupWork>? ReadBackupWorkFromJson(string filepath)
         {
             if (File.Exists(filepath))
@@ -37,9 +38,10 @@ namespace EasySave_Console
             string json = JsonConvert.SerializeObject(content, Formatting.Indented);
 
             string directoryName = Path.GetDirectoryName(filepath);
-
             if (!Directory.Exists(directoryName))
+            {
                 Directory.CreateDirectory(directoryName);
+            }
             File.WriteAllText($@"{filepath}", json);
         }
 

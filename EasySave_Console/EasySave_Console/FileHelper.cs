@@ -30,7 +30,6 @@ namespace EasySave_Console
             {
                 files.Add(new FileModel(file.Name, file.FullName, file.Length));
             }
-
             return files;
         }
         public List<FileModel> GetAllEditedFile(string srcFolderPath, string dstFolderPath)
@@ -49,6 +48,7 @@ namespace EasySave_Console
             {
                 dstFileDict.Add(GetFileNameAndMD5Hash(file), file.Name);
             }
+
             foreach (FileInfo file in srcFileInfo)
             {
                 var md5 = GetFileNameAndMD5Hash(file);

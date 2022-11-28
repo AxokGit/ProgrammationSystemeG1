@@ -13,6 +13,7 @@ namespace EasySave_Console.Controllers
         public LanguageController()
         {
             bool languageSelected = false;
+
             while (!languageSelected)
             {
                 string languageOption = languageMenuView.PromptLanguageOption();

@@ -31,7 +31,6 @@ namespace EasySave_Console.Views
                 string src_folder = backupWorks[i].SrcFolder ?? "-";
                 string dst_folder = backupWorks[i].DstFolder ?? "-";
                 string type = backupWorks[i].Type ?? "-";
-
                 if (type == "complete")
                 {
                     type = LangHelper.GetString("type_complete");
@@ -44,7 +43,6 @@ namespace EasySave_Console.Views
                 {
                     type = "-";
                 }
-
                 tableView.PrintRow(
                     Convert.ToString(i + 1),
                     name,
@@ -84,15 +82,18 @@ namespace EasySave_Console.Views
             tableView.PrintRow(LangHelper.GetString("remaining_file_number"), stateLog.RemainingFiles + " (" + stateLog.RemainingSize + " " + LangHelper.GetString("bytes") + ")");
             tableView.PrintLine();
             if (file != null)
+            {
                 tableView.PrintRow(LangHelper.GetString("current_file_in_copy"), file.Name + " (" + file.Size + " " + LangHelper.GetString("bytes") + ")");
+            }
             else
+            {
                 tableView.PrintRow(LangHelper.GetString("current_file_in_copy"), "-");
+            }
             tableView.PrintLine();
             tableView.PrintRow(LangHelper.GetString("src_folder"), stateLog.SrcFolder);
             tableView.PrintLine();
             tableView.PrintRow(LangHelper.GetString("dst_folder"), stateLog.DstFolder);
             tableView.PrintLine();
-            
             if (file == null && enterToContinue)
             {
                 Console.Write(LangHelper.GetString("type_enter_to_continue"));

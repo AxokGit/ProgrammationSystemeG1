@@ -24,10 +24,10 @@ namespace EasySave_Console.Controllers
             filepath_statelog = fileHelper.FormatFilePath(fileHelper.filepath_statelog);
             filepath_log = fileHelper.FormatFilePath(fileHelper.filepath_log).Replace("{}", DateTime.Now.ToString("yyyyMMdd"));
             List<BackupWork>? backupWorks = jsonHelper.ReadBackupWorkFromJson(filepath_bw_config);
-
             if (backupWorks == null)
             {
                 List<BackupWork> list_temp = new List<BackupWork>();
+
                 for (int i = 0; i < 5; i++)
                 {
                     list_temp.Add(new BackupWork(null, null, null, null));
@@ -35,9 +35,8 @@ namespace EasySave_Console.Controllers
                 jsonHelper.WriteBackupWorkToJson(filepath_bw_config, list_temp);
                 backupWorks = jsonHelper.ReadBackupWorkFromJson(filepath_bw_config);
             }
-
-
             bool optionSelected = false;
+
             while (!optionSelected)
             {
                 menuView.ClearConsole();
@@ -45,7 +44,6 @@ namespace EasySave_Console.Controllers
                 if (menuBWOption == "1" || menuBWOption == "2" || menuBWOption == "3" || menuBWOption == "4" || menuBWOption == "5")
                 {
                     int i = Convert.ToInt32(menuBWOption) - 1;
-
                     if (backupWorks[i].IsEmpty())
                     {
                         menuView.ClearConsole();
@@ -130,7 +128,6 @@ namespace EasySave_Console.Controllers
                             backupWork.DstFolder + @"\" + relativePathFile,
                             watch.ElapsedMilliseconds
                         );
-
                         jsonHelper.WriteLogToJson(filepath_log, log);
                         stateLog.RemainingFiles--;
                         stateLog.RemainingSize -= file.Size;
@@ -160,10 +157,12 @@ namespace EasySave_Console.Controllers
                     List<FileModel> files = fileHelper.GetAllEditedFile(backupWork.SrcFolder, backupWork.DstFolder + @"\complete");
                     backupWork.Files = files;
                     long filesSize = new long();
+
                     foreach (FileModel file in files)
                     {
                         filesSize += file.Size;
                     }
+
                     StateLog stateLog = new StateLog(
                         backupWork.Name, //BW name
                         DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss"), // TimeStamp
@@ -206,7 +205,6 @@ namespace EasySave_Console.Controllers
                             backupWork.DstFolder + @"\" + subDstPath + @"\" + relativePathFile,
                             watch.ElapsedMilliseconds
                         );
-
                         jsonHelper.WriteLogToJson(filepath_log, log);
                         stateLog.RemainingFiles--;
                         stateLog.RemainingSize -= file.Size;

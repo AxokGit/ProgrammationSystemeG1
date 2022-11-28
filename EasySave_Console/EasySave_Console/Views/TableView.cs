@@ -26,14 +26,12 @@ namespace EasySave_Console.Views
             {
                 row += AlignCentre(column, width) + "|";
             }
-
             Console.WriteLine(row);
         }
 
         private string AlignCentre(string text, int width)
         {
             text = text.Length > width ? text.Substring(0, width - 3) + "..." : text;
-
             if (string.IsNullOrEmpty(text))
             {
                 return new string(' ', width);

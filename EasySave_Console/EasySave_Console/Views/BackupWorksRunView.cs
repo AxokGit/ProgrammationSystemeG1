@@ -68,7 +68,7 @@ namespace EasySave_Console.Views
             Console.ReadKey();
         }
 
-        public void CopyMessage(StateLog stateLog, FileModel? file)
+        public void CopyMessage(StateLog stateLog, FileModel? file, bool enterToContinue=true)
         {
             Console.WriteLine(LangHelper.GetString("copy_monitor") + " :");
             Console.WriteLine();
@@ -93,12 +93,18 @@ namespace EasySave_Console.Views
             tableView.PrintRow(LangHelper.GetString("dst_folder"), stateLog.DstFolder);
             tableView.PrintLine();
             
-            if (file == null)
+            if (file == null && enterToContinue)
             {
                 Console.Write(LangHelper.GetString("type_enter_to_continue"));
                 Console.ReadKey();
             }
-                
+        }
+        public void MsgAllBackupWorkFinished()
+        {
+            Console.WriteLine(LangHelper.GetString("all_wb_finished"));
+            Console.WriteLine();
+            Console.Write(LangHelper.GetString("type_enter_to_continue"));
+            Console.ReadKey();
         }
     }
 }

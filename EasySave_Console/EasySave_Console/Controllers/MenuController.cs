@@ -27,7 +27,7 @@ namespace EasySave_Console.Controllers
                 }
                 else if (menuOption == "3")
                 {
-                    GetFileNameAndPath[] WitnessArray = new GetFileNameAndPath[1000];
+                    GetFileNameAndPath[] WitnessArray = new GetFileNameAndPath[5];
                     WitnessArray = (GetFileNameAndPath[])GetFileNameAndPath.listFilesInDirectory(@"C:\bin");
                     Console.WriteLine($"{LangHelper.GetString("choose_log")}");
                     string n = Console.ReadLine();

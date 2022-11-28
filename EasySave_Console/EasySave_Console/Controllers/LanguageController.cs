@@ -33,6 +33,7 @@ namespace EasySave_Console.Controllers
             }
             else
             {
+                LangHelper.ChangeLanguage("en");
                 SelectLanguage();
             }
         }

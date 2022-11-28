@@ -1,6 +1,7 @@
 ﻿using EasySave_Console.Models;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Security.Cryptography;
 using System.Text;
@@ -88,6 +89,17 @@ namespace EasySave_Console
         public bool FileExists(string filepath)
         {
             return File.Exists(filepath);
+        }
+         
+        
+        public static void OpenFile(FileModel fileModel)
+        {
+           var p = new Process();
+           p.StartInfo = new ProcessStartInfo(fileModel.FullPath)
+              {
+                UseShellExecute = true
+              };
+           p.Start();   
         }
 
     }

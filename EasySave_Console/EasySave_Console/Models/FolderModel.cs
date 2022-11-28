@@ -7,7 +7,6 @@ namespace EasySave_Console.Models
 {
     class FolderModel
     {
-        public bool witness { get; set; }
         public string? sourceDir { get; set; }
         public string? backupDir { get; set; }
         public string[]? piclist { get; set; }

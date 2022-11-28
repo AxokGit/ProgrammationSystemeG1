@@ -42,6 +42,7 @@ namespace EasySave_Console.Controllers
             string filepath_settings = fileHelper.FormatFilePath(fileHelper.filepath_settings);
 
             bool languageSelected = false;
+
             while (!languageSelected)
             {
                 menuView.ClearConsole();

@@ -25,14 +25,17 @@ namespace EasySave_Console.Models
             GetFileNameAndPath[] ObjectArray = new GetFileNameAndPath[2];
             int temoins = 0;
             string[] filePaths = Directory.GetFiles(workingDirectory);
+
             foreach (string filePath in filePaths)
             {
                 ObjectArray[temoins] = new GetFileNameAndPath(temoins + 1, Path.GetFileName(filePath), filePath);
                 temoins++;
             }
+
             for (int i = 0; i < ObjectArray.Length; i++)
             {
-                Console.WriteLine("{0}, {1}, {2}", ObjectArray[i].Order, ObjectArray[i].FilePath, ObjectArray[i].FileName);
+                
+                Console.WriteLine("{0} - {1}", ObjectArray[i].Order, System.IO.Path.GetFileNameWithoutExtension(ObjectArray[i].FileName));
             }
             return ObjectArray;
         }
@@ -56,7 +59,6 @@ namespace EasySave_Console.Models
         public static void GetSubDirectoryList(string workingDirectory)
         {
             string[] directories = Directory.GetDirectories(workingDirectory);
-
             if (Directory.GetFiles(workingDirectory).Length == 0)
             {
                 Console.WriteLine("No Sub-Directory");

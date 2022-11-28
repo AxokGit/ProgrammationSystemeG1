@@ -18,7 +18,6 @@ namespace EasySave_Console.Controllers
         public BackupWorksEditController()
         {
             string filepath_bw_config = fileHelper.FormatFilePath(fileHelper.filepath_bw_config);
-
             List<BackupWork>? backupWorks = jsonHelper.ReadBackupWorkFromJson(filepath_bw_config);
 
             if (backupWorks == null)
@@ -28,20 +27,16 @@ namespace EasySave_Console.Controllers
                 {
                     list_temp.Add(new BackupWork(null, null, null, null));
                 }
-
                 jsonHelper.WriteBackupWorkToJson(filepath_bw_config, list_temp);
                 backupWorks = jsonHelper.ReadBackupWorkFromJson(filepath_bw_config);
             }
             bool optionSelected = false;
             while (!optionSelected)
-            {
-                
-                menuView.ClearConsole();
+            {                menuView.ClearConsole();
                 string menuBWOption = backupWorksEditView.PromptEditBackupWorks(backupWorks);
                 if (menuBWOption == "1" || menuBWOption == "2" || menuBWOption == "3" || menuBWOption == "4" || menuBWOption == "5")
                 {
                     int i = Convert.ToInt32(menuBWOption)-1;
-
                     bool validName = false;
                     bool validSrcFolder = false;
                     bool validDstFolder = false;
@@ -132,9 +127,7 @@ namespace EasySave_Console.Controllers
                             validType = true;
                         }
                     }
-
                     jsonHelper.WriteBackupWorkToJson(filepath_bw_config, backupWorks);
-                    
                 }
                 else if (menuBWOption == "6")
                 {

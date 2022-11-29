@@ -16,7 +16,7 @@ namespace EasySave_Console.Controllers
         public OpenLogsController()
         {
             string filepath_log = fileHelper.FormatFilePath(fileHelper.filepath_log);
-            string dirpath_log = Path.GetDirectoryName(filepath_log);
+            string dirpath_log = fileHelper.GetDirectoryName(filepath_log);
 
             List<FileModel> fileModels = fileHelper.GetAllFile(dirpath_log);
 

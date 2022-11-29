@@ -186,6 +186,9 @@
   <data name="open_log_folder" xml:space="preserve">
     <value>Ouvrir dossier log</value>
   </data>
+  <data name="open_settings_dir" xml:space="preserve">
+    <value>Ouvrir le dossier des fichiers de configuration</value>
+  </data>
   <data name="run_work" xml:space="preserve">
     <value>Lancer travail de sauvegarde</value>
   </data>

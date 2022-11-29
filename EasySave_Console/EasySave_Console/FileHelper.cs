@@ -1,6 +1,7 @@
 ﻿using EasySave_Console.Models;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Security.Cryptography;
 using System.Text;
@@ -9,9 +10,11 @@ namespace EasySave_Console
 {
     class FileHelper
     {
-        public string filepath_bw_config { get; set; } = @"%AppData%\EasySave\BackupWorks.json";
-        public string filepath_statelog { get; set; } = @"%AppData%\EasySave\StateLog.json";
-        public string filepath_log { get; set; } = @"%AppData%\EasySave\Logs\EasySave_Log_{}.json";
+        public string filepath_settings = @"%AppData%\EasySave\Settings.json";
+        public string filepath_bw_config = @"%AppData%\EasySave\BackupWorks.json";
+        public string filepath_statelog = @"%AppData%\EasySave\StateLog.json";
+        public string filepath_log = @"%AppData%\EasySave\Logs\EasySave_Log_{}.json";
+
         public string FormatPath(string path)
         {
             return Path.GetFullPath(path);
@@ -30,7 +33,6 @@ namespace EasySave_Console
             {
                 files.Add(new FileModel(file.Name, file.FullName, file.Length));
             }
-
             return files;
         }
         public List<FileModel> GetAllEditedFile(string srcFolderPath, string dstFolderPath)
@@ -49,6 +51,7 @@ namespace EasySave_Console
             {
                 dstFileDict.Add(GetFileNameAndMD5Hash(file), file.Name);
             }
+
             foreach (FileInfo file in srcFileInfo)
             {
                 var md5 = GetFileNameAndMD5Hash(file);
@@ -59,7 +62,6 @@ namespace EasySave_Console
             }
             return files;
         }
-
         public string GetFileNameAndMD5Hash(FileInfo file)
         {
             using (var md5 = MD5.Create())
@@ -71,16 +73,27 @@ namespace EasySave_Console
                 }
             }
         }
-
         public void CreateDirectory(string path, string foldername)
         {
             path += foldername;
             Directory.CreateDirectory(path);
         }
-
         public bool DirectoryExists(string path)
         {
             return Directory.Exists(path);
+        }
+        public bool FileExists(string filepath)
+        {
+            return File.Exists(filepath);
+        }
+        public static void OpenFile(FileModel fileModel)
+        {
+           var p = new Process();
+           p.StartInfo = new ProcessStartInfo(fileModel.FullPath)
+              {
+                UseShellExecute = true
+              };
+           p.Start();   
         }
 
     }

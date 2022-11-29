@@ -13,12 +13,10 @@ namespace EasySave_Console.Controllers
         BackupWorksEditView backupWorksEditView = new BackupWorksEditView();
         JsonHelper jsonHelper = new JsonHelper();
         FileHelper fileHelper = new FileHelper();
-        
 
         public BackupWorksEditController()
         {
             string filepath_bw_config = fileHelper.FormatFilePath(fileHelper.filepath_bw_config);
-
             List<BackupWork>? backupWorks = jsonHelper.ReadBackupWorkFromJson(filepath_bw_config);
 
             if (backupWorks == null)
@@ -28,20 +26,20 @@ namespace EasySave_Console.Controllers
                 {
                     list_temp.Add(new BackupWork(null, null, null, null));
                 }
-
                 jsonHelper.WriteBackupWorkToJson(filepath_bw_config, list_temp);
                 backupWorks = jsonHelper.ReadBackupWorkFromJson(filepath_bw_config);
             }
             bool optionSelected = false;
             while (!optionSelected)
-            {
-                
-                menuView.ClearConsole();
+            {                menuView.ClearConsole();
                 string menuBWOption = backupWorksEditView.PromptEditBackupWorks(backupWorks);
-                if (menuBWOption == "1" || menuBWOption == "2" || menuBWOption == "3" || menuBWOption == "4" || menuBWOption == "5")
+                if (menuBWOption == "0")
+                {
+                    optionSelected = true;
+                }
+                else if (menuBWOption == "1" || menuBWOption == "2" || menuBWOption == "3" || menuBWOption == "4" || menuBWOption == "5")
                 {
                     int i = Convert.ToInt32(menuBWOption)-1;
-
                     bool validName = false;
                     bool validSrcFolder = false;
                     bool validDstFolder = false;
@@ -116,7 +114,7 @@ namespace EasySave_Console.Controllers
                         string previousType = backupWorks[i].Type ?? "";
                         menuView.ClearConsole();
                         backupWorks[i].Type = backupWorksEditView.PromptEditBackupWorksType(backupWorks[i]);
-                        if (backupWorks[i].Type == "" && previousType != "")
+                        if (backupWorks[i].Type == "" && (previousType == "complete" || previousType == "differencial"))
                         {
                             backupWorks[i].Type = previousType;
                             validType = true;
@@ -131,14 +129,12 @@ namespace EasySave_Console.Controllers
                             backupWorks[i].Type = "differencial";
                             validType = true;
                         }
+                        else
+                        {
+                            backupWorks[i].Type = "";
+                        }
                     }
-
                     jsonHelper.WriteBackupWorkToJson(filepath_bw_config, backupWorks);
-                    
-                }
-                else if (menuBWOption == "6")
-                {
-                    optionSelected = true;
                 }
             }
         }

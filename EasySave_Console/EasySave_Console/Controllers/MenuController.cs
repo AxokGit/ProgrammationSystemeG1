@@ -11,13 +11,16 @@ namespace EasySave_Console.Controllers
         {
             menuView.OnBootMessage();
             new LanguageController();
-
             bool optionSelected = false;
             while (!optionSelected)
             {
                 menuView.ClearConsole();
                 string menuOption = menuView.PromptMainMenu();
-                if (menuOption == "1")
+                if (menuOption == "0")
+                {
+                    optionSelected = true;
+                }
+                else if (menuOption == "1")
                 {
                     new BackupWorksRunController();
                 }
@@ -27,21 +30,12 @@ namespace EasySave_Console.Controllers
                 }
                 else if (menuOption == "3")
                 {
-                    GetFileNameAndPath[] WitnessArray = new GetFileNameAndPath[5];
-                    WitnessArray = (GetFileNameAndPath[])GetFileNameAndPath.listFilesInDirectory(@"C:\bin");
-                    Console.WriteLine($"{LangHelper.GetString("choose_log")}");
-                    string n = Console.ReadLine();
-                    GetFileNameAndPath.OpenFile(Convert.ToInt32(n), WitnessArray);
-                    menuView.Wait();
+                    new OpenLogsController();
                 }
                 else if (menuOption == "4")
                 {
                     menuView.ClearConsole();
-                    new LanguageController();
-                }
-                else if (menuOption == "5")
-                {
-                    optionSelected = true;
+                    new LanguageController().SelectLanguage();
                 }
             }
         }

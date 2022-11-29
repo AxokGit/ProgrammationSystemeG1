@@ -31,7 +31,6 @@ namespace EasySave_Console.Views
                 string src_folder = backupWorks[i].SrcFolder ?? "-";
                 string dst_folder = backupWorks[i].DstFolder ?? "-";
                 string type = backupWorks[i].Type ?? "-";
-
                 if (type == "complete")
                 {
                     type = LangHelper.GetString("type_complete");
@@ -42,7 +41,6 @@ namespace EasySave_Console.Views
                 {
                     type = "-";
                 }
-
                 tableView.PrintRow(
                     Convert.ToString(i + 1),
                     name,
@@ -54,12 +52,11 @@ namespace EasySave_Console.Views
             }
             tableView.PrintLine();
             Console.WriteLine();
-            Console.WriteLine("6:" + LangHelper.GetString("exit_menu"));
+            Console.WriteLine("0: " + LangHelper.GetString("exit_menu"));
             Console.WriteLine();
-            Console.Write(LangHelper.GetString("number") +" (1-6): ");
+            Console.Write(LangHelper.GetString("number") +" (0-5): ");
             return Console.ReadLine();
         }
-
         public string PromptEditBackupWorksName(BackupWork backupWork)
         {
             Console.WriteLine(LangHelper.GetString("name_backup_work") + ":");

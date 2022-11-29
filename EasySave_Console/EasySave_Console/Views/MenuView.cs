@@ -7,7 +7,6 @@ namespace EasySave_Console.Views
 {
     class MenuView
     {
-        public MenuView() { }
         public void ClearConsole()
         {
             Console.Clear();
@@ -52,19 +51,6 @@ namespace EasySave_Console.Views
             Console.WriteLine();
             Console.Write("Options (0-5): ");
             return Console.ReadLine();
-        }
-        public void ChangeColor(ConsoleColor bg, ConsoleColor fg)
-        {
-            Console.BackgroundColor = bg;
-            Console.ForegroundColor = fg;
-        }
-        public void Print(string message)
-        {
-            Console.WriteLine(message);
-        }
-        public void Wait()
-        {
-            Console.ReadKey();
         }
     }
 }

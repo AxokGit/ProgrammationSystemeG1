@@ -8,8 +8,6 @@ namespace EasySave_Console.Controllers
 {
     class OpenLogsController
     {
-        public string? FileName { get; set; }
-        public string? FilePath { get; set; }
         OpenLogsView openLogsView = new OpenLogsView();
         MenuView menuView = new MenuView();
         FileHelper fileHelper = new FileHelper();

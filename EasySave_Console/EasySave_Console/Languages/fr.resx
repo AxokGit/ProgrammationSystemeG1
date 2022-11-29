@@ -154,7 +154,7 @@
     <value>Status</value>
   </data>
   <data name="current_file_in_copy" xml:space="preserve">
-    <value>File en cours de copie</value>
+    <value>Fichier en cours de copie</value>
   </data>
   <data name="define_work" xml:space="preserve">
     <value>Définir travail de sauvegarde</value>

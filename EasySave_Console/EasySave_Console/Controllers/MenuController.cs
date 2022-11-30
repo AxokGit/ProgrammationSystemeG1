@@ -35,7 +35,12 @@ namespace EasySave_Console.Controllers
                     menuView.ClearConsole();
                     new LanguageController().SelectLanguage();
                 }
-                else if (menuOption == "5")
+                else if (menuOption == "5") // Change language
+                {
+                    menuView.ClearConsole();
+                    new LanguageController().SelectLanguage();
+                }
+                else if (menuOption == "6")
                 {
                     new OpenSettingsDirController(); // Open Settings Directory
                 }

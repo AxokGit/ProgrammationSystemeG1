@@ -9,21 +9,27 @@ namespace EasySave_Console.Controllers
 {
     class BackupWorksRunController
     {
-        MenuView menuView = new MenuView();
-        BackupWorksRunView backupWorksRunView = new BackupWorksRunView();
-        JsonHelper jsonHelper = new JsonHelper();
-        FileHelper fileHelper = new FileHelper();
+        MenuView menuView = new MenuView(); // Instantiation of the main view
+        BackupWorksRunView backupWorksRunView = new BackupWorksRunView(); // Instantiation of the Backup works run view
+        JsonHelper jsonHelper = new JsonHelper(); // Instantiation of the json helper
+        FileHelper fileHelper = new FileHelper(); // Instantiation of the file helper
 
+        // Declaration of needed variables
         string filepath_bw_config;
         string filepath_statelog;
         string filepath_log;
 
         public BackupWorksRunController()
         {
+            // Definition of variables
             filepath_bw_config = fileHelper.FormatFilePath(fileHelper.filepath_bw_config);
             filepath_statelog = fileHelper.FormatFilePath(fileHelper.filepath_statelog);
             filepath_log = fileHelper.FormatFilePath(fileHelper.filepath_log).Replace("{}", DateTime.Now.ToString("yyyyMMdd"));
+            
+            // Getting all backup works configured
             List<BackupWork>? backupWorks = jsonHelper.ReadBackupWorkFromJson(filepath_bw_config);
+            
+            // If null, creating backup works configuration with null
             if (backupWorks == null)
             {
                 List<BackupWork> list_temp = new List<BackupWork>();
@@ -35,17 +41,17 @@ namespace EasySave_Console.Controllers
                 jsonHelper.WriteBackupWorkToJson(filepath_bw_config, list_temp);
                 backupWorks = jsonHelper.ReadBackupWorkFromJson(filepath_bw_config);
             }
-            bool optionSelected = false;
 
-            while (!optionSelected)
+            bool optionSelected = false;
+            while (!optionSelected) // While user selected no valid choice
             {
                 menuView.ClearConsole();
                 string menuBWOption = backupWorksRunView.PromptRunBackupWorks(backupWorks);
-                if (menuBWOption == "0")
+                if (menuBWOption == "0") // Go back
                 {
                     optionSelected = true;
                 }
-                else if (menuBWOption == "1" || menuBWOption == "2" || menuBWOption == "3" || menuBWOption == "4" || menuBWOption == "5")
+                else if (menuBWOption == "1" || menuBWOption == "2" || menuBWOption == "3" || menuBWOption == "4" || menuBWOption == "5") // If specific backup work selected
                 {
                     int i = Convert.ToInt32(menuBWOption) - 1;
                     if (backupWorks[i].IsEmpty())
@@ -58,7 +64,7 @@ namespace EasySave_Console.Controllers
                         RunCopy(backupWorks[i]);
                     }
                 }
-                else if (menuBWOption == "a")
+                else if (menuBWOption == "a") // If all backup works selected
                 {
                     RunCopy(backupWorks[0], false);
                     RunCopy(backupWorks[1], false);
@@ -70,15 +76,18 @@ namespace EasySave_Console.Controllers
             }
         }
 
+        // This method will take backupWork object and run the copy
         public void RunCopy(BackupWork backupWork, bool enterToContinue=true)
         {
+            //Definition of the variables
             filepath_bw_config = fileHelper.FormatFilePath(fileHelper.filepath_bw_config);
             filepath_statelog = fileHelper.FormatFilePath(fileHelper.filepath_statelog);
             filepath_log = fileHelper.FormatFilePath(fileHelper.filepath_log).Replace("{}", DateTime.Now.ToString("yyyyMMdd"));
-            if (backupWork.Type == "complete")
+            if (backupWork.Type == "complete") // If backup work is type complete
             {
                 try
                 {
+                    // Getting all files from source folder
                     List<FileModel> files = fileHelper.GetAllFile(backupWork.SrcFolder);
                     backupWork.Files = files;
                     long filesSize = new long();
@@ -98,18 +107,22 @@ namespace EasySave_Console.Controllers
                         backupWork.DstFolder // Dst folder
                     );
 
+                    // Each file will be copied, log will be added to the daily log and this will update monitor status
                     foreach (FileModel file in files)
                     {
                         jsonHelper.WriteStateLogToJson(filepath_statelog, stateLog);
 
+                        //  Show status of backup work
                         menuView.ClearConsole();
                         backupWorksRunView.CopyMessage(stateLog, file, enterToContinue);
 
+                        // Measure time to copy
                         var watch = new System.Diagnostics.Stopwatch();
                         watch.Start();
                         string relativePathFile = Path.GetRelativePath(backupWork.SrcFolder, file.FullPath);
                         try
                         {
+                            // Start copy
                             if (!Directory.Exists(backupWork.DstFolder + @"\" + relativePathFile))
                                 Directory.CreateDirectory(Path.GetDirectoryName(backupWork.DstFolder + @"\" + relativePathFile));
                             File.Copy(file.FullPath, backupWork.DstFolder + @"\" + relativePathFile, true);
@@ -117,6 +130,7 @@ namespace EasySave_Console.Controllers
                         catch { }
                         watch.Stop();
 
+                        // Write log to daily log
                         Log log = new Log(
                             backupWork.Name,
                             DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss"),
@@ -130,27 +144,33 @@ namespace EasySave_Console.Controllers
                         stateLog.RemainingSize -= file.Size;
                         jsonHelper.WriteStateLogToJson(filepath_statelog, stateLog);
                     }
+                    // Write StateLog.json
                     stateLog.Active = false;
                     jsonHelper.WriteStateLogToJson(filepath_statelog, stateLog);
+
+                    // Show backup work finished status
                     menuView.ClearConsole();
                     backupWorksRunView.CopyMessage(stateLog, null, enterToContinue);
                 }
                 catch { }
             }
-            else if (backupWork.Type == "differencial")
+            else if (backupWork.Type == "differencial") // If backup work is type differencial
             {
                 try
                 {
                     string subDstPath = "";
+                    // If complete backup haven't be made
                     if (!fileHelper.DirectoryExists(backupWork.DstFolder + @"\complete"))
                     {
                         fileHelper.CreateDirectory(backupWork.DstFolder, @"\complete");
                         subDstPath = @"\complete";
                     }
+                    // If complete backup already made
                     else
                     {
                         subDstPath = @"\partial_" + DateTime.Now.ToString("yyyyMMdd_HHmmss");
                     }
+                    // Get all edited file between source folder and complete backup folder
                     List<FileModel> files = fileHelper.GetAllEditedFile(backupWork.SrcFolder, backupWork.DstFolder + @"\complete");
                     backupWork.Files = files;
                     long filesSize = new long();
@@ -171,7 +191,7 @@ namespace EasySave_Console.Controllers
                         backupWork.SrcFolder, // Src folder
                         backupWork.DstFolder + subDstPath // Dst folder
                     );
-
+                    // For each file edited since the last complete backup
                     foreach (FileModel file in files)
                     {
                         jsonHelper.WriteStateLogToJson(filepath_statelog, stateLog);
@@ -191,6 +211,7 @@ namespace EasySave_Console.Controllers
                         catch { }
                         watch.Stop();
 
+                        // Write log to daily log
                         Log log = new Log(
                             backupWork.Name,
                             DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss"),
@@ -204,8 +225,11 @@ namespace EasySave_Console.Controllers
                         stateLog.RemainingSize -= file.Size;
                         jsonHelper.WriteStateLogToJson(filepath_statelog, stateLog);
                     }
+                    // Write StateLog.json
                     stateLog.Active = false;
                     jsonHelper.WriteStateLogToJson(filepath_statelog, stateLog);
+
+                    // Show backup work finished status
                     menuView.ClearConsole();
                     backupWorksRunView.CopyMessage(stateLog, null, enterToContinue);
                 }

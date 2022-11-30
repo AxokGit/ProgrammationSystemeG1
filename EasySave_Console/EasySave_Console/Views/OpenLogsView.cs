@@ -31,5 +31,11 @@ namespace EasySave_Console.Views
             Console.WriteLine(LangHelper.GetString("type_enter_to_continue"));
             Console.ReadKey();
         }
+        public void ErrorMsgNoLogs()
+        {
+            Console.WriteLine(LangHelper.GetString("error_msg_no_logs"));
+            Console.WriteLine(LangHelper.GetString("type_enter_to_continue"));
+            Console.ReadKey();
+        }
     }
 }

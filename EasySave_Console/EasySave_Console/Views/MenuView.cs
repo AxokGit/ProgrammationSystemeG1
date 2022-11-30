@@ -54,7 +54,7 @@ namespace EasySave_Console.Views
             Console.WriteLine();
             Console.WriteLine($"1: {LangHelper.GetString("run_work")}");
             Console.WriteLine($"2: {LangHelper.GetString("define_work")}");
-            Console.WriteLine($"3: {LangHelper.GetString("open_log_folder")}");
+            Console.WriteLine($"3: {LangHelper.GetString("show_log_in_logs_folder")}");
             Console.WriteLine($"4: {LangHelper.GetString("change_language")}");
             Console.WriteLine($"5: {LangHelper.GetString("open_settings_dir")}");
             Console.WriteLine();

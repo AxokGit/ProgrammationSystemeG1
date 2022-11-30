@@ -9,16 +9,18 @@ namespace EasySave_Console.Controllers
 {
     class BackupWorksEditController
     {
-        MenuView menuView = new MenuView();
-        BackupWorksEditView backupWorksEditView = new BackupWorksEditView();
-        JsonHelper jsonHelper = new JsonHelper();
-        FileHelper fileHelper = new FileHelper();
+        MenuView menuView = new MenuView(); // Instantiation of the main view
+        BackupWorksEditView backupWorksEditView = new BackupWorksEditView(); // Instantiation of the Backup works edit view
+        JsonHelper jsonHelper = new JsonHelper(); // Instantiation of the json helper
+        FileHelper fileHelper = new FileHelper(); // Instantiation of the file helper
 
         public BackupWorksEditController()
         {
+            // Reading backup works in the BackupWorks.json file
             string filepath_bw_config = fileHelper.FormatFilePath(fileHelper.filepath_bw_config);
             List<BackupWork>? backupWorks = jsonHelper.ReadBackupWorkFromJson(filepath_bw_config);
 
+            // If null, creating backup works configuration with null
             if (backupWorks == null)
             {
                 List<BackupWork> list_temp = new List<BackupWork>();
@@ -29,14 +31,19 @@ namespace EasySave_Console.Controllers
                 jsonHelper.WriteBackupWorkToJson(filepath_bw_config, list_temp);
                 backupWorks = jsonHelper.ReadBackupWorkFromJson(filepath_bw_config);
             }
+
+            // While user haven't selected valid option
             bool optionSelected = false;
             while (!optionSelected)
-            {                menuView.ClearConsole();
+            {
+                // Prompt backup works to edit and wait for choice
+                menuView.ClearConsole();
                 string menuBWOption = backupWorksEditView.PromptEditBackupWorks(backupWorks);
-                if (menuBWOption == "0")
+                if (menuBWOption == "0") // Go back
                 {
                     optionSelected = true;
                 }
+                // If backup work selected
                 else if (menuBWOption == "1" || menuBWOption == "2" || menuBWOption == "3" || menuBWOption == "4" || menuBWOption == "5")
                 {
                     int i = Convert.ToInt32(menuBWOption)-1;
@@ -45,9 +52,11 @@ namespace EasySave_Console.Controllers
                     bool validDstFolder = false;
                     bool validType = false;
 
+                    // While not valid name entered
                     while (!validName)
                     {
                         string previousName = backupWorks[i].Name ?? "";
+                        // Prompt menu to enter name
                         menuView.ClearConsole();
                         backupWorks[i].Name = backupWorksEditView.PromptEditBackupWorksName(backupWorks[i]);
                         if (backupWorks[i].Name == "r")
@@ -63,6 +72,7 @@ namespace EasySave_Console.Controllers
                         }
                         else
                         {
+                            // If nothing, check if previous value isn't null
                             if (backupWorks[i].Name == "" && previousName != "")
                             {
                                 backupWorks[i].Name = previousName;
@@ -75,11 +85,16 @@ namespace EasySave_Console.Controllers
                         }
                     }
 
+                    // While no valid source folder entered
                     while (!validSrcFolder)
                     {
                         string previousSrcFolder = backupWorks[i].SrcFolder ?? "";
+
+                        // Prompt menu to enter source folder
                         menuView.ClearConsole();
                         backupWorks[i].SrcFolder = backupWorksEditView.PromptEditBackupWorksSrcFolder(backupWorks[i]);
+                        
+                        // If nothing, check if previous value isn't null
                         if (backupWorks[i].SrcFolder == "" && previousSrcFolder != "")
                         {
                             backupWorks[i].SrcFolder = previousSrcFolder;
@@ -99,11 +114,15 @@ namespace EasySave_Console.Controllers
                         }
                     }
 
+                    // While no valid destination folder entered 
                     while (!validDstFolder)
                     {
                         string previousDstFolder = backupWorks[i].DstFolder ?? "";
+                        // Prompt menu to enter destination folder
                         menuView.ClearConsole();
                         backupWorks[i].DstFolder = backupWorksEditView.PromptEditBackupWorksDstFolder(backupWorks[i]);
+                        
+                        // If nothing, check if previous value isn't null
                         if (backupWorks[i].DstFolder == "" && previousDstFolder != "")
                         {
                             backupWorks[i].DstFolder = previousDstFolder;
@@ -123,11 +142,15 @@ namespace EasySave_Console.Controllers
                         }
                     }
 
+                    // While no valid type entered
                     while (!validType)
                     {
                         string previousType = backupWorks[i].Type ?? "";
+                        // Prompt menu to enter type
                         menuView.ClearConsole();
                         backupWorks[i].Type = backupWorksEditView.PromptEditBackupWorksType(backupWorks[i]);
+                        
+                        // If nothing, check if previous value isn't null
                         if (backupWorks[i].Type == "" && (previousType == "complete" || previousType == "differencial"))
                         {
                             backupWorks[i].Type = previousType;
@@ -148,6 +171,8 @@ namespace EasySave_Console.Controllers
                             backupWorks[i].Type = "";
                         }
                     }
+
+                    // Write all backup work edit to json file
                     jsonHelper.WriteBackupWorkToJson(filepath_bw_config, backupWorks);
                 }
             }

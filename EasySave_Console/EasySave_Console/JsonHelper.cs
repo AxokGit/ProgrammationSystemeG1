@@ -9,6 +9,7 @@ namespace EasySave_Console
 {
     class JsonHelper
     {
+        // Method to read settings from Settings.json
         public Settings ReadSettingsFromJson(string filepath)
         {
             if (File.Exists(filepath))
@@ -23,6 +24,7 @@ namespace EasySave_Console
                 return default_settings;
             }
         }
+        // Method to write settings in Settings.json
         public void WriteSettingsToJson(string filepath, Settings content)
         {
             string json = JsonConvert.SerializeObject(content, Formatting.Indented);
@@ -33,6 +35,7 @@ namespace EasySave_Console
                 Directory.CreateDirectory(directoryName);
             File.WriteAllText($@"{filepath}", json);
         }
+        // Method to write backup work to BackupWorks.json
         public void WriteBackupWorkToJson(string filepath, List<BackupWork> content)
         {
             string json = JsonConvert.SerializeObject(content.ToArray(), Formatting.Indented);
@@ -43,7 +46,7 @@ namespace EasySave_Console
             }
             File.WriteAllText($@"{filepath}", json);
         }
-
+        // Method to read backup works from BackupWorks.json
         public List<BackupWork>? ReadBackupWorkFromJson(string filepath)
         {
             if (File.Exists(filepath))
@@ -56,6 +59,7 @@ namespace EasySave_Console
                 return null;
             }
         }
+        // Method to write StateLog to StateLog.json
         public void WriteStateLogToJson(string filepath, StateLog content)
         {
             string json = JsonConvert.SerializeObject(content, Formatting.Indented);
@@ -67,6 +71,7 @@ namespace EasySave_Console
             }
             File.WriteAllText($@"{filepath}", json);
         }
+        // Read log from Logs folder
         public List<Log>? ReadLogToJson(string filepath)
         {
             if (File.Exists(filepath))
@@ -79,6 +84,7 @@ namespace EasySave_Console
                 return null;
             }
         }
+        // Method to append log to log's file in Logs folder
         public void WriteLogToJson(string filepath, Log content)
         {
             var logs_in_file = ReadLogToJson(filepath) ?? new List<Log>();

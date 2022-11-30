@@ -8,6 +8,6 @@ internal class Program
 {
     private static void Main(string[] args)
     {
-        new MenuController();
+        new MenuController(); // Instantiation of the main controller
     }
 }

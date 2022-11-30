@@ -9,7 +9,7 @@ namespace EasySave_Console.Controllers
     {
         MenuView menuView = new MenuView(); // Instantiation of the main view
         LanguageMenuView languageMenuView = new LanguageMenuView(); // Instantiation of the language view
-        JsonHelper jsonHelper = new JsonHelper(); // Instantiation of the json helper
+        DataHelper jsonHelper = new DataHelper(); // Instantiation of the json helper
         FileHelper fileHelper = new FileHelper(); // Instantiation of the file helper
 
         public LanguageController()

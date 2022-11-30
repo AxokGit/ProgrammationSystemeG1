@@ -11,7 +11,7 @@ namespace EasySave_Console.Controllers
     {
         MenuView menuView = new MenuView(); // Instantiation of the main view
         BackupWorksRunView backupWorksRunView = new BackupWorksRunView(); // Instantiation of the Backup works run view
-        JsonHelper jsonHelper = new JsonHelper(); // Instantiation of the json helper
+        DataHelper jsonHelper = new DataHelper(); // Instantiation of the json helper
         FileHelper fileHelper = new FileHelper(); // Instantiation of the file helper
 
         // Declaration of needed variables
@@ -110,7 +110,7 @@ namespace EasySave_Console.Controllers
                     // Each file will be copied, log will be added to the daily log and this will update monitor status
                     foreach (FileModel file in files)
                     {
-                        jsonHelper.WriteStateLogToJson(filepath_statelog, stateLog);
+                        jsonHelper.WriteStateLog(filepath_statelog, stateLog);
 
                         //  Show status of backup work
                         menuView.ClearConsole();
@@ -139,14 +139,14 @@ namespace EasySave_Console.Controllers
                             backupWork.DstFolder + @"\" + relativePathFile,
                             watch.ElapsedMilliseconds
                         );
-                        jsonHelper.WriteLogToJson(filepath_log, log);
+                        jsonHelper.WriteLog(filepath_log, log);
                         stateLog.RemainingFiles--;
                         stateLog.RemainingSize -= file.Size;
-                        jsonHelper.WriteStateLogToJson(filepath_statelog, stateLog);
+                        jsonHelper.WriteStateLog(filepath_statelog, stateLog);
                     }
                     // Write StateLog.json
                     stateLog.Active = false;
-                    jsonHelper.WriteStateLogToJson(filepath_statelog, stateLog);
+                    jsonHelper.WriteStateLog(filepath_statelog, stateLog);
 
                     // Show backup work finished status
                     menuView.ClearConsole();
@@ -194,7 +194,7 @@ namespace EasySave_Console.Controllers
                     // For each file edited since the last complete backup
                     foreach (FileModel file in files)
                     {
-                        jsonHelper.WriteStateLogToJson(filepath_statelog, stateLog);
+                        jsonHelper.WriteStateLog(filepath_statelog, stateLog);
 
                         menuView.ClearConsole();
                         backupWorksRunView.CopyMessage(stateLog, file, enterToContinue);
@@ -220,14 +220,14 @@ namespace EasySave_Console.Controllers
                             backupWork.DstFolder + @"\" + subDstPath + @"\" + relativePathFile,
                             watch.ElapsedMilliseconds
                         );
-                        jsonHelper.WriteLogToJson(filepath_log, log);
+                        jsonHelper.WriteLog(filepath_log, log);
                         stateLog.RemainingFiles--;
                         stateLog.RemainingSize -= file.Size;
-                        jsonHelper.WriteStateLogToJson(filepath_statelog, stateLog);
+                        jsonHelper.WriteStateLog(filepath_statelog, stateLog);
                     }
                     // Write StateLog.json
                     stateLog.Active = false;
-                    jsonHelper.WriteStateLogToJson(filepath_statelog, stateLog);
+                    jsonHelper.WriteStateLog(filepath_statelog, stateLog);
 
                     // Show backup work finished status
                     menuView.ClearConsole();

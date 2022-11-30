@@ -11,13 +11,16 @@ namespace EasySave_Console.Models
     {
         public string Language;
         public string[] AvailableLanguage = { "en", "fr" };
+        public string LogExtension;
+        public string[] AvailableLogExtension = { ".json", ".xml" };
         /// <summary>
         /// Constructor of the Settings class
         /// </summary>
         /// <param name="language"></param>
-        public Settings(string language)
+        public Settings(string language, string logExtension)
         {
             this.Language = language;
+            this.LogExtension =logExtension;
         }
     }
 }

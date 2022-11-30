@@ -4,6 +4,9 @@ using System.Text;
 
 namespace EasySave_Console.Models
 {
+    /// <summary>
+    /// Class meant to create the daily logs
+    /// </summary>
     class Log
     {
         public string BackupWorkName;
@@ -13,6 +16,15 @@ namespace EasySave_Console.Models
         public string DstFilePath;
         public long TimeTransfer;
 
+        /// <summary>
+        /// Constructor of the Loga class
+        /// </summary>
+        /// <param name="BackupWorkName"></param>
+        /// <param name="dateTime"></param>
+        /// <param name="FileSize"></param>
+        /// <param name="srcFilePath"></param>
+        /// <param name="dstFilePath"></param>
+        /// <param name="TimeTransfer"></param>
         public Log(string BackupWorkName, string dateTime, long FileSize, string srcFilePath, string dstFilePath, long TimeTransfer)
         {
             this.BackupWorkName = BackupWorkName;

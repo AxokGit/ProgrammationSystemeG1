@@ -11,10 +11,17 @@ namespace EasySave_Console.Views
         {
             this.TableWidth = tableWidth;
         }
+        /// <summary>
+        /// Method to print a line
+        /// </summary>
         public void PrintLine()
         {
             Console.WriteLine(new string('-', TableWidth+1));
         }
+        /// <summary>
+        /// Method to print a row on a specific column
+        /// </summary>
+        /// <param name="columns"></param>
         public void PrintRow(params string[] columns)
         {
             int width = (TableWidth - columns.Length) / columns.Length;
@@ -26,7 +33,12 @@ namespace EasySave_Console.Views
             }
             Console.WriteLine(row);
         }
-
+        /// <summary>
+        /// Method to align a text in the center
+        /// </summary>
+        /// <param name="text"></param>
+        /// <param name="width"></param>
+        /// <returns></returns>
         private string AlignCentre(string text, int width)
         {
             text = text.Length > width ? text.Substring(0, width - 3) + "..." : text;

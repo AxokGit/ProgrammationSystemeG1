@@ -2,6 +2,9 @@
 
 namespace EasySave_Console.Models
 {
+    /// <summary>
+    /// Class meant to create our backupwork
+    /// </summary>
     class BackupWork
     {
         public string? Name;
@@ -11,6 +14,13 @@ namespace EasySave_Console.Models
         public List<FileModel>? Files;
         public List<StateLog>? Logs;
 
+        /// <summary>
+        /// Constructor of our class
+        /// </summary>
+        /// <param name="name"></param>
+        /// <param name="src_folder"></param>
+        /// <param name="dst_folder"></param>
+        /// <param name="type"></param>
         public BackupWork(string? name, string? src_folder, string? dst_folder, string? type)
         {
             this.Name = name;
@@ -18,7 +28,10 @@ namespace EasySave_Console.Models
             this.DstFolder = dst_folder;
             this.Type = type;
         }
-
+        /// <summary>
+        /// Check of our backupwork is empty
+        /// </summary>
+        /// <returns></returns>
         public bool IsEmpty()
         {
             if (this.Name == null || this.SrcFolder == null || this.DstFolder == null || this.Type == null)

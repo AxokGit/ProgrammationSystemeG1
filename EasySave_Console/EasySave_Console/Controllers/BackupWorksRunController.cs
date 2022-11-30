@@ -125,7 +125,7 @@ namespace EasySave_Console.Controllers
                             backupWork.DstFolder + @"\" + relativePathFile,
                             watch.ElapsedMilliseconds
                         );
-                        jsonHelper.WriteLogToJson(filepath_log, log);
+                        jsonHelper.WriteLogFromJson(filepath_log, log);
                         stateLog.RemainingFiles--;
                         stateLog.RemainingSize -= file.Size;
                         jsonHelper.WriteStateLogToJson(filepath_statelog, stateLog);
@@ -199,7 +199,7 @@ namespace EasySave_Console.Controllers
                             backupWork.DstFolder + @"\" + subDstPath + @"\" + relativePathFile,
                             watch.ElapsedMilliseconds
                         );
-                        jsonHelper.WriteLogToJson(filepath_log, log);
+                        jsonHelper.WriteLogFromJson(filepath_log, log);
                         stateLog.RemainingFiles--;
                         stateLog.RemainingSize -= file.Size;
                         jsonHelper.WriteStateLogToJson(filepath_statelog, stateLog);

@@ -79,7 +79,7 @@ namespace EasySave_Console
                 return null;
             }
         }
-        public void WriteLogToJson(string filepath, Log content)
+        public void WriteLogFromJson(string filepath, Log content)
         {
             var logs_in_file = ReadLogToJson(filepath) ?? new List<Log>();
 

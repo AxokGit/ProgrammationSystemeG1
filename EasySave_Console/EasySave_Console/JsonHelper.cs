@@ -87,7 +87,7 @@ namespace EasySave_Console
         // Method to append log to log's file in Logs folder
         public void WriteLogToJson(string filepath, Log content)
         {
-            var logs_in_file = ReadLogToJson(filepath) ?? new List<Log>();
+            var logs_in_file = ReadLogFromJson(filepath) ?? new List<Log>();
 
             logs_in_file.Add(content);
 

@@ -7,17 +7,17 @@ namespace EasySave_Console.Models
     /// <summary>
     /// Class meant to create the daily logs
     /// </summary>
-    class Log
+    public class Log
     {
-        public string BackupWorkName;
-        public string DateTime;
-        public long FileSize;
-        public string SrcFilePath;
-        public string DstFilePath;
-        public long TimeTransfer;
+        public string? BackupWorkName;
+        public string? DateTime;
+        public long? FileSize;
+        public string? SrcFilePath;
+        public string? DstFilePath;
+        public long? TimeTransfer;
 
         /// <summary>
-        /// Constructor of the Loga class
+        /// Constructor of the Log class
         /// </summary>
         /// <param name="BackupWorkName"></param>
         /// <param name="dateTime"></param>
@@ -25,6 +25,8 @@ namespace EasySave_Console.Models
         /// <param name="srcFilePath"></param>
         /// <param name="dstFilePath"></param>
         /// <param name="TimeTransfer"></param>
+        
+        public Log() { }
         public Log(string BackupWorkName, string dateTime, long FileSize, string srcFilePath, string dstFilePath, long TimeTransfer)
         {
             this.BackupWorkName = BackupWorkName;

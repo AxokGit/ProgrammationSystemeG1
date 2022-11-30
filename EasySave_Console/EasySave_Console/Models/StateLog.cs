@@ -7,17 +7,17 @@ namespace EasySave_Console.Models
     /// <summary>
     /// Class meant to create the state log
     /// </summary>
-    class StateLog
+    public class StateLog
     {
-        public string BackupWorkName;
-        public string StartTimestamp;
-        public bool Active;
-        public int TotalFiles;
-        public long TotalSize;
-        public int RemainingFiles;
-        public long RemainingSize;
-        public string SrcFolder;
-        public string DstFolder; 
+        public string? BackupWorkName;
+        public string? StartTimestamp;
+        public bool? Active;
+        public int? TotalFiles;
+        public long? TotalSize;
+        public int? RemainingFiles;
+        public long? RemainingSize;
+        public string? SrcFolder;
+        public string? DstFolder;
 
         /// <summary>
         /// Constructor of the StateLog class
@@ -31,6 +31,8 @@ namespace EasySave_Console.Models
         /// <param name="remainingSize"></param>
         /// <param name="srcFolder"></param>
         /// <param name="dstFolder"></param>
+        /// 
+        public StateLog() { }
         public StateLog(string backupWorkName, string startTimestamp, bool active, int totalFiles, long fileSize, int remainingFiles, long remainingSize, string srcFolder, string dstFolder)
         {
             this.BackupWorkName = backupWorkName;

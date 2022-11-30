@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using Newtonsoft.Json;
 
 namespace EasySave_Console.Models
 {
@@ -11,16 +9,17 @@ namespace EasySave_Console.Models
     {
         public string Language;
         public string[] AvailableLanguage = { "en", "fr" };
-        public string LogExtension;
+        public string? LogExtension;
         public string[] AvailableLogExtension = { ".json", ".xml" };
         /// <summary>
         /// Constructor of the Settings class
         /// </summary>
         /// <param name="language"></param>
-        public Settings(string language, string logExtension)
+        [JsonConstructor]
+        public Settings(string? language = null, string? logExtension= null)
         {
-            this.Language = language;
-            this.LogExtension =logExtension;
+            this.Language = this.Language ?? "en";
+            this.LogExtension = this.LogExtension ?? ".json";
         }
     }
 }

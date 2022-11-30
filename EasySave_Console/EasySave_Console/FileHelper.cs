@@ -13,8 +13,8 @@ namespace EasySave_Console
         // Default path to all configuration files and logs
         public string filepath_settings = @"%AppData%\EasySave\Settings.json";
         public string filepath_bw_config = @"%AppData%\EasySave\BackupWorks.json";
-        public string filepath_statelog = @"%AppData%\EasySave\StateLog.json";
-        public string filepath_log = @"%AppData%\EasySave\Logs\EasySave_Log_{}.json";
+        public string filepath_statelog = @"%AppData%\EasySave\StateLog";
+        public string filepath_log = @"%AppData%\EasySave\Logs\EasySave_Log_{}";
 
         // Method to get full path of a file
         public string FormatPath(string path)

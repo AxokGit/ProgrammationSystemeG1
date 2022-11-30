@@ -168,6 +168,9 @@
   <data name="dst_folder_backup_work" xml:space="preserve">
     <value>Destination folder of backup work</value>
   </data>
+  <data name="error_msg_no_logs" xml:space="preserve">
+    <value>No log is available. Run your first backup work.</value>
+  </data>
   <data name="err_empty_bw" xml:space="preserve">
     <value>Error, the backup work selected is not configured</value>
   </data>

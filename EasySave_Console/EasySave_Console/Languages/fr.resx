@@ -168,6 +168,9 @@
   <data name="dst_folder_backup_work" xml:space="preserve">
     <value>Dossier de destination du travail de sauvergarde</value>
   </data>
+  <data name="error_msg_no_logs" xml:space="preserve">
+    <value>Aucun log n'est disponible. Lancez votre premier travail de sauvegarde.</value>
+  </data>
   <data name="err_empty_bw" xml:space="preserve">
     <value>Erreur, le travail de sauvegarde n'a pas été configuré</value>
   </data>

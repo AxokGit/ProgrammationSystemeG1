@@ -8,7 +8,11 @@ namespace EasySave_Console.Views
     class BackupWorksEditView
     {
         TableView tableView = new TableView(110);
-
+        /// <summary>
+        /// Method which shows all the settings the user can edit
+        /// </summary>
+        /// <param name="backupWorks"></param>
+        /// <returns></returns>
         public string PromptEditBackupWorks(List<BackupWork> backupWorks)
         {
             Console.WriteLine(LangHelper.GetString("backups_work_edit_menu"));
@@ -57,6 +61,11 @@ namespace EasySave_Console.Views
             Console.Write(LangHelper.GetString("number") +" (0-5): ");
             return Console.ReadLine();
         }
+        /// <summary>
+        /// Method which displays the edit menu of the name of the theBackupWork
+        /// </summary>
+        /// <param name="backupWork"></param>
+        /// <returns></returns>
         public string PromptEditBackupWorksName(BackupWork backupWork)
         {
             Console.WriteLine(LangHelper.GetString("name_backup_work") + ":");
@@ -66,6 +75,11 @@ namespace EasySave_Console.Views
             Console.Write(LangHelper.GetString("name_or_none") + ": ");
             return Console.ReadLine() ?? "";
         }
+        /// <summary>
+        /// Method which displays the edit menu of the source folder of the theBackupWork
+        /// </summary>
+        /// <param name="backupWork"></param>
+        /// <returns></returns>
         public string PromptEditBackupWorksSrcFolder(BackupWork backupWork)
         {
             Console.WriteLine(LangHelper.GetString("src_folder_backup_work") + ":");
@@ -75,6 +89,11 @@ namespace EasySave_Console.Views
             Console.Write(LangHelper.GetString("folder_or_none") + ": ");
             return Console.ReadLine() ?? "";
         }
+        /// <summary>
+        /// Method which displays the edit menu of the destination folder of the theBackupWork
+        /// </summary>
+        /// <param name="backupWork"></param>
+        /// <returns></returns>
         public string PromptEditBackupWorksDstFolder(BackupWork backupWork)
         {
             Console.WriteLine(LangHelper.GetString("dst_folder_backup_work") + ":");
@@ -84,6 +103,11 @@ namespace EasySave_Console.Views
             Console.Write(LangHelper.GetString("folder_or_none") + ": ");
             return Console.ReadLine() ?? "";
         }
+        /// <summary>
+        /// Method which displays the edit menu of the type of the theBackupWork
+        /// </summary>
+        /// <param name="backupWork"></param>
+        /// <returns></returns>
         public string PromptEditBackupWorksType(BackupWork backupWork)
         {
             Console.WriteLine(LangHelper.GetString("type_backup_work") + ":");

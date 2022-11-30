@@ -7,10 +7,16 @@ namespace EasySave_Console.Views
 {
     class MenuView
     {
+        /// <summary>
+        /// Method which erase all the previous messages on the console
+        /// </summary>
         public void ClearConsole()
         {
             Console.Clear();
         }
+        /// <summary>
+        /// Method to display the first message that appeared at the start of the application
+        /// </summary>
         public void OnBootMessage()
         {
             //Console.WriteLine("|-------------------------------|");
@@ -38,6 +44,10 @@ namespace EasySave_Console.Views
             Console.WriteLine("Version: " + Assembly.GetExecutingAssembly().GetName().Version);
             Console.WriteLine();
         }
+        /// <summary>
+        /// Method whichs display the options the user can choose
+        /// </summary>
+        /// <returns></returns>
         public string PromptMainMenu()
         {
             Console.WriteLine(LangHelper.GetString("welcome_message"));

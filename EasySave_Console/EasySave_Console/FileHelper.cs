@@ -73,6 +73,10 @@ namespace EasySave_Console
                 }
             }
         }
+        public void OpenDirectory(string path)
+        {
+            Process.Start("explorer.exe", path);
+        }
         public void CreateDirectory(string path, string foldername)
         {
             path += foldername;
@@ -81,6 +85,10 @@ namespace EasySave_Console
         public bool DirectoryExists(string path)
         {
             return Directory.Exists(path);
+        }
+        public string GetDirectoryName(string filepath)
+        {
+            return Path.GetDirectoryName(filepath);
         }
         public bool FileExists(string filepath)
         {

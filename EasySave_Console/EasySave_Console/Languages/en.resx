@@ -210,6 +210,9 @@
   <data name="open_log_folder" xml:space="preserve">
     <value>Open log folder</value>
   </data>
+  <data name="open_settings_dir" xml:space="preserve">
+    <value>Open settigns directory</value>
+  </data>
   <data name="remaining_file_number" xml:space="preserve">
     <value>Remaining file number</value>
   </data>

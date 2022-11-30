@@ -8,15 +8,13 @@ namespace EasySave_Console.Controllers
 {
     class OpenLogsController
     {
-        public string? FileName { get; set; }
-        public string? FilePath { get; set; }
         OpenLogsView openLogsView = new OpenLogsView();
         MenuView menuView = new MenuView();
         FileHelper fileHelper = new FileHelper();
         public OpenLogsController()
         {
             string filepath_log = fileHelper.FormatFilePath(fileHelper.filepath_log);
-            string dirpath_log = Path.GetDirectoryName(filepath_log);
+            string dirpath_log = fileHelper.GetDirectoryName(filepath_log);
 
             List<FileModel> fileModels = fileHelper.GetAllFile(dirpath_log);
 

@@ -1,6 +1,4 @@
-﻿using EasySave_Console.Models;
-using EasySave_Console.Views;
-using System;
+﻿using EasySave_Console.Views;
 
 namespace EasySave_Console.Controllers
 {
@@ -36,6 +34,10 @@ namespace EasySave_Console.Controllers
                 {
                     menuView.ClearConsole();
                     new LanguageController().SelectLanguage();
+                }
+                else if (menuOption == "5")
+                {
+                    new OpenSettingsDirController();
                 }
             }
         }

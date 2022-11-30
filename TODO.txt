@@ -1,2 +1,0 @@
-Finish complete traduction for French
-Add functionnality to open config folder in MenuView (%appdata%\EasySave)

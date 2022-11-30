@@ -1,8 +1,6 @@
 ﻿using EasySave_Console.Models;
 using EasySave_Console.Views;
 using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Linq;
 
 namespace EasySave_Console.Controllers
@@ -37,7 +35,6 @@ namespace EasySave_Console.Controllers
                 SelectLanguage();
             }
         }
-
         public void SelectLanguage()
         {
             string filepath_settings = fileHelper.FormatFilePath(fileHelper.filepath_settings);
@@ -68,6 +65,5 @@ namespace EasySave_Console.Controllers
                 }
             }
         }
-        
     }
 }

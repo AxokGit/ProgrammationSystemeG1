@@ -90,6 +90,13 @@ namespace EasySave_Console.Controllers
                             backupWorks[i].SrcFolder = fileHelper.FormatPath(backupWorks[i].SrcFolder);
                             validSrcFolder = true;
                         }
+                        else
+                        {
+                            if (fileHelper.DirectoryExists(backupWorks[i].SrcFolder))
+                            {
+                                validSrcFolder = true;
+                            }
+                        }
                     }
 
                     while (!validDstFolder)
@@ -106,6 +113,13 @@ namespace EasySave_Console.Controllers
                         {
                             backupWorks[i].DstFolder = fileHelper.FormatPath(backupWorks[i].DstFolder);
                             validDstFolder = true;
+                        }
+                        else
+                        {
+                            if (fileHelper.DirectoryExists(backupWorks[i].DstFolder))
+                            {
+                                validDstFolder = true;
+                            }
                         }
                     }
 

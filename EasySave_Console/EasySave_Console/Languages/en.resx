@@ -138,6 +138,9 @@
   <data name="change_language" xml:space="preserve">
     <value>Change language</value>
   </data>
+  <data name="change_log_extension" xml:space="preserve">
+    <value>Change extension</value>
+  </data>
   <data name="choose_backup_work_to_edit" xml:space="preserve">
     <value>Choose backup work to edit</value>
   </data>
@@ -227,6 +230,9 @@
   </data>
   <data name="saves" xml:space="preserve">
     <value>Saves</value>
+  </data>
+  <data name="select_extension" xml:space="preserve">
+    <value>Select extension</value>
   </data>
   <data name="select_language" xml:space="preserve">
     <value>Select language</value>

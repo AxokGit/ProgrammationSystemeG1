@@ -35,10 +35,10 @@ namespace EasySave_Console.Controllers
                     menuView.ClearConsole();
                     new LanguageController().SelectLanguage();
                 }
-                else if (menuOption == "5") // Change language
+                else if (menuOption == "5") // Change extension
                 {
                     menuView.ClearConsole();
-                    new LanguageController().SelectLanguage();
+                    new ExtensionController().SelectExtension();
                 }
                 else if (menuOption == "6")
                 {

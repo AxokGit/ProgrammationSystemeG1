@@ -38,7 +38,7 @@ namespace EasySave_Console.Controllers
                 else if (menuOption == "5") // Change extension
                 {
                     menuView.ClearConsole();
-                    new ExtensionController().SelectExtension();
+                    new ExtensionController();
                 }
                 else if (menuOption == "6")
                 {

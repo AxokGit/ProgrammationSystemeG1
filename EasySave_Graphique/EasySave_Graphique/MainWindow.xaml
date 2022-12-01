@@ -10,14 +10,14 @@
     <Grid>
         <StackPanel>
             <Menu>
-                <MenuItem Header="Language">
-                    <MenuItem Header="French"></MenuItem>
-                    <MenuItem Header="English"></MenuItem>
+                <MenuItem Header="{DynamicResource StrMainMenu}">
+                    <MenuItem Header="{DynamicResource StrMenuFrench}" Click="French_Click"></MenuItem>
+                    <MenuItem Header="{DynamicResource StrMenuEnglish}" Click="English_Click" ></MenuItem>
                 </MenuItem>
             </Menu>
-            <TextBlock Text="Enter Custom Name"></TextBlock>
+            <TextBlock Text="{DynamicResource StrLabel}"></TextBlock>
             <TextBlock></TextBlock>
-            <Button Content="Submit"/>
+            <Button Content="{DynamicResource StrMenuFrench}"/>
         </StackPanel>
     </Grid>
 </Window>

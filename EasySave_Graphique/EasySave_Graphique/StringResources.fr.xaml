@@ -1,10 +1,10 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:local="clr-namespace:EasySave_Graphique"
-                    xmlns:system="clr-namespace:System,assembly=mscorlib">
-    <system:String x:Key="StrMainMenu">FRMenu</system:String>
-    <system:String x:Key="StrMenuFrench">FRFrench</system:String>
-    <system:String x:Key="StrMenuEnglish">FREnglish</system:String>
-    <system:String x:Key="StrLabel">FREnter Custom Name</system:String>
-    <system:String x:Key="StrButton">FRSubmit</system:String>
+                    xmlns:system1="clr-namespace:System;assembly=System.Runtime">
+    <system1:String x:Key="StrMainMenu">Menu</system1:String>
+    <system1:String x:Key="StrMenuFrench">Français</system1:String>
+    <system1:String x:Key="StrMenuEnglish">Anglais</system1:String>
+    <system1:String x:Key="StrLabel">Entrer votre nom</system1:String>
+    <system1:String x:Key="StrButton">Soumettez</system1:String>
 </ResourceDictionary>

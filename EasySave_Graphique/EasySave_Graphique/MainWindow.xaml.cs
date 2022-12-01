@@ -15,32 +15,39 @@ namespace EasySave_Graphique
         public MainWindow()
         {
             InitializeComponent();
+            SwitchLanguage("fr");
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+
+        private void EnglishClick(object sender, RoutedEventArgs e)
         {
-            MyLabel.Content = $" {LangHelper.GetString("run_work")}";
+            SwitchLanguage("en");
         }
 
-        private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void FrenchClick(object sender, RoutedEventArgs e)
         {
-            if(cmb.SelectedIndex == 0)
+            SwitchLanguage("en");
+        }
+
+        private void SwitchLanguage(string languageCode)
+        {
+            ResourceDictionary dictionary = new ResourceDictionary();
+            switch(languageCode)
             {
-               
+                case "en":
+                    dictionary.Source = new Uri("..\\StringResources.en.xaml", UriKind.Relative);
+                    break;
+                case "fr":
+                    dictionary.Source = new Uri("..\\StringResources.fr.xaml", UriKind.Relative);
+                    break;
+                default:
+                    dictionary.Source = new Uri("..\\StringResources.en.xaml", UriKind.Relative);
+                    break;
             }
+            this.Resources.MergedDictionaries.Add(dictionary);
         }
 
-        private void French_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void FrenchButton_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void EnglishButton_Click(object sender, RoutedEventArgs e)
+        private void MenuItem_Click_1(object sender, RoutedEventArgs e)
         {
 
         }

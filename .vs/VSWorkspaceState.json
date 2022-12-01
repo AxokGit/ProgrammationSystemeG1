@@ -1,7 +1,10 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\EasySave_Graphique",
+    "\\EasySave_Graphique\\EasySave_Graphique",
+    "\\EasySave_Graphique\\EasySave_Graphique\\Languages"
   ],
-  "SelectedNode": "\\C:\\Users\\eddya\\OneDrive\\Bureau\\ProgrammationSystemeG1\\ProgrammationSystemeG1",
+  "SelectedNode": "\\EasySave_Graphique\\EasySave_Graphique\\MainWindow.xaml",
   "PreviewInSolutionExplorer": false
 }

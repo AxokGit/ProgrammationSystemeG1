@@ -210,9 +210,6 @@
   <data name="number_or_all" xml:space="preserve">
     <value>No. ('a' for all)</value>
   </data>
-  <data name="open_log_folder" xml:space="preserve">
-    <value>Open log folder</value>
-  </data>
   <data name="open_settings_dir" xml:space="preserve">
     <value>Open settigns directory</value>
   </data>
@@ -233,6 +230,9 @@
   </data>
   <data name="settings" xml:space="preserve">
     <value>Settings</value>
+  </data>
+  <data name="show_log_in_logs_folder" xml:space="preserve">
+    <value>Open a log</value>
   </data>
   <data name="sir" xml:space="preserve">
     <value>Sir</value>

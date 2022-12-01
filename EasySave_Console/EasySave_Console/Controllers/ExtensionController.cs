@@ -57,16 +57,14 @@ namespace EasySave_Console.Controllers
                 }
                 else if (ExtensionOption == "1") // Change extension to .json
                 {
-                    Settings settings = new Settings("fr"); // Creating set
+                    Settings settings = new Settings(logExtension: ".json"); // Creating set
                     dataHelper.WriteSettingsToJson(filepath_settings, settings);
-                    LangHelper.ChangeLanguage(settings.Language);
                     ExtensionSelected = true;
                 }
                 else if (ExtensionOption == "2") // Change extension to .xml
                 {
-                    Settings settings = new Settings("en");
+                    Settings settings = new Settings(logExtension: ".xml");
                     dataHelper.WriteSettingsToJson(filepath_settings, settings);
-                    LangHelper.ChangeLanguage(settings.Language);
                     ExtensionSelected = true;
                 }
             }

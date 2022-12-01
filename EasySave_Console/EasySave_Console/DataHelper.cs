@@ -20,7 +20,7 @@ namespace EasySave_Console
             if (File.Exists(filepath))
             {
                 string json = File.ReadAllText($@"{filepath}");
-                return JsonConvert.DeserializeObject<Settings>(json) ?? new Settings("en");
+                return JsonConvert.DeserializeObject<Settings>(json) ?? new Settings(language: "en"); ;
             }
             else
             {

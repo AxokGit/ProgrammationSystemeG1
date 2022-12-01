@@ -18,8 +18,21 @@ namespace EasySave_Console.Models
         [JsonConstructor]
         public Settings(string? language = null, string? logExtension= null)
         {
-            this.Language = this.Language ?? "en";
-            this.LogExtension = this.LogExtension ?? ".json";
+            if (language != null && logExtension == null)
+            {
+                this.Language = language;
+                this.LogExtension = this.LogExtension ?? ".json";
+            }
+            else if (language == null && logExtension != null)
+            {
+                this.Language = this.Language ?? "en";
+                this.LogExtension = logExtension;
+            }
+            else
+            {
+                this.Language = language;
+                this.LogExtension = logExtension;
+            }
         }
     }
 }

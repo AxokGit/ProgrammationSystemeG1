@@ -61,14 +61,14 @@ namespace EasySave_Console.Controllers
                 }
                 else if (languageOption == "1") // Change language to french
                 {
-                    Settings settings = new Settings("fr"); // Creating set
+                    Settings settings = new Settings(language: "fr") ; // Creating set
                     jsonHelper.WriteSettingsToJson(filepath_settings, settings);
                     LangHelper.ChangeLanguage(settings.Language);
                     languageSelected = true;
                 }
                 else if (languageOption == "2") // Change language to english
                 {
-                    Settings settings = new Settings("en");
+                    Settings settings = new Settings(language: "en");
                     jsonHelper.WriteSettingsToJson(filepath_settings, settings);
                     LangHelper.ChangeLanguage(settings.Language);
                     languageSelected = true;

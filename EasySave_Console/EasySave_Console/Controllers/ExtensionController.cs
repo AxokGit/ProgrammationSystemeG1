@@ -17,32 +17,6 @@ namespace EasySave_Console.Controllers
         public ExtensionController()
         {
             string filepath_settings = fileHelper.FormatFilePath(fileHelper.filepath_settings);
-            if (fileHelper.FileExists(filepath_settings))
-            {
-                Settings settings = dataHelper.ReadSettingsFromJson(filepath_settings);
-
-                // Checking if language configured is existing
-                // If yes, using it
-                // If not, default lang = en
-                if (settings.AvailableLogExtension.Contains(settings.LogExtension))
-                {
-                    settings = ExtensionHelper.ChangeExtension(".json");
-                }
-                else
-                {
-                    settings = ExtensionHelper.ChangeExtension(".xml");
-                }
-            }
-            else
-            {
-                ExtensionHelper.ChangeExtension(".xml");
-                SelectExtension();
-            }
-        }
-        // Method that ask to user to select extension
-        public void SelectExtension()
-        {
-            string filepath_settings = fileHelper.FormatFilePath(fileHelper.filepath_settings);
 
             bool ExtensionSelected = false;
 
@@ -57,14 +31,16 @@ namespace EasySave_Console.Controllers
                 }
                 else if (ExtensionOption == "1") // Change extension to .json
                 {
-                    Settings settings = new Settings(logExtension: ".json"); // Creating set
-                    dataHelper.WriteSettingsToJson(filepath_settings, settings);
+                    Settings settings = new Settings("json"); // Creating set
+                    dataHelper.WriteLog(filepath_settings, settings);
+                    LangHelper.ChangeLanguage(settings.Language);
                     ExtensionSelected = true;
                 }
                 else if (ExtensionOption == "2") // Change extension to .xml
                 {
-                    Settings settings = new Settings(logExtension: ".xml");
-                    dataHelper.WriteSettingsToJson(filepath_settings, settings);
+                    Settings settings = new Settings("xml");
+                    dataHelper.WriteLog(filepath_settings, settings);
+                    LangHelper.ChangeLanguage(settings.Language);
                     ExtensionSelected = true;
                 }
             }

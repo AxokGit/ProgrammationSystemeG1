@@ -6,7 +6,18 @@
         xmlns:local="clr-namespace:EasySave_Graphique"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
-    <Grid>
 
+    <Grid>
+        <StackPanel>
+            <Menu>
+                <MenuItem Header="Language">
+                    <MenuItem Header="French"></MenuItem>
+                    <MenuItem Header="English"></MenuItem>
+                </MenuItem>
+            </Menu>
+            <TextBlock Text="Enter Custom Name"></TextBlock>
+            <TextBlock></TextBlock>
+            <Button Content="Submit"/>
+        </StackPanel>
     </Grid>
 </Window>

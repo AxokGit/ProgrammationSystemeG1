@@ -4,6 +4,7 @@ using System;
 using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Media;
 
 namespace EasySave_Graphique
 {
@@ -15,39 +16,42 @@ namespace EasySave_Graphique
         public MainWindow()
         {
             InitializeComponent();
-            SwitchLanguage("fr");
         }
 
 
-        private void EnglishClick(object sender, RoutedEventArgs e)
+        private void Button_Click(object sender, RoutedEventArgs e)
         {
-            SwitchLanguage("en");
-        }
+            int index = int.Parse(((Button)e.Source).Uid);
 
-        private void FrenchClick(object sender, RoutedEventArgs e)
-        {
-            SwitchLanguage("en");
-        }
+            GridCursor.Margin = new Thickness(10 + (150 * index), 0, 0, 0);
 
-        private void SwitchLanguage(string languageCode)
-        {
-            ResourceDictionary dictionary = new ResourceDictionary();
-            switch(languageCode)
+            switch (index)
             {
-                case "en":
-                    dictionary.Source = new Uri("..\\StringResources.en.xaml", UriKind.Relative);
+                case 0:
+                    GridMain.Background = Brushes.Aquamarine;
                     break;
-                case "fr":
-                    dictionary.Source = new Uri("..\\StringResources.fr.xaml", UriKind.Relative);
+                case 1:
+                    GridMain.Background = Brushes.Beige;
                     break;
-                default:
-                    dictionary.Source = new Uri("..\\StringResources.en.xaml", UriKind.Relative);
+                case 2:
+                    GridMain.Background = Brushes.CadetBlue;
+                    break;
+                case 3:
+                    GridMain.Background = Brushes.DarkBlue;
+                    break;
+                case 4:
+                    GridMain.Background = Brushes.Firebrick;
+                    break;
+                case 5:
+                    GridMain.Background = Brushes.Gainsboro;
+                    break;
+                case 6:
+                    GridMain.Background = Brushes.HotPink;
                     break;
             }
-            this.Resources.MergedDictionaries.Add(dictionary);
         }
 
-        private void MenuItem_Click_1(object sender, RoutedEventArgs e)
+        private void Button_Click_1(object sender, RoutedEventArgs e)
         {
 
         }

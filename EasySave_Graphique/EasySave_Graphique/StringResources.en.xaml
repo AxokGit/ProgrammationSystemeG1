@@ -2,9 +2,9 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:local="clr-namespace:EasySave_Graphique"
                     xmlns:system1="http://schemas.microsoft.com/winfx/2009/xaml">
-    <system1:String x:Key="StrMainMenu">Menu</system1:String>
+    <!-- <system1:String x:Key="Str">Coucou</system1:String>
     <system1:String x:Key="StrMenuFrench">French</system1:String>
     <system1:String x:Key="StrMenuEnglish">English</system1:String>
     <system1:String x:Key="StrLabel">Enter Custom Name</system1:String>
-    <system1:String x:Key="StrButton">Submit</system1:String>
+    <system1:String x:Key="StrButton">Submit</system1:String> -->
 </ResourceDictionary>

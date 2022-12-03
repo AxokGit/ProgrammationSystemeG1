@@ -1,24 +1,29 @@
-﻿using DocumentFormat.OpenXml.Bibliography;
-using DocumentFormat.OpenXml.Wordprocessing;
-using Microsoft.Azure.Amqp.Framing;
-using System;
-using System.Threading;
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Data;
+using System.Windows.Documents;
+using System.Windows.Input;
 using System.Windows.Media;
+using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
+using System.Windows.Shapes;
 
 namespace EasySave_Graphique
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for Settings.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class Settings : Page
     {
-        public MainWindow()
+        public Settings()
         {
             InitializeComponent();
         }
+
+
 
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -26,7 +31,7 @@ namespace EasySave_Graphique
             int index = int.Parse(((Button)e.Source).Uid);
 
             GridCursor.Margin = new Thickness(10 + (150 * index), 0, 0, 0);
-
+            /*
             switch (index)
             {
                 case 0:
@@ -50,7 +55,7 @@ namespace EasySave_Graphique
                 case 6:
                     GridMain.Background = Brushes.HotPink;
                     break;
-            }
+            }*/
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
@@ -60,24 +65,22 @@ namespace EasySave_Graphique
 
         private void Execute_Button_Click(object sender, RoutedEventArgs e)
         {
-            while (Main.NavigationService.RemoveBackEntry() != null) ;
             Main.Content = new Saves();
         }
 
         private void Edit_Button_Click(object sender, RoutedEventArgs e)
         {
-            GridMain.Background = Brushes.Beige;
+            //GridMain.Background = Brushes.Beige;
         }
 
         private void Logs_Button_Click(object sender, RoutedEventArgs e)
         {
-            while (Main.NavigationService.RemoveBackEntry() != null) ;
             Main.Content = new Logs();
         }
 
         private void Settings_Button_Click(object sender, RoutedEventArgs e)
         {
-            GridMain.Background = Brushes.DarkBlue;
+            //GridMain.Background = Brushes.DarkBlue;
         }
     }
 }

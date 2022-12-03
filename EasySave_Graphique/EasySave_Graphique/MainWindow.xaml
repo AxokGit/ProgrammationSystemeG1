@@ -20,32 +20,19 @@
                 <Button Content="ORDER STATUS" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FFA2A2A2" FontSize="15" FontWeight="Bold" VerticalAlignment="Center"/>
                 <Button Content="MY ACCOUNT" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FFA2A2A2" FontSize="15" FontWeight="Bold" VerticalAlignment="Center"/>
                 <Button Background="{x:Null}" BorderBrush="{x:Null}" VerticalAlignment="Center" Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}">
-
                 </Button>
             </StackPanel>
         </Grid>
-        <Grid Height="73">
+        <Grid Height="100">
             <StackPanel Orientation="Horizontal" VerticalAlignment="Top" Margin="10 0">
-                <Button Uid="0" Width="150" Content="Sauvegardes" Height="50" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FF2196F3" Click="Button_Click"/>
-                <Button Uid="1" Width="150" Content="Logs" Height="50" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FF2196F3" Click="Button_Click"/>
-                <Button Uid="2" Width="150" Content="Configurer" Height="50" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FF2196F3" Click="Button_Click"/>
-                <Button Uid="3" Width="150" Content="PAGES" Height="50" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FF2196F3" Click="Button_Click"/>
-                <Button Uid="4" Width="150" Content="PRODUCTS" Height="50" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FF2196F3" Click="Button_Click"/>
+                <Button Uid="0" Width="200" Content="Executes Saves" Height="50" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FF2196F3" Click="Button_Click_2"/>
+                <Button Uid="1" Width="200" Content="Edit Saves" Height="50" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FF2196F3" Click="Button_Click_3"/>
+                <Button Uid="2" Width="200" Content="Logs" Height="50" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FF2196F3" Click="Button_Click_4"/>
+                <Button Uid="3" Width="200" Content="Settings" Height="50" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FF2196F3" Click="Button_Click_5"/>
             </StackPanel>
-
             <Grid x:Name="GridCursor" Width="150" Height="5" Background="#FF2196F3" HorizontalAlignment="Left" Margin="10 0"/>
         </Grid>
-        <Grid Height="1000">
-            <StackPanel Margin="0,6,0,10">
-                <Button Width="160" Content="Sauvegardes" Height="46" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FF2196F3" Click="Button_Click" HorizontalAlignment="Left" RenderTransformOrigin="-1.527,0.431"/>
-            </StackPanel>
-        </Grid>
         <Grid x:Name="GridMain" Height="460" Background="Aquamarine">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="309*"/>
-                <ColumnDefinition Width="491*"/>
-            </Grid.ColumnDefinitions>
-            <Button Content="Execute" Click="Button_Click_1" Grid.ColumnSpan="2" Margin="0,214,0,214"/>
 
         </Grid>
     </StackPanel>

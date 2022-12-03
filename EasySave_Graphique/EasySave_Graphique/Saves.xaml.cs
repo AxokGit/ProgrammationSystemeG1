@@ -11,7 +11,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace EasySave_Graphique.Pages
+namespace EasySave_Graphique
 {
     /// <summary>
     /// Interaction logic for Saves.xaml

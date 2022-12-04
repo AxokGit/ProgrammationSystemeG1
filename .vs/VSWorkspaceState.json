@@ -1,8 +1,9 @@
 {
   "ExpandedNodes": [
     "",
-    "\\EasySave_Console"
+    "\\EasySave_Graphique",
+    "\\EasySave_Graphique\\EasySave_Graphique"
   ],
-  "SelectedNode": "\\EasySave_Console\\EasySave_Console",
+  "SelectedNode": "\\EasySave_Graphique\\EasySave_Graphique\\Settings.xaml",
   "PreviewInSolutionExplorer": false
 }

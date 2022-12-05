@@ -2,9 +2,8 @@
   "ExpandedNodes": [
     "",
     "\\EasySave_Graphique",
-    "\\EasySave_Graphique\\EasySave_Graphique",
-    "\\EasySave_Graphique\\EasySave_Graphique\\Languages"
+    "\\EasySave_Graphique\\EasySave_Graphique"
   ],
-  "SelectedNode": "\\EasySave_Graphique\\EasySave_Graphique\\Saves.xaml.cs",
+  "SelectedNode": "\\EasySave_Graphique\\EasySave_Graphique\\Saves.xaml",
   "PreviewInSolutionExplorer": false
 }

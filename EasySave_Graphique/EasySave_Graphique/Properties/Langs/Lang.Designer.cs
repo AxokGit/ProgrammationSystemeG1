@@ -223,6 +223,15 @@ namespace EasySave_Graphique.Properties.Langs {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Edit saves.
+        /// </summary>
+        public static string edit_save {
+            get {
+                return ResourceManager.GetString("edit_save", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to English.
         /// </summary>
         public static string english {
@@ -246,6 +255,15 @@ namespace EasySave_Graphique.Properties.Langs {
         public static string error_msg_no_logs {
             get {
                 return ResourceManager.GetString("error_msg_no_logs", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Execute saves.
+        /// </summary>
+        public static string execute_save {
+            get {
+                return ResourceManager.GetString("execute_save", resourceCulture);
             }
         }
         

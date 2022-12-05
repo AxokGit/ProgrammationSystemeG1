@@ -171,6 +171,9 @@
   <data name="dst_folder_backup_work" xml:space="preserve">
     <value>Destination folder of backup work</value>
   </data>
+  <data name="edit_save" xml:space="preserve">
+    <value>Edit saves</value>
+  </data>
   <data name="english" xml:space="preserve">
     <value>English</value>
   </data>
@@ -179,6 +182,9 @@
   </data>
   <data name="err_empty_bw" xml:space="preserve">
     <value>Error, the backup work selected is not configured</value>
+  </data>
+  <data name="execute_save" xml:space="preserve">
+    <value>Execute saves</value>
   </data>
   <data name="exit_menu" xml:space="preserve">
     <value>Exit</value>

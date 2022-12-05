@@ -19,6 +19,8 @@ namespace CryptoSoft_Console
                 Console.WriteLine("-> help");
                 Console.WriteLine("-> run [source_file] [destination_file] [key]");
                 Console.WriteLine();
+                Console.WriteLine("Type ENTER to close");
+                Console.ReadKey();
             }
 
             void Error(string msg)

@@ -79,5 +79,10 @@ namespace EasySave_Graphique
         {
             GridMain.Background = Brushes.DarkBlue;
         }
+
+        private void Button_Click_2(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

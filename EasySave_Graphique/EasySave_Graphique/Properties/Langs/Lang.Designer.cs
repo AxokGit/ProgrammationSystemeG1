@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace EasySave_Graphique.Languages {
+namespace EasySave_Graphique.Properties.Langs {
     using System;
     
     
@@ -22,24 +22,24 @@ namespace EasySave_Graphique.Languages {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class en {
+    public class Lang {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal en() {
+        internal Lang() {
         }
         
         /// <summary>
         ///   Returns the cached ResourceManager instance used by this class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Resources.ResourceManager ResourceManager {
+        public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("EasySave_Graphique.Languages.en", typeof(en).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("EasySave_Graphique.Properties.Langs.Lang", typeof(Lang).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -51,7 +51,7 @@ namespace EasySave_Graphique.Languages {
         ///   resource lookups using this strongly typed resource class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Globalization.CultureInfo Culture {
+        public static global::System.Globalization.CultureInfo Culture {
             get {
                 return resourceCulture;
             }
@@ -63,7 +63,7 @@ namespace EasySave_Graphique.Languages {
         /// <summary>
         ///   Looks up a localized string similar to All backup works finished.
         /// </summary>
-        internal static string all_wb_finished {
+        public static string all_wb_finished {
             get {
                 return ResourceManager.GetString("all_wb_finished", resourceCulture);
             }
@@ -72,7 +72,7 @@ namespace EasySave_Graphique.Languages {
         /// <summary>
         ///   Looks up a localized string similar to Backup.
         /// </summary>
-        internal static string backup {
+        public static string backup {
             get {
                 return ResourceManager.GetString("backup", resourceCulture);
             }
@@ -81,7 +81,7 @@ namespace EasySave_Graphique.Languages {
         /// <summary>
         ///   Looks up a localized string similar to Backup Work name.
         /// </summary>
-        internal static string backup_work_name {
+        public static string backup_work_name {
             get {
                 return ResourceManager.GetString("backup_work_name", resourceCulture);
             }
@@ -90,7 +90,7 @@ namespace EasySave_Graphique.Languages {
         /// <summary>
         ///   Looks up a localized string similar to Backup works edit menu.
         /// </summary>
-        internal static string backups_work_edit_menu {
+        public static string backups_work_edit_menu {
             get {
                 return ResourceManager.GetString("backups_work_edit_menu", resourceCulture);
             }
@@ -99,7 +99,7 @@ namespace EasySave_Graphique.Languages {
         /// <summary>
         ///   Looks up a localized string similar to Backup work run menu.
         /// </summary>
-        internal static string backups_work_run_menu {
+        public static string backups_work_run_menu {
             get {
                 return ResourceManager.GetString("backups_work_run_menu", resourceCulture);
             }
@@ -108,7 +108,7 @@ namespace EasySave_Graphique.Languages {
         /// <summary>
         ///   Looks up a localized string similar to Bytes.
         /// </summary>
-        internal static string bytes {
+        public static string bytes {
             get {
                 return ResourceManager.GetString("bytes", resourceCulture);
             }
@@ -117,7 +117,7 @@ namespace EasySave_Graphique.Languages {
         /// <summary>
         ///   Looks up a localized string similar to Change language.
         /// </summary>
-        internal static string change_language {
+        public static string change_language {
             get {
                 return ResourceManager.GetString("change_language", resourceCulture);
             }
@@ -126,7 +126,7 @@ namespace EasySave_Graphique.Languages {
         /// <summary>
         ///   Looks up a localized string similar to Change extension.
         /// </summary>
-        internal static string change_log_extension {
+        public static string change_log_extension {
             get {
                 return ResourceManager.GetString("change_log_extension", resourceCulture);
             }
@@ -135,7 +135,7 @@ namespace EasySave_Graphique.Languages {
         /// <summary>
         ///   Looks up a localized string similar to Choose backup work to edit.
         /// </summary>
-        internal static string choose_backup_work_to_edit {
+        public static string choose_backup_work_to_edit {
             get {
                 return ResourceManager.GetString("choose_backup_work_to_edit", resourceCulture);
             }
@@ -144,7 +144,7 @@ namespace EasySave_Graphique.Languages {
         /// <summary>
         ///   Looks up a localized string similar to Choose backup work to run.
         /// </summary>
-        internal static string choose_backup_work_to_run {
+        public static string choose_backup_work_to_run {
             get {
                 return ResourceManager.GetString("choose_backup_work_to_run", resourceCulture);
             }
@@ -153,7 +153,7 @@ namespace EasySave_Graphique.Languages {
         /// <summary>
         ///   Looks up a localized string similar to Which log file would you like to open?.
         /// </summary>
-        internal static string choose_log {
+        public static string choose_log {
             get {
                 return ResourceManager.GetString("choose_log", resourceCulture);
             }
@@ -162,7 +162,7 @@ namespace EasySave_Graphique.Languages {
         /// <summary>
         ///   Looks up a localized string similar to Copy monitor.
         /// </summary>
-        internal static string copy_monitor {
+        public static string copy_monitor {
             get {
                 return ResourceManager.GetString("copy_monitor", resourceCulture);
             }
@@ -171,7 +171,7 @@ namespace EasySave_Graphique.Languages {
         /// <summary>
         ///   Looks up a localized string similar to Status.
         /// </summary>
-        internal static string copy_status {
+        public static string copy_status {
             get {
                 return ResourceManager.GetString("copy_status", resourceCulture);
             }
@@ -180,7 +180,7 @@ namespace EasySave_Graphique.Languages {
         /// <summary>
         ///   Looks up a localized string similar to Current file in copy.
         /// </summary>
-        internal static string current_file_in_copy {
+        public static string current_file_in_copy {
             get {
                 return ResourceManager.GetString("current_file_in_copy", resourceCulture);
             }
@@ -189,7 +189,7 @@ namespace EasySave_Graphique.Languages {
         /// <summary>
         ///   Looks up a localized string similar to Define backup job(s).
         /// </summary>
-        internal static string define_work {
+        public static string define_work {
             get {
                 return ResourceManager.GetString("define_work", resourceCulture);
             }
@@ -198,7 +198,7 @@ namespace EasySave_Graphique.Languages {
         /// <summary>
         ///   Looks up a localized string similar to DONE.
         /// </summary>
-        internal static string done {
+        public static string done {
             get {
                 return ResourceManager.GetString("done", resourceCulture);
             }
@@ -207,7 +207,7 @@ namespace EasySave_Graphique.Languages {
         /// <summary>
         ///   Looks up a localized string similar to Destination folder.
         /// </summary>
-        internal static string dst_folder {
+        public static string dst_folder {
             get {
                 return ResourceManager.GetString("dst_folder", resourceCulture);
             }
@@ -216,16 +216,34 @@ namespace EasySave_Graphique.Languages {
         /// <summary>
         ///   Looks up a localized string similar to Destination folder of backup work.
         /// </summary>
-        internal static string dst_folder_backup_work {
+        public static string dst_folder_backup_work {
             get {
                 return ResourceManager.GetString("dst_folder_backup_work", resourceCulture);
             }
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Edit saves.
+        /// </summary>
+        public static string edit_save {
+            get {
+                return ResourceManager.GetString("edit_save", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to English.
+        /// </summary>
+        public static string english {
+            get {
+                return ResourceManager.GetString("english", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Error, the backup work selected is not configured.
         /// </summary>
-        internal static string err_empty_bw {
+        public static string err_empty_bw {
             get {
                 return ResourceManager.GetString("err_empty_bw", resourceCulture);
             }
@@ -234,16 +252,25 @@ namespace EasySave_Graphique.Languages {
         /// <summary>
         ///   Looks up a localized string similar to No log is available. Run your first backup work..
         /// </summary>
-        internal static string error_msg_no_logs {
+        public static string error_msg_no_logs {
             get {
                 return ResourceManager.GetString("error_msg_no_logs", resourceCulture);
             }
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Execute saves.
+        /// </summary>
+        public static string execute_save {
+            get {
+                return ResourceManager.GetString("execute_save", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Exit.
         /// </summary>
-        internal static string exit_menu {
+        public static string exit_menu {
             get {
                 return ResourceManager.GetString("exit_menu", resourceCulture);
             }
@@ -252,7 +279,7 @@ namespace EasySave_Graphique.Languages {
         /// <summary>
         ///   Looks up a localized string similar to Quit program.
         /// </summary>
-        internal static string exit_program {
+        public static string exit_program {
             get {
                 return ResourceManager.GetString("exit_program", resourceCulture);
             }
@@ -261,7 +288,7 @@ namespace EasySave_Graphique.Languages {
         /// <summary>
         ///   Looks up a localized string similar to File opened.
         /// </summary>
-        internal static string file_opened {
+        public static string file_opened {
             get {
                 return ResourceManager.GetString("file_opened", resourceCulture);
             }
@@ -270,7 +297,7 @@ namespace EasySave_Graphique.Languages {
         /// <summary>
         ///   Looks up a localized string similar to Finished.
         /// </summary>
-        internal static string finished {
+        public static string finished {
             get {
                 return ResourceManager.GetString("finished", resourceCulture);
             }
@@ -279,16 +306,25 @@ namespace EasySave_Graphique.Languages {
         /// <summary>
         ///   Looks up a localized string similar to Folder (none to keep).
         /// </summary>
-        internal static string folder_or_none {
+        public static string folder_or_none {
             get {
                 return ResourceManager.GetString("folder_or_none", resourceCulture);
             }
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to French.
+        /// </summary>
+        public static string french {
+            get {
+                return ResourceManager.GetString("french", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Here are your options:.
         /// </summary>
-        internal static string here_your_options {
+        public static string here_your_options {
             get {
                 return ResourceManager.GetString("here_your_options", resourceCulture);
             }
@@ -297,7 +333,7 @@ namespace EasySave_Graphique.Languages {
         /// <summary>
         ///   Looks up a localized string similar to Languages.
         /// </summary>
-        internal static string languages {
+        public static string languages {
             get {
                 return ResourceManager.GetString("languages", resourceCulture);
             }
@@ -306,7 +342,7 @@ namespace EasySave_Graphique.Languages {
         /// <summary>
         ///   Looks up a localized string similar to Name.
         /// </summary>
-        internal static string name {
+        public static string name {
             get {
                 return ResourceManager.GetString("name", resourceCulture);
             }
@@ -315,7 +351,7 @@ namespace EasySave_Graphique.Languages {
         /// <summary>
         ///   Looks up a localized string similar to Name of backup work.
         /// </summary>
-        internal static string name_backup_work {
+        public static string name_backup_work {
             get {
                 return ResourceManager.GetString("name_backup_work", resourceCulture);
             }
@@ -324,7 +360,7 @@ namespace EasySave_Graphique.Languages {
         /// <summary>
         ///   Looks up a localized string similar to Name (none to keep, &apos;r&apos; to reset).
         /// </summary>
-        internal static string name_or_none {
+        public static string name_or_none {
             get {
                 return ResourceManager.GetString("name_or_none", resourceCulture);
             }
@@ -333,7 +369,7 @@ namespace EasySave_Graphique.Languages {
         /// <summary>
         ///   Looks up a localized string similar to No..
         /// </summary>
-        internal static string number {
+        public static string number {
             get {
                 return ResourceManager.GetString("number", resourceCulture);
             }
@@ -342,7 +378,7 @@ namespace EasySave_Graphique.Languages {
         /// <summary>
         ///   Looks up a localized string similar to No. (&apos;a&apos; for all).
         /// </summary>
-        internal static string number_or_all {
+        public static string number_or_all {
             get {
                 return ResourceManager.GetString("number_or_all", resourceCulture);
             }
@@ -351,7 +387,7 @@ namespace EasySave_Graphique.Languages {
         /// <summary>
         ///   Looks up a localized string similar to Open settigns directory.
         /// </summary>
-        internal static string open_settings_dir {
+        public static string open_settings_dir {
             get {
                 return ResourceManager.GetString("open_settings_dir", resourceCulture);
             }
@@ -360,7 +396,7 @@ namespace EasySave_Graphique.Languages {
         /// <summary>
         ///   Looks up a localized string similar to Remaining file number.
         /// </summary>
-        internal static string remaining_file_number {
+        public static string remaining_file_number {
             get {
                 return ResourceManager.GetString("remaining_file_number", resourceCulture);
             }
@@ -369,7 +405,7 @@ namespace EasySave_Graphique.Languages {
         /// <summary>
         ///   Looks up a localized string similar to Start backup job(s).
         /// </summary>
-        internal static string run_work {
+        public static string run_work {
             get {
                 return ResourceManager.GetString("run_work", resourceCulture);
             }
@@ -378,7 +414,7 @@ namespace EasySave_Graphique.Languages {
         /// <summary>
         ///   Looks up a localized string similar to Running.
         /// </summary>
-        internal static string running {
+        public static string running {
             get {
                 return ResourceManager.GetString("running", resourceCulture);
             }
@@ -387,7 +423,7 @@ namespace EasySave_Graphique.Languages {
         /// <summary>
         ///   Looks up a localized string similar to Saves.
         /// </summary>
-        internal static string saves {
+        public static string saves {
             get {
                 return ResourceManager.GetString("saves", resourceCulture);
             }
@@ -396,7 +432,7 @@ namespace EasySave_Graphique.Languages {
         /// <summary>
         ///   Looks up a localized string similar to Select extension.
         /// </summary>
-        internal static string select_extension {
+        public static string select_extension {
             get {
                 return ResourceManager.GetString("select_extension", resourceCulture);
             }
@@ -405,7 +441,7 @@ namespace EasySave_Graphique.Languages {
         /// <summary>
         ///   Looks up a localized string similar to Select language.
         /// </summary>
-        internal static string select_language {
+        public static string select_language {
             get {
                 return ResourceManager.GetString("select_language", resourceCulture);
             }
@@ -414,7 +450,7 @@ namespace EasySave_Graphique.Languages {
         /// <summary>
         ///   Looks up a localized string similar to Settings.
         /// </summary>
-        internal static string settings {
+        public static string settings {
             get {
                 return ResourceManager.GetString("settings", resourceCulture);
             }
@@ -423,7 +459,7 @@ namespace EasySave_Graphique.Languages {
         /// <summary>
         ///   Looks up a localized string similar to Open a log.
         /// </summary>
-        internal static string show_log_in_logs_folder {
+        public static string show_log_in_logs_folder {
             get {
                 return ResourceManager.GetString("show_log_in_logs_folder", resourceCulture);
             }
@@ -432,7 +468,7 @@ namespace EasySave_Graphique.Languages {
         /// <summary>
         ///   Looks up a localized string similar to Sir.
         /// </summary>
-        internal static string sir {
+        public static string sir {
             get {
                 return ResourceManager.GetString("sir", resourceCulture);
             }
@@ -441,7 +477,7 @@ namespace EasySave_Graphique.Languages {
         /// <summary>
         ///   Looks up a localized string similar to Source folder.
         /// </summary>
-        internal static string src_folder {
+        public static string src_folder {
             get {
                 return ResourceManager.GetString("src_folder", resourceCulture);
             }
@@ -450,7 +486,7 @@ namespace EasySave_Graphique.Languages {
         /// <summary>
         ///   Looks up a localized string similar to Source folder of backup work.
         /// </summary>
-        internal static string src_folder_backup_work {
+        public static string src_folder_backup_work {
             get {
                 return ResourceManager.GetString("src_folder_backup_work", resourceCulture);
             }
@@ -459,7 +495,7 @@ namespace EasySave_Graphique.Languages {
         /// <summary>
         ///   Looks up a localized string similar to Start time.
         /// </summary>
-        internal static string start_time {
+        public static string start_time {
             get {
                 return ResourceManager.GetString("start_time", resourceCulture);
             }
@@ -468,25 +504,16 @@ namespace EasySave_Graphique.Languages {
         /// <summary>
         ///   Looks up a localized string similar to Copying.
         /// </summary>
-        internal static string starting_copy {
+        public static string starting_copy {
             get {
                 return ResourceManager.GetString("starting_copy", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
-        /// </summary>
-        internal static string String1 {
-            get {
-                return ResourceManager.GetString("String1", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Total file number.
         /// </summary>
-        internal static string total_file_number {
+        public static string total_file_number {
             get {
                 return ResourceManager.GetString("total_file_number", resourceCulture);
             }
@@ -495,7 +522,7 @@ namespace EasySave_Graphique.Languages {
         /// <summary>
         ///   Looks up a localized string similar to Type of backup work.
         /// </summary>
-        internal static string type_backup_work {
+        public static string type_backup_work {
             get {
                 return ResourceManager.GetString("type_backup_work", resourceCulture);
             }
@@ -504,7 +531,7 @@ namespace EasySave_Graphique.Languages {
         /// <summary>
         ///   Looks up a localized string similar to Complete.
         /// </summary>
-        internal static string type_complete {
+        public static string type_complete {
             get {
                 return ResourceManager.GetString("type_complete", resourceCulture);
             }
@@ -513,7 +540,7 @@ namespace EasySave_Graphique.Languages {
         /// <summary>
         ///   Looks up a localized string similar to Differencial.
         /// </summary>
-        internal static string type_differencial {
+        public static string type_differencial {
             get {
                 return ResourceManager.GetString("type_differencial", resourceCulture);
             }
@@ -522,7 +549,7 @@ namespace EasySave_Graphique.Languages {
         /// <summary>
         ///   Looks up a localized string similar to Type ENTER to continue.
         /// </summary>
-        internal static string type_enter_to_continue {
+        public static string type_enter_to_continue {
             get {
                 return ResourceManager.GetString("type_enter_to_continue", resourceCulture);
             }
@@ -531,7 +558,7 @@ namespace EasySave_Graphique.Languages {
         /// <summary>
         ///   Looks up a localized string similar to Type (1:complete / 2:differencial / none to keep).
         /// </summary>
-        internal static string type_option_or_none {
+        public static string type_option_or_none {
             get {
                 return ResourceManager.GetString("type_option_or_none", resourceCulture);
             }
@@ -540,7 +567,7 @@ namespace EasySave_Graphique.Languages {
         /// <summary>
         ///   Looks up a localized string similar to Welcome in EasySave.
         /// </summary>
-        internal static string welcome_message {
+        public static string welcome_message {
             get {
                 return ResourceManager.GetString("welcome_message", resourceCulture);
             }
@@ -549,7 +576,7 @@ namespace EasySave_Graphique.Languages {
         /// <summary>
         ///   Looks up a localized string similar to World.
         /// </summary>
-        internal static string world {
+        public static string world {
             get {
                 return ResourceManager.GetString("world", resourceCulture);
             }

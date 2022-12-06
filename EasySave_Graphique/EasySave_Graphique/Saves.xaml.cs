@@ -21,6 +21,7 @@ namespace EasySave_Graphique
         public Saves()
         {
             InitializeComponent();
+            
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)

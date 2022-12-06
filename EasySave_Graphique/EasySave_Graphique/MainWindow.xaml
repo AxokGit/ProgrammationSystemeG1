@@ -8,20 +8,21 @@
         Title="MainWindow" Height="450" Width="800">
 
     <StackPanel Background="WhiteSmoke">
-        
-        <Grid Height="40">
-        </Grid>
-        <Grid Height="100">
-            <StackPanel Orientation="Horizontal" VerticalAlignment="Top" Margin="10 0">
-                <Button Uid="0" Width="200" Content="{x:Static language:Lang.execute_save}" Height="50" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FF2196F3" Click="Execute_Button_Click"/>
-                <Button Uid="1" Width="200" Content="{x:Static language:Lang.edit_save}" Height="50" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FF2196F3" Click="Edit_Button_Click"/>
-                <Button Uid="2" Width="200" Content="Logs" Height="50" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FF2196F3" Click="Logs_Button_Click"/>
-                <Button Uid="3" Width="200" Content="{x:Static language:Lang.settings}" Height="50" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FF2196F3" Click="Settings_Button_Click"/>
-            </StackPanel>
-            <Grid x:Name="GridCursor" Width="150" Height="5" Background="#FF2196F3" HorizontalAlignment="Left" Margin="10 0"/>
-        </Grid>
         <Frame x:Name="Main"/>
-        <Grid x:Name="GridMain" Height="460" Background="Blue">
-        </Grid>
+        <TabControl Height="435">
+            <TabItem Header="TabItem">
+                <Grid Background="#FFE5E5E5">
+                    <Label Content="Label" HorizontalAlignment="Left" Margin="238,156,0,0" VerticalAlignment="Top"/>
+                </Grid>
+            </TabItem>
+            <TabItem Header="TabItem"/>
+            <Grid Background="#FFE5E5E5" Height="66" Width="794">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="16*"/>
+                    <ColumnDefinition Width="79*"/>
+                    <ColumnDefinition Width="699*"/>
+                </Grid.ColumnDefinitions>
+            </Grid>
+        </TabControl>
     </StackPanel>
 </Window>

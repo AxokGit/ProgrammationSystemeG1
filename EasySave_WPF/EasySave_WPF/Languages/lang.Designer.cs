@@ -70,6 +70,24 @@ namespace EasySave_WPF.Languages {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Create.
+        /// </summary>
+        public static string create_backupwork_tabname {
+            get {
+                return ResourceManager.GetString("create_backupwork_tabname", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Destination folder.
+        /// </summary>
+        public static string dst_folder_backupwork {
+            get {
+                return ResourceManager.GetString("dst_folder_backupwork", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Edit.
         /// </summary>
         public static string edit_backupwork_tabname {
@@ -106,6 +124,15 @@ namespace EasySave_WPF.Languages {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Name.
+        /// </summary>
+        public static string name_backupwork {
+            get {
+                return ResourceManager.GetString("name_backupwork", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Run.
         /// </summary>
         public static string run_backupwork_tabname {
@@ -129,6 +156,24 @@ namespace EasySave_WPF.Languages {
         public static string settings_tabname {
             get {
                 return ResourceManager.GetString("settings_tabname", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Source folder.
+        /// </summary>
+        public static string src_folder_backupwork {
+            get {
+                return ResourceManager.GetString("src_folder_backupwork", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Type.
+        /// </summary>
+        public static string type_backupwork {
+            get {
+                return ResourceManager.GetString("type_backupwork", resourceCulture);
             }
         }
     }

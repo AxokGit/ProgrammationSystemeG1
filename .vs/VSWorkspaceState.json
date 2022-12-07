@@ -1,7 +1,11 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\EasySave_WPF\\EasySave_WPF",
+    "\\EasySave_WPF\\EasySave_WPF\\Languages",
+    "\\EasySave_WPF\\EasySave_WPF\\Models",
+    "\\EasySave_WPF\\EasySave_WPF\\Views"
   ],
-  "SelectedNode": "\\C:\\Users\\eddya\\OneDrive\\Bureau\\ProgrammationSystemeG1\\ProgrammationSystemeG1",
+  "SelectedNode": "\\EasySave_WPF",
   "PreviewInSolutionExplorer": false
 }

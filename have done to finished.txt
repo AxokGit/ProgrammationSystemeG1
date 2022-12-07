@@ -1,0 +1,4 @@
+have done on class diagram:
+
+- changing JsonHelper method names
+- changing Settings constructor parameters*

@@ -1,0 +1,21 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:system="clr-namespace:System;assembly=mscorlib">
+    <system:String x:Key="backup_work">Backup Work</system:String>
+    <system:String x:Key="run_backupwork">Run</system:String>
+    <system:String x:Key="name_backupwork">Name</system:String>
+    <system:String x:Key="src_folder_backupwork">Source folder</system:String>
+    <system:String x:Key="dst_folder_backupwork">Destination folder</system:String>
+    <system:String x:Key="type_folder_backupwork">Type</system:String>
+    <system:String x:Key="add_backupwork">Add</system:String>
+    <system:String x:Key="edit_backupwork">Edit</system:String>
+    <system:String x:Key="log">Log</system:String>
+    <system:String x:Key="settings">Settings</system:String>
+    <system:String x:Key="language">Language</system:String>
+    <system:String x:Key="format">Format</system:String>
+    <system:String x:Key="select_backupwork">Select backup work</system:String>
+    <system:String x:Key="save_button">Save</system:String>
+    <system:String x:Key="complete">Complete</system:String>
+    <system:String x:Key="differencial">Differencial</system:String>
+    <system:String x:Key="run_button">Run</system:String>
+</ResourceDictionary>

@@ -14,7 +14,7 @@
                     <TabControl>
                         <TabItem Header="{x:Static language:lang.run_backupwork_tabname}">
                             <Grid Background="#FFE5E5E5">
-                                <ListView x:Name="BackupWorkListView" Margin="0,0,0,145" Grid.ColumnSpan="2">
+                                <ListView x:Name="BackupWorkRunListView" Margin="0,0,0,52">
                                     <ListView.View>
                                         <GridView>
                                             <GridView.Columns>
@@ -32,49 +32,11 @@
                                         </GridView>
                                     </ListView.View>
                                 </ListView>
+                                <Button Content="Run" HorizontalAlignment="Left" Margin="728,343,0,0" VerticalAlignment="Top" Height="25" Width="50" RenderTransformOrigin="0.2,0.445"/>
                             </Grid>
                         </TabItem>
-                        <TabItem Header="{x:Static language:lang.edit_backupwork_tabname}">
-                            <Grid>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="*"/>
-                                    <ColumnDefinition Width="*"/>
-                                    <ColumnDefinition Width="*"/>
-                                    <ColumnDefinition Width="*"/>
-                                    <ColumnDefinition Width="*"/>
-                                </Grid.ColumnDefinitions>
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="2*" />
-                                    <RowDefinition Height="1*" />
-                                    <RowDefinition Height="1*" />
-                                </Grid.RowDefinitions>
-                            </Grid>
-                        </TabItem>
-                        <TabItem Header="{x:Static language:lang.create_backupwork_tabname}">
-                            <UniformGrid Columns="5">
-                                <DockPanel>
-                                    <Label Content="{x:Static language:lang.id_backupwork}"/>
-                                    <TextBox Text="TextBox" TextWrapping="Wrap" Width="100" Height="20" Margin="-70,-290,0,0"/>
-                                </DockPanel>
-                                <DockPanel>
-                                    <Label Content="{x:Static language:lang.name_backupwork}"/>
-                                    <TextBox Text="TextBox" TextWrapping="Wrap" Width="100" Height="20" Margin="-85,-290,0,0"/>
-                                </DockPanel>
-                                <DockPanel>
-                                    <Label Content="{x:Static language:lang.sourcefolder_backupwork}"/>
-                                    <TextBox Text="TextBox" TextWrapping="Wrap" Width="100" Height="20" Margin="-130,-290,0,0"/>
-                                </DockPanel>
-                                <DockPanel>
-                                    <Label Content="{x:Static language:lang.destinationfolder_backupwork}"/>
-                                    <TextBox Text="TextBox" TextWrapping="Wrap" Width="100" Height="20" Margin="-150,-290,0,0"/>
-                                </DockPanel>
-                                <DockPanel>
-                                    <Label Content="{x:Static language:lang.type_backupwork}"/>
-                                    <TextBox Text="TextBox" TextWrapping="Wrap" Width="100" Height="20" Margin="-80,-290,0,0"/>
-                                </DockPanel>
-                            </UniformGrid>
-                        </TabItem>
-                        <DataGrid/>
+                        <TabItem Header="{x:Static language:lang.edit_backupwork_tabname}"/>
+                        <Button Content="Button"/>
                     </TabControl>
                 </Grid>
             </TabItem>

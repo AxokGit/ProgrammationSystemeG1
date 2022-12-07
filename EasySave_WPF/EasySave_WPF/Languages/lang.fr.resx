@@ -123,10 +123,22 @@
   <data name="edit_backupwork_tabname" xml:space="preserve">
     <value>Modifier</value>
   </data>
+  <data name="format_settings" xml:space="preserve">
+    <value>Format des fichiers logs</value>
+  </data>
+  <data name="language_settings" xml:space="preserve">
+    <value>Langue</value>
+  </data>
   <data name="log_tabname" xml:space="preserve">
     <value>Logs</value>
   </data>
   <data name="run_backupwork_tabname" xml:space="preserve">
     <value>Lancer</value>
+  </data>
+  <data name="save_settings" xml:space="preserve">
+    <value>Enregistrer</value>
+  </data>
+  <data name="settings_tabname" xml:space="preserve">
+    <value>Paramètres</value>
   </data>
 </root>

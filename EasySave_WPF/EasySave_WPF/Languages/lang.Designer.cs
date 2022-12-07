@@ -79,6 +79,24 @@ namespace EasySave_WPF.Languages {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Log file format.
+        /// </summary>
+        public static string format_settings {
+            get {
+                return ResourceManager.GetString("format_settings", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Language.
+        /// </summary>
+        public static string language_settings {
+            get {
+                return ResourceManager.GetString("language_settings", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Logs.
         /// </summary>
         public static string log_tabname {
@@ -93,6 +111,24 @@ namespace EasySave_WPF.Languages {
         public static string run_backupwork_tabname {
             get {
                 return ResourceManager.GetString("run_backupwork_tabname", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Save.
+        /// </summary>
+        public static string save_settings {
+            get {
+                return ResourceManager.GetString("save_settings", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Settings.
+        /// </summary>
+        public static string settings_tabname {
+            get {
+                return ResourceManager.GetString("settings_tabname", resourceCulture);
             }
         }
     }

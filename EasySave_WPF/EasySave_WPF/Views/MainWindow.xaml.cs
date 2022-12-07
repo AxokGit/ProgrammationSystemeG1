@@ -26,7 +26,11 @@ namespace EasySave_WPF
 
         private void Create_Click(object sender, RoutedEventArgs e)
         {
-
+            string name = Name.Text;
+            string sourceFolder = SourceFolder.Text;
+            string destinationFolder = DestinationFolder.Text;
+            string type = Type.Text;
+            new BackupWorksCreateController(name, sourceFolder, destinationFolder, type);
         }
     }
 }

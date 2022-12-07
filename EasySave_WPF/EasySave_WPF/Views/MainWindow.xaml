@@ -14,7 +14,7 @@
                     <TabControl>
                         <TabItem Header="{x:Static language:lang.run_backupwork_tabname}">
                             <Grid Background="#FFE5E5E5">
-                                <ListView x:Name="BackupWorkRunListView" Margin="0,0,0,50">
+                                <ListView x:Name="BackupWorkRunListView" Margin="0,0,0,52">
                                     <ListView.View>
                                         <GridView>
                                             <GridView.Columns>
@@ -35,22 +35,35 @@
                                 <Button Content="Run" HorizontalAlignment="Left" Margin="0,331,0,0" VerticalAlignment="Top"/>
                             </Grid>
                         </TabItem>
-                        <TabItem Header="{x:Static language:lang.create_backupwork_tabname}">
-                            <Grid Background="#FFE5E5E5">
-                                <Button Content="Create" Margin="10,210,702,146" Click="ButtonClickCreateBackupWork"/>
-                                <Label Content="{x:Static language:lang.name_backupwork}" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
-                                <Label Content="{x:Static language:lang.src_folder_backupwork}" HorizontalAlignment="Left" Margin="10,59,0,0" VerticalAlignment="Top"/>
-                                <Label Content="{x:Static language:lang.dst_folder_backupwork}" HorizontalAlignment="Left" Margin="10,108,0,0" VerticalAlignment="Top"/>
-                                <Label Content="{x:Static language:lang.type_backupwork}" HorizontalAlignment="Left" Margin="10,157,0,0" VerticalAlignment="Top"/>
-                                <TextBox Name="NameBackupworkCreateTextBox" HorizontalAlignment="Left" Margin="10,36,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="250"/>
-                                <TextBox Name="SrcFolderBackupworkCreateTextBox" HorizontalAlignment="Left" Margin="10,85,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="250"/>
-                                <TextBox Name="DstFolderBackupworkCreateTextBox" HorizontalAlignment="Left" Margin="10,134,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="250"/>
-                                <ComboBox Name="TypeBackupworkCreateComboBox" HorizontalAlignment="Left" Margin="10,183,0,0" VerticalAlignment="Top" Width="250"/>
-                            </Grid>
-                        </TabItem>
                         <TabItem Header="{x:Static language:lang.edit_backupwork_tabname}">
                             <Grid Background="#FFE5E5E5">
-<<<<<<< Updated upstream
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="767*"/>
+                                    <ColumnDefinition Width="21*"/>
+                                </Grid.ColumnDefinitions>
+                                <ListView x:Name="BackupWorkEditListView" Margin="0,0,0,168" Grid.ColumnSpan="2">
+                                    <ListView.View>
+                                        <GridView>
+                                            <GridView.Columns>
+                                                <GridViewColumn Header="Name" Width="Auto">
+                                                    <GridViewColumn.CellTemplate>
+                                                        <DataTemplate>
+                                                            <CheckBox Content="{Binding Name}"/>
+                                                        </DataTemplate>
+                                                    </GridViewColumn.CellTemplate>
+                                                </GridViewColumn>
+                                                <GridViewColumn Header="Source Folder" Width="Auto" DisplayMemberBinding="{Binding SrcFolder}"/>
+                                                <GridViewColumn Header="Destination Folder" Width="Auto" DisplayMemberBinding="{Binding DstFolder}"/>
+                                                <GridViewColumn Header="Type" Width="Auto" DisplayMemberBinding="{Binding Type}"/>
+                                            </GridView.Columns>
+                                        </GridView>
+                                    </ListView.View>
+                                </ListView>
+                                <Button Content="Edit" HorizontalAlignment="Left" Margin="0,331,0,0" VerticalAlignment="Top" Click="Button_Click"/>
+                            </Grid>
+                        </TabItem>
+                        <TabItem Header="Create">
+                            <Grid Background="#FFE5E5E5">
                                 <Button x:Name="CreateButton" Content="Create" Margin="650,280,20,60" Click="Create_Click"/>
                                 <TextBox x:Name="Name" HorizontalAlignment="Left" Margin="10,96,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
                                 <TextBox x:Name="SourceFolder" HorizontalAlignment="Left" Margin="160,96,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
@@ -60,21 +73,6 @@
                                 <Label Content="Source Folder" HorizontalAlignment="Left" Margin="160,70,0,0" VerticalAlignment="Top"/>
                                 <Label Content="Destination Folder" HorizontalAlignment="Left" Margin="310,70,0,0" VerticalAlignment="Top"/>
                                 <Label Content="Type" HorizontalAlignment="Left" Margin="460,70,0,0" VerticalAlignment="Top"/>
-=======
-                                <Label Content="{x:Static language:lang.name_backupwork}" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
-                                <ComboBox Name="BackupWorksListEditComboBox" HorizontalAlignment="Left" Margin="10,36,0,0" VerticalAlignment="Top" Width="120" SelectionChanged="BackupWorksListEditComboBox_SelectionChanged">
-
-                                </ComboBox>
-                                <Label Content="{x:Static language:lang.name_backupwork}" HorizontalAlignment="Left" Margin="10,79,0,0" VerticalAlignment="Top"/>
-                                <TextBox HorizontalAlignment="Left" Margin="10,105,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-                                <Label Content="{x:Static language:lang.src_folder_backupwork}" HorizontalAlignment="Left" Margin="10,128,0,0" VerticalAlignment="Top"/>
-                                <TextBox HorizontalAlignment="Left" Margin="10,154,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-                                <Label Content="{x:Static language:lang.dst_folder_backupwork}" HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Center"/>
-                                <TextBox HorizontalAlignment="Left" Margin="10,202,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-                                <Label Content="{x:Static language:lang.type_backupwork}" HorizontalAlignment="Left" Margin="10,225,0,0" VerticalAlignment="Top"/>
-                                <ComboBox HorizontalAlignment="Left" Margin="10,251,0,0" VerticalAlignment="Top" Width="120"/>
-                                <Button Content="Edit" HorizontalAlignment="Left" Margin="10,278,0,0" VerticalAlignment="Top"/>
->>>>>>> Stashed changes
                             </Grid>
                         </TabItem>
                     </TabControl>

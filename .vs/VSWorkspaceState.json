@@ -1,9 +1,11 @@
 {
   "ExpandedNodes": [
     "",
-    "\\EasySave_Graphique",
-    "\\EasySave_Graphique\\EasySave_Graphique"
+    "\\EasySave_WPF\\EasySave_WPF",
+    "\\EasySave_WPF\\EasySave_WPF\\Languages",
+    "\\EasySave_WPF\\EasySave_WPF\\Models",
+    "\\EasySave_WPF\\EasySave_WPF\\Views"
   ],
-  "SelectedNode": "\\EasySave_Graphique\\EasySave_Graphique\\Saves.xaml",
+  "SelectedNode": "\\EasySave_WPF",
   "PreviewInSolutionExplorer": false
 }

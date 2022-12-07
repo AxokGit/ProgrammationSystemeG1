@@ -62,6 +62,29 @@
                                 <Button Content="Edit" HorizontalAlignment="Left" Margin="0,331,0,0" VerticalAlignment="Top" Click="Button_Click"/>
                             </Grid>
                         </TabItem>
+                        <TabItem Header="Create">
+                            <Grid Background="#FFE5E5E5">
+                                <ListView x:Name="CreateBackupWork" Margin="0,0,0,52">
+                                    <ListView.View>
+                                        <GridView>
+                                            <GridView.Columns>
+                                                <GridViewColumn Header="Name" Width="Auto">
+                                                    <GridViewColumn.CellTemplate>
+                                                        <DataTemplate>
+                                                            <CheckBox Content="{Binding Name}"/>
+                                                        </DataTemplate>
+                                                    </GridViewColumn.CellTemplate>
+                                                </GridViewColumn>
+                                                <GridViewColumn Header="Source Folder" Width="Auto" DisplayMemberBinding="{Binding SrcFolder}"/>
+                                                <GridViewColumn Header="Destination Folder" Width="Auto" DisplayMemberBinding="{Binding DstFolder}"/>
+                                                <GridViewColumn Header="Type" Width="Auto" DisplayMemberBinding="{Binding Type}"/>
+                                            </GridView.Columns>
+                                        </GridView>
+                                       </ListView.View>
+                                </ListView>
+                                <Button Content="Create" Margin="650,280,20,60" Click="Create_Click"/>
+                            </Grid>
+                        </TabItem>
                     </TabControl>
                 </Grid>
             </TabItem>

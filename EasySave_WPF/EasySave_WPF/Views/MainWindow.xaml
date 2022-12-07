@@ -52,6 +52,9 @@
                     </TabControl>
                 </Grid>
             </TabItem>
+            <TabItem Header="{x:Static language:lang.log_tabname}">
+                
+            </TabItem>
         </TabControl>
 
     </Grid>

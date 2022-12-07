@@ -10,6 +10,7 @@ namespace EasySave_WPF
     {
 
         BackupWorksRunController backupWorksRunController = new BackupWorksRunController();
+        BackupWorksCreateController backupWorksCreateController = new BackupWorksCreateController();
         DataHelper dataHelper = new DataHelper();
         FileHelper fileHelper = new FileHelper();
         public MainWindow()
@@ -21,9 +22,15 @@ namespace EasySave_WPF
             //Backup work run
             BackupWorkRunListView.ItemsSource = backupWorksRunController.GetBackupWorks();
 
-            //Backup work edit
-            BackupWorkEditListView.ItemsSource = backupWorksRunController.GetBackupWorks();
+            //Backup work create
+            var typeBackupwork = new ObservableCollection<ComboBoxItem>();
+            typeBackupwork.Add(new ComboBoxItem { Content = "Complete", Tag = "complete" });
+            typeBackupwork.Add(new ComboBoxItem { Content = "Differencial", Tag = "differencial" });
+            TypeBackupworkCreateComboBox.SelectedIndex = 0;
+            TypeBackupworkCreateComboBox.ItemsSource = typeBackupwork;
 
+            // Backup work edit
+            BackupWorksListEditComboBox.ItemsSource = backupWorksRunController.GetBackupWorksName();
 
             //Settings
             string filepath_settings = fileHelper.FormatFilePath(fileHelper.filepath_settings);
@@ -57,11 +64,6 @@ namespace EasySave_WPF
             this.ShowDialog();
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
         private void ButtonClickSaveSettings(object sender, RoutedEventArgs e)
         {
             ComboBoxItem langSelection = (ComboBoxItem)LanguageSettingsComboBox.SelectedItem;
@@ -72,10 +74,28 @@ namespace EasySave_WPF
             string format = formatSelection.Tag.ToString();
             new LanguageController().DefineLanguage(language);
 
-            string filepath_settings = fileHelper.FormatFilePath(@"%AppData%\EasySave\Settings.json");
+            string filepath_settings = fileHelper.FormatFilePath(fileHelper.filepath_settings);
             Settings settings = new Settings(language, format);
 
             dataHelper.WriteSettingsToJson(filepath_settings, settings);
+        }
+
+        private void ButtonClickCreateBackupWork(object sender, RoutedEventArgs e)
+        {
+            string name = NameBackupworkCreateTextBox.Text;
+            string srcFolder = SrcFolderBackupworkCreateTextBox.Text;
+            string dstFolder = DstFolderBackupworkCreateTextBox.Text;
+            ComboBoxItem typeItem = (ComboBoxItem)TypeBackupworkCreateComboBox.SelectedItem;
+            string type = typeItem.Tag.ToString();
+
+            backupWorksCreateController.CreateBackupAndSave(
+                new BackupWork(name, srcFolder, dstFolder, type)
+            );
+        }
+
+        private void BackupWorksListEditComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
         }
     }
 }

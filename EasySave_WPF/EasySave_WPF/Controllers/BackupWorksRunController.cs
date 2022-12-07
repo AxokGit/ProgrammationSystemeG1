@@ -77,6 +77,18 @@ namespace EasySave_WPF.Controllers
             string filepath_bw_config = fileHelper.FormatFilePath(fileHelper.filepath_bw_config);
             return dataHelper.ReadBackupWorkFromJson(filepath_bw_config);
         }
+        public List<string> GetBackupWorksName()
+        {
+            string filepath_bw_config = fileHelper.FormatFilePath(fileHelper.filepath_bw_config);
+
+            List<string> backupworksname = new List<string>();
+            var backupworks = dataHelper.ReadBackupWorkFromJson(filepath_bw_config);
+            foreach(BackupWork backupwork in backupworks)
+            {
+                backupworksname.Add(backupwork.Name);
+            }
+            return backupworksname;
+        }
 
         // This method will take backupWork object and run the copy
         public void RunCopy(BackupWork backupWork, bool enterToContinue=true)

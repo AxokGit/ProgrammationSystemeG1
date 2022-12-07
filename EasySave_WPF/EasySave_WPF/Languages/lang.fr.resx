@@ -120,6 +120,12 @@
   <data name="backupwork_tabname" xml:space="preserve">
     <value>Travail de sauvegarde</value>
   </data>
+  <data name="create_backupwork_tabname" xml:space="preserve">
+    <value>Créer</value>
+  </data>
+  <data name="dst_folder_backupwork" xml:space="preserve">
+    <value>Dossier de destination</value>
+  </data>
   <data name="edit_backupwork_tabname" xml:space="preserve">
     <value>Modifier</value>
   </data>
@@ -132,6 +138,9 @@
   <data name="log_tabname" xml:space="preserve">
     <value>Logs</value>
   </data>
+  <data name="name_backupwork" xml:space="preserve">
+    <value>Nom</value>
+  </data>
   <data name="run_backupwork_tabname" xml:space="preserve">
     <value>Lancer</value>
   </data>
@@ -140,5 +149,11 @@
   </data>
   <data name="settings_tabname" xml:space="preserve">
     <value>Paramètres</value>
+  </data>
+  <data name="src_folder_backupwork" xml:space="preserve">
+    <value>Dossier source</value>
+  </data>
+  <data name="type_backupwork" xml:space="preserve">
+    <value>Type</value>
   </data>
 </root>

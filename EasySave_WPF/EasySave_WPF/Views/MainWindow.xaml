@@ -64,15 +64,25 @@
                         </TabItem>
                         <TabItem Header="Create">
                             <Grid Background="#FFE5E5E5">
-                                <Button x:Name="CreateButton" Content="Create" Margin="650,280,20,60" Click="Create_Click"/>
-                                <TextBox x:Name="Name" HorizontalAlignment="Left" Margin="10,96,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-                                <TextBox x:Name="SourceFolder" HorizontalAlignment="Left" Margin="160,96,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-                                <TextBox x:Name="DestinationFolder" HorizontalAlignment="Left" Margin="310,96,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-                                <TextBox x:Name="Type" HorizontalAlignment="Left" Margin="460,96,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-                                 <Label Content="Name" HorizontalAlignment="Left" Margin="10,70,0,0" VerticalAlignment="Top"/>
-                                <Label Content="Source Folder" HorizontalAlignment="Left" Margin="160,70,0,0" VerticalAlignment="Top"/>
-                                <Label Content="Destination Folder" HorizontalAlignment="Left" Margin="310,70,0,0" VerticalAlignment="Top"/>
-                                <Label Content="Type" HorizontalAlignment="Left" Margin="460,70,0,0" VerticalAlignment="Top"/>
+                                <ListView x:Name="CreateBackupWork" Margin="0,0,0,52">
+                                    <ListView.View>
+                                        <GridView>
+                                            <GridView.Columns>
+                                                <GridViewColumn Header="Name" Width="Auto">
+                                                    <GridViewColumn.CellTemplate>
+                                                        <DataTemplate>
+                                                            <CheckBox Content="{Binding Name}"/>
+                                                        </DataTemplate>
+                                                    </GridViewColumn.CellTemplate>
+                                                </GridViewColumn>
+                                                <GridViewColumn Header="Source Folder" Width="Auto" DisplayMemberBinding="{Binding SrcFolder}"/>
+                                                <GridViewColumn Header="Destination Folder" Width="Auto" DisplayMemberBinding="{Binding DstFolder}"/>
+                                                <GridViewColumn Header="Type" Width="Auto" DisplayMemberBinding="{Binding Type}"/>
+                                            </GridView.Columns>
+                                        </GridView>
+                                       </ListView.View>
+                                </ListView>
+                                <Button Content="Create" Margin="650,280,20,60" Click="Create_Click"/>
                             </Grid>
                         </TabItem>
                     </TabControl>

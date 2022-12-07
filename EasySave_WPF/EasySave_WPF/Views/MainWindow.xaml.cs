@@ -1,13 +1,4 @@
 ﻿using EasySave_WPF.Controllers;
-using EasySave_WPF.Models;
-using EasySave_WPF.Views;
-using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 
@@ -23,30 +14,14 @@ namespace EasySave_WPF
             InitializeComponent();
 
             BackupWorkRunListView.ItemsSource = backupWorksRunController.GetBackupWorks();
-            //BackupWorkEditListView.ItemsSource = backupWorksRunController.GetBackupWorks();
+            BackupWorkEditListView.ItemsSource = backupWorksRunController.GetBackupWorks();
 
             this.ShowDialog();
         }
 
-        public interface IDynamicGridViewModel
+        private void Button_Click(object sender, RoutedEventArgs e)
         {
-            ObservableCollection<ObservableCollection<ICellViewModel>> Cells { get; }
 
-            int GridHeight { get; }
-        }
-
-        public interface ICellViewModel
-        {
-            ICell Cell { get; set; }
-            ICommand ChangeCellStateCommand { get; }
-        }
-
-        public interface ICell
-        {
-            /// <summary>
-            /// State of the cell.
-            /// </summary>
-            bool State { get; set; }
         }
 
         private void Create_Click(object sender, RoutedEventArgs e)

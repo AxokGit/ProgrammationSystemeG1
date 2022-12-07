@@ -3,6 +3,7 @@ using EasySave_WPF.Views;
 using System;
 using System.Linq;
 using System.Threading;
+using System.Windows;
 
 namespace EasySave_WPF.Controllers
 {
@@ -10,8 +11,9 @@ namespace EasySave_WPF.Controllers
     {
         DataHelper dataHelper = new DataHelper(); // Instantiation of the json helper
         FileHelper fileHelper = new FileHelper(); // Instantiation of the file helper
+        ResourceDictionary dictionary = new ResourceDictionary();
 
-        public void CheckLanguageConfig() {             
+        public void CheckLanguageConfig() {       
             string filepath_settings = fileHelper.FormatFilePath(fileHelper.filepath_settings);
            
             // Checking if Settings.json exists
@@ -26,16 +28,19 @@ namespace EasySave_WPF.Controllers
                 // If not, default lang = en
                 if (settings.AvailableLanguage.Contains(settings.Language))
                 {
-                    Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo(settings.Language);
+                    dictionary.Source = new Uri("../../Languages/"+ settings.Language + ".xaml", UriKind.Relative);
+                    Application.Current.Resources.MergedDictionaries.Add(dictionary);
                 }
                 else
                 {
-                    Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo("en");
+                    dictionary.Source = new Uri("../../Languages/en.xaml", UriKind.Relative);
+                    Application.Current.Resources.MergedDictionaries.Add(dictionary);
                 }
             }
             else
             {
-                Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo("en");
+                dictionary.Source = new Uri("../../Languages/en.xaml", UriKind.Relative);
+                Application.Current.Resources.MergedDictionaries.Add(dictionary);
                 SelectLanguage();
             }
         }
@@ -54,15 +59,16 @@ namespace EasySave_WPF.Controllers
             {
                 Settings settings = new Settings(language: "en");
                 dataHelper.WriteSettingsToJson(filepath_settings, settings);
-                Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo("en");
+                dictionary.Source = new Uri("../../Languages/en.xaml", UriKind.Relative);
+                Application.Current.Resources.MergedDictionaries.Add(dictionary);
             }
             else if (language == "fr")
             {
                 Settings settings = new Settings(language: "fr");
                 dataHelper.WriteSettingsToJson(filepath_settings, settings);
-                Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo("fr");
+                dictionary.Source = new Uri("../../Languages/fr.xaml", UriKind.Relative);
+                Application.Current.Resources.MergedDictionaries.Add(dictionary);
             }
-            
         }
     }
 }

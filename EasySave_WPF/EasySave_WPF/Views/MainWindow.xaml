@@ -4,71 +4,71 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:EasySave_WPF"
-        xmlns:language="clr-namespace:EasySave_WPF.Languages"
         mc:Ignorable="d"
-        Title="EasySave" Height="450" Width="800">
+        Title="EasySave" Height="450" Width="850">
     <Grid>
         <TabControl>
-            <TabItem Header="{x:Static language:lang.backupwork_tabname}">
+            <TabItem Header="{DynamicResource backup_work}">
                 <Grid Background="#FFE5E5E5">
                     <TabControl>
-                        <TabItem Header="{x:Static language:lang.run_backupwork_tabname}">
+                        <TabItem Header="{DynamicResource run_backupwork}">
                             <Grid Background="#FFE5E5E5">
                                 <ListView x:Name="BackupWorkRunListView" Margin="0,0,0,50">
                                     <ListView.View>
                                         <GridView>
                                             <GridView.Columns>
-                                                <GridViewColumn Header="Name" Width="Auto">
+                                                <GridViewColumn Header="{DynamicResource name_backupwork}" Width="Auto">
                                                     <GridViewColumn.CellTemplate>
                                                         <DataTemplate>
                                                             <CheckBox Content="{Binding Name}"/>
                                                         </DataTemplate>
                                                     </GridViewColumn.CellTemplate>
                                                 </GridViewColumn>
-                                                <GridViewColumn Header="Source Folder" Width="Auto" DisplayMemberBinding="{Binding SrcFolder}"/>
-                                                <GridViewColumn Header="Destination Folder" Width="Auto" DisplayMemberBinding="{Binding DstFolder}"/>
-                                                <GridViewColumn Header="Type" Width="Auto" DisplayMemberBinding="{Binding Type}"/>
+                                                <GridViewColumn Header="{DynamicResource src_folder_backupwork}" Width="Auto" DisplayMemberBinding="{Binding SrcFolder}"/>
+                                                <GridViewColumn Header="{DynamicResource dst_folder_backupwork}" Width="Auto" DisplayMemberBinding="{Binding DstFolder}"/>
+                                                <GridViewColumn Header="{DynamicResource type_folder_backupwork}" Width="Auto" DisplayMemberBinding="{Binding Type}"/>
                                             </GridView.Columns>
                                         </GridView>
                                     </ListView.View>
                                 </ListView>
-                                <Button Content="Run" HorizontalAlignment="Left" Margin="0,331,0,0" VerticalAlignment="Top"/>
+                                <Button Content="{DynamicResource run_button}" HorizontalAlignment="Left" Margin="0,331,0,0" VerticalAlignment="Top" Height="37" Width="82" />
                             </Grid>
                         </TabItem>
-                        <TabItem Header="{x:Static language:lang.create_backupwork_tabname}">
+                        <TabItem Header="{DynamicResource add_backupwork}">
                             <Grid Background="#FFE5E5E5">
-                                <Button Content="Create" Margin="10,210,702,146" Click="ButtonClickCreateBackupWork"/>
-                                <Label Content="{x:Static language:lang.name_backupwork}" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
-                                <Label Content="{x:Static language:lang.src_folder_backupwork}" HorizontalAlignment="Left" Margin="10,59,0,0" VerticalAlignment="Top"/>
-                                <Label Content="{x:Static language:lang.dst_folder_backupwork}" HorizontalAlignment="Left" Margin="10,108,0,0" VerticalAlignment="Top"/>
-                                <Label Content="{x:Static language:lang.type_backupwork}" HorizontalAlignment="Left" Margin="10,157,0,0" VerticalAlignment="Top"/>
+                                <Button Content="add" Margin="10,210,702,146" Click="ButtonClickCreateBackupWork"/>
+                                <Label Content="{DynamicResource name_backupwork}" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
+                                <Label Content="{DynamicResource src_folder_backupwork}" HorizontalAlignment="Left" Margin="10,59,0,0" VerticalAlignment="Top"/>
+                                <Label Content="{DynamicResource dst_folder_backupwork}" HorizontalAlignment="Left" Margin="10,108,0,0" VerticalAlignment="Top"/>
+                                <Label Content="{DynamicResource type_folder_backupwork}" HorizontalAlignment="Left" Margin="10,157,0,0" VerticalAlignment="Top"/>
                                 <TextBox Name="NameBackupworkCreateTextBox" HorizontalAlignment="Left" Margin="10,36,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="250"/>
                                 <TextBox Name="SrcFolderBackupworkCreateTextBox" HorizontalAlignment="Left" Margin="10,85,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="250"/>
                                 <TextBox Name="DstFolderBackupworkCreateTextBox" HorizontalAlignment="Left" Margin="10,134,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="250"/>
-                                <ComboBox Name="TypeBackupworkCreateComboBox" HorizontalAlignment="Left" Margin="10,183,0,0" VerticalAlignment="Top" Width="250"/>
+                                <ComboBox Name="TypeBackupworkCreateComboBox" HorizontalAlignment="Left" Margin="10,183,0,0" VerticalAlignment="Top" Width="250">
+                                    <ComboBoxItem Content="{DynamicResource complete}" Tag="complete" />
+                                    <ComboBoxItem Content="{DynamicResource differencial}" Tag="differencial" />
+                                </ComboBox>
                             </Grid>
                         </TabItem>
-                        <TabItem Header="{x:Static language:lang.edit_backupwork_tabname}">
+                        <TabItem Header="{DynamicResource edit_backupwork}">
                             <Grid Background="#FFE5E5E5">
-                                <Label Content="{x:Static language:lang.name_backupwork}" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
-                                <ComboBox Name="BackupWorksListEditComboBox" HorizontalAlignment="Left" Margin="10,36,0,0" VerticalAlignment="Top" Width="120" SelectionChanged="BackupWorksListEditComboBox_SelectionChanged">
-
-                                </ComboBox>
-                                <Label Content="{x:Static language:lang.name_backupwork}" HorizontalAlignment="Left" Margin="10,79,0,0" VerticalAlignment="Top"/>
-                                <TextBox HorizontalAlignment="Left" Margin="10,105,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-                                <Label Content="{x:Static language:lang.src_folder_backupwork}" HorizontalAlignment="Left" Margin="10,128,0,0" VerticalAlignment="Top"/>
-                                <TextBox HorizontalAlignment="Left" Margin="10,154,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-                                <Label Content="{x:Static language:lang.dst_folder_backupwork}" HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Center"/>
-                                <TextBox HorizontalAlignment="Left" Margin="10,202,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-                                <Label Content="{x:Static language:lang.type_backupwork}" HorizontalAlignment="Left" Margin="10,225,0,0" VerticalAlignment="Top"/>
-                                <ComboBox HorizontalAlignment="Left" Margin="10,251,0,0" VerticalAlignment="Top" Width="120"/>
-                                <Button Content="Edit" HorizontalAlignment="Left" Margin="10,278,0,0" VerticalAlignment="Top"/>
+                                <Label Content="{DynamicResource select_backupwork}" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
+                                <ComboBox Name="BackupWorksListEditComboBox" HorizontalAlignment="Left" Margin="10,36,0,0" VerticalAlignment="Top" Width="120" SelectionChanged="BackupWorksListEditComboBox_SelectionChanged"/>
+                                <Label Content="{DynamicResource name_backupwork}" HorizontalAlignment="Left" Margin="10,79,0,0" VerticalAlignment="Top"/>
+                                <TextBox IsEnabled="False" HorizontalAlignment="Left" Margin="10,105,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+                                <Label Content="{DynamicResource src_folder_backupwork}" HorizontalAlignment="Left" Margin="10,128,0,0" VerticalAlignment="Top"/>
+                                <TextBox IsEnabled="False" HorizontalAlignment="Left" Margin="10,154,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+                                <Label Content="{DynamicResource dst_folder_backupwork}" HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Center"/>
+                                <TextBox IsEnabled="False" HorizontalAlignment="Left" Margin="10,202,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+                                <Label Content="{DynamicResource type_folder_backupwork}" HorizontalAlignment="Left" Margin="10,225,0,0" VerticalAlignment="Top"/>
+                                <ComboBox IsEnabled="False" HorizontalAlignment="Left" Margin="10,251,0,0" VerticalAlignment="Top" Width="120"/>
+                                <Button IsEnabled="False" Content="{DynamicResource save_button}" HorizontalAlignment="Left" Margin="10,278,0,0" VerticalAlignment="Top"/>
                             </Grid>
                         </TabItem>
                     </TabControl>
                 </Grid>
             </TabItem>
-            <TabItem Header="{x:Static language:lang.log_tabname}">
+            <TabItem Header="{DynamicResource log}">
                 <Grid Background="#FFE5E5E5">
                     <TabControl>
                         <TabItem Header="TODO">
@@ -80,13 +80,13 @@
                     </TabControl>
                 </Grid>
             </TabItem>
-            <TabItem Header="{x:Static language:lang.settings_tabname}">
+            <TabItem Header="{DynamicResource settings}">
                 <Grid Background="#FFE5E5E5">
-                    <Label Content="{x:Static language:lang.language_settings}" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
+                    <Label Content="{DynamicResource language}" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
                     <ComboBox Name="LanguageSettingsComboBox" HorizontalAlignment="Left" Margin="10,36,0,0" VerticalAlignment="Top" Width="120"/>
-                    <Label Content="{x:Static language:lang.format_settings}" HorizontalAlignment="Left" Margin="10,63,0,0" VerticalAlignment="Top"/>
+                    <Label Content="{DynamicResource format}" HorizontalAlignment="Left" Margin="10,63,0,0" VerticalAlignment="Top"/>
                     <ComboBox Name="LogFormatSettingsComboBox" HorizontalAlignment="Left" Margin="10,89,0,0" VerticalAlignment="Top" Width="120"/>
-                    <Button Content="{x:Static language:lang.save_settings}" HorizontalAlignment="Left" Margin="10,125,0,0" VerticalAlignment="Top" Click="ButtonClickSaveSettings"/>
+                    <Button Content="{DynamicResource save_button}" HorizontalAlignment="Left" Margin="10,125,0,0" VerticalAlignment="Top" Click="ButtonClickSaveSettings"/>
                 </Grid>
             </TabItem>
         </TabControl>

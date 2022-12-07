@@ -14,8 +14,16 @@ namespace EasySave_WPF.Controllers
             string filepath_bw_config = fileHelper.FormatFilePath(fileHelper.filepath_bw_config);
             var backupworks = dataHelper.ReadBackupWorkFromJson(filepath_bw_config);
 
-            backupworks.Add(backupWork);
+            if (backupworks != null)
+            {
+                backupworks.Add(backupWork);
+            }
+            else
+            {
+                //backupworks = new List<BackupWork>().Add(backupWork);
+            }
 
+            
             dataHelper.WriteBackupWorkToJson(filepath_bw_config, backupworks);
         }
     }

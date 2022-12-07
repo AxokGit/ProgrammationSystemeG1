@@ -8,29 +8,21 @@ namespace EasySave_WPF
 {
     public partial class MainWindow : Window
     {
-
         BackupWorksRunController backupWorksRunController = new BackupWorksRunController();
         BackupWorksCreateController backupWorksCreateController = new BackupWorksCreateController();
         DataHelper dataHelper = new DataHelper();
         FileHelper fileHelper = new FileHelper();
         public MainWindow()
         {
-            new MainController();
-
             InitializeComponent();
+
+            new MainController();
 
             //Backup work run
             BackupWorkRunListView.ItemsSource = backupWorksRunController.GetBackupWorks();
 
-            //Backup work create
-            var typeBackupwork = new ObservableCollection<ComboBoxItem>();
-            typeBackupwork.Add(new ComboBoxItem { Content = "Complete", Tag = "complete" });
-            typeBackupwork.Add(new ComboBoxItem { Content = "Differencial", Tag = "differencial" });
-            TypeBackupworkCreateComboBox.SelectedIndex = 0;
-            TypeBackupworkCreateComboBox.ItemsSource = typeBackupwork;
-
-            // Backup work edit
-            BackupWorksListEditComboBox.ItemsSource = backupWorksRunController.GetBackupWorksName();
+            //// Backup work edit
+            //BackupWorksListEditComboBox.ItemsSource = backupWorksRunController.GetBackupWorksName();
 
             //Settings
             string filepath_settings = fileHelper.FormatFilePath(fileHelper.filepath_settings);

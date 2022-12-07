@@ -19,6 +19,7 @@ namespace EasySave_WPF.Controllers
 
         public BackupWorksRunController()
         {
+            /*
             // Definition of variables
             filepath_bw_config = fileHelper.FormatFilePath(fileHelper.filepath_bw_config);
             filepath_statelog = fileHelper.FormatFilePath(fileHelper.filepath_statelog);
@@ -68,6 +69,13 @@ namespace EasySave_WPF.Controllers
                     RunCopy(backupWorks[4], false);
                 }
             }
+            */
+        }
+
+        public List<BackupWork> GetBackupWorks()
+        {
+            string filepath_bw_config = fileHelper.FormatFilePath(fileHelper.filepath_bw_config);
+            return dataHelper.ReadBackupWorkFromJson(filepath_bw_config);
         }
 
         // This method will take backupWork object and run the copy

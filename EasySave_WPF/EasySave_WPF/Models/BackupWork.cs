@@ -5,12 +5,12 @@ namespace EasySave_WPF.Models
     /// <summary>
     /// Class meant to create our backupwork
     /// </summary>
-    class BackupWork
+    public class BackupWork
     {
-        public string? Name;
-        public string? SrcFolder;
-        public string? DstFolder;
-        public string? Type;
+        public string? Name { get; set; }
+        public string? SrcFolder { get; set; }
+        public string? DstFolder { get; set; }
+        public string? Type { get; set; }
         public List<FileModel>? Files;
         public List<StateLog>? Logs;
 

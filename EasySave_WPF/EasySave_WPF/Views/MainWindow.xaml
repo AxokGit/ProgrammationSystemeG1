@@ -14,8 +14,24 @@
                     <TabControl>
                         <TabItem Header="{x:Static language:lang.run_backupwork_tabname}">
                             <Grid Background="#FFE5E5E5">
-                                <Button Content="+1" HorizontalAlignment="Left" Margin="78,98,0,0" VerticalAlignment="Top" Click="Button_Click"/>
-                                <Label Name="MyLabel" FontSize="15" Content="1" HorizontalAlignment="Left" Margin="20,28,0,0" VerticalAlignment="Top"/>
+                                <ListView x:Name="BackupWorkListView" Margin="0,0,0,145" Grid.ColumnSpan="2">
+                                    <ListView.View>
+                                        <GridView>
+                                            <GridView.Columns>
+                                                <GridViewColumn Header="Name" Width="Auto">
+                                                    <GridViewColumn.CellTemplate>
+                                                        <DataTemplate>
+                                                            <CheckBox Content="{Binding Name}"/>
+                                                        </DataTemplate>
+                                                    </GridViewColumn.CellTemplate>
+                                                </GridViewColumn>
+                                                <GridViewColumn Header="Source Folder" Width="Auto" DisplayMemberBinding="{Binding SrcFolder}"/>
+                                                <GridViewColumn Header="Destination Folder" Width="Auto" DisplayMemberBinding="{Binding DstFolder}"/>
+                                                <GridViewColumn Header="Type" Width="Auto" DisplayMemberBinding="{Binding Type}"/>
+                                            </GridView.Columns>
+                                        </GridView>
+                                    </ListView.View>
+                                </ListView>
                             </Grid>
                         </TabItem>
                         <TabItem Header="{x:Static language:lang.edit_backupwork_tabname}">

@@ -7,7 +7,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 
-namespace EasySave_Graphique
+namespace EasySave_WPF
 {
     /// <summary>
     /// Interaction logic for App.xaml
@@ -16,8 +16,6 @@ namespace EasySave_Graphique
     {
         protected override void OnStartup(StartupEventArgs e)
         {
-            var langCode = EasySave_Graphique.Properties.Settings.Default.languageCode;
-            Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo(langCode);
             base.OnStartup(e);
         }
     }

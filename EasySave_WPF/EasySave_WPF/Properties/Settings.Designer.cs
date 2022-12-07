@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace EasySave_Graphique.Properties {
+namespace EasySave_WPF.Properties {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
@@ -25,13 +25,13 @@ namespace EasySave_Graphique.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("en-US")]
-        public string languageCode {
+        [global::System.Configuration.DefaultSettingValueAttribute("en")]
+        public string language {
             get {
-                return ((string)(this["languageCode"]));
+                return ((string)(this["language"]));
             }
             set {
-                this["languageCode"] = value;
+                this["language"] = value;
             }
         }
     }

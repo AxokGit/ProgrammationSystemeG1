@@ -10,6 +10,7 @@ namespace EasySave_WPF
     {
         BackupWorksRunController backupWorksRunController = new BackupWorksRunController();
         BackupWorksCreateController backupWorksCreateController = new BackupWorksCreateController();
+        OpenLogsController openLogsController = new OpenLogsController();
         DataHelper dataHelper = new DataHelper();
         FileHelper fileHelper = new FileHelper();
         public MainWindow()
@@ -23,6 +24,9 @@ namespace EasySave_WPF
 
             //// Backup work edit
             //BackupWorksListEditComboBox.ItemsSource = backupWorksRunController.GetBackupWorksName();
+
+            //Logs
+            LogListView.ItemsSource = openLogsController.GetLogs();
 
             //Settings
             string filepath_settings = fileHelper.FormatFilePath(fileHelper.filepath_settings);

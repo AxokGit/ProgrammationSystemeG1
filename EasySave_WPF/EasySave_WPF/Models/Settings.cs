@@ -5,7 +5,7 @@ namespace EasySave_WPF.Models
     /// <summary>
     /// Class meant to setup the settings for the language change
     /// </summary>
-    class Settings
+    public class Settings
     {
         public string Language;
         public string[] AvailableLanguage = { "en", "fr" };

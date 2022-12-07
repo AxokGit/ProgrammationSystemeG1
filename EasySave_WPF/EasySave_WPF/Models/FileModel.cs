@@ -7,7 +7,7 @@ namespace EasySave_WPF.Models
     /// <summary>
     /// Classe permettant de définir les fichiers à sauvegarder
     /// </summary>
-    class FileModel
+    public class FileModel
     {
         public string Name;
         public string FullPath;

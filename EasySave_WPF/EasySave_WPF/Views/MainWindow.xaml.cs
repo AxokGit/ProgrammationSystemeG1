@@ -1,4 +1,5 @@
 ﻿using EasySave_WPF.Controllers;
+using EasySave_WPF.Models;
 using EasySave_WPF.Views;
 using System;
 using System.Collections.Generic;
@@ -23,19 +24,25 @@ namespace EasySave_WPF
     {
         public MainWindow()
         {
-            //var langCode = EasySave_WPF.Properties.Settings.Default.language;
-
-            //Properties.Settings.Default.language = "en";
-            //Properties.Settings.Default.Save();
-
-            new LanguageController();
+            new MainController();
 
             InitializeComponent();
-        }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            MyLabel.Content = Convert.ToString(Convert.ToInt32(MyLabel.Content) + 1);
+            DataHelper dataHelper = new DataHelper();
+            FileHelper fileHelper = new FileHelper();
+
+            string filepath_bw_config = fileHelper.FormatFilePath(fileHelper.filepath_bw_config);
+
+            var backupWorks = dataHelper.ReadBackupWorkFromJson(filepath_bw_config);
+
+            BackupWorkListView.ItemsSource = backupWorks;
+
+            //for( int i = 0; i< backupWorks.Count; i++)
+            //{
+            //    BackupWorkListView.Items.Add(new BackupWork { Name = backupWorks[i].Name, SrcFolder = backupWorks[i].SrcFolder, DstFolder = null, Type = null });
+            //}
+
+            this.ShowDialog();
         }
 
         public interface IDynamicGridViewModel

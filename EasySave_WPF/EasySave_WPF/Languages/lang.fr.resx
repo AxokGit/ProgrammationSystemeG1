@@ -141,6 +141,9 @@
   <data name="run_backupwork_tabname" xml:space="preserve">
     <value>Lancer</value>
   </data>
+  <data name="settings_backupwork" xml:space="preserve">
+    <value>Paramètres</value>
+  </data>
   <data name="sourcefolder_backupwork" xml:space="preserve">
     <value>Dossier Source</value>
   </data>

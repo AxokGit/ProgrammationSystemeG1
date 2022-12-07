@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Input;
 
 namespace EasySave_WPF
 {
@@ -46,6 +47,11 @@ namespace EasySave_WPF
             /// State of the cell.
             /// </summary>
             bool State { get; set; }
+        }
+
+        private void Create_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

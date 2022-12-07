@@ -120,13 +120,31 @@
   <data name="backupwork_tabname" xml:space="preserve">
     <value>Backup work</value>
   </data>
+  <data name="create_backupwork_tabname" xml:space="preserve">
+    <value>Create</value>
+  </data>
+  <data name="destinationfolder_backupwork" xml:space="preserve">
+    <value>Destination Folder</value>
+  </data>
   <data name="edit_backupwork_tabname" xml:space="preserve">
     <value>Edit</value>
+  </data>
+  <data name="id_backupwork" xml:space="preserve">
+    <value>ID</value>
   </data>
   <data name="log_tabname" xml:space="preserve">
     <value>Logs</value>
   </data>
+  <data name="name_backupwork" xml:space="preserve">
+    <value>Name</value>
+  </data>
   <data name="run_backupwork_tabname" xml:space="preserve">
     <value>Run</value>
+  </data>
+  <data name="sourcefolder_backupwork" xml:space="preserve">
+    <value>Source Folder</value>
+  </data>
+  <data name="type_backupwork" xml:space="preserve">
+    <value>Type</value>
   </data>
 </root>

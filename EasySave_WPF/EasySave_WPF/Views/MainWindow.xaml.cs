@@ -13,9 +13,14 @@ namespace EasySave_WPF
             InitializeComponent();
 
             BackupWorkRunListView.ItemsSource = backupWorksRunController.GetBackupWorks();
-            //BackupWorkEditListView.ItemsSource = backupWorksRunController.GetBackupWorks();
+            BackupWorkEditListView.ItemsSource = backupWorksRunController.GetBackupWorks();
 
             this.ShowDialog();
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

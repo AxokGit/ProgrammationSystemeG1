@@ -1,0 +1,21 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:system="clr-namespace:System;assembly=mscorlib">
+    <system:String x:Key="backup_work">Travail de sauvegarde</system:String>
+    <system:String x:Key="run_backupwork">Lancer</system:String>
+    <system:String x:Key="name_backupwork">Nom</system:String>
+    <system:String x:Key="src_folder_backupwork">Dossier source</system:String>
+    <system:String x:Key="dst_folder_backupwork">Dossier de destination</system:String>
+    <system:String x:Key="type_folder_backupwork">Type</system:String>
+    <system:String x:Key="add_backupwork">Ajouter</system:String>
+    <system:String x:Key="edit_backupwork">Modifier</system:String>
+    <system:String x:Key="log">Log</system:String>
+    <system:String x:Key="settings">Paramètres</system:String>
+    <system:String x:Key="language">Langue</system:String>
+    <system:String x:Key="format">Format</system:String>
+    <system:String x:Key="select_backupwork">Selectionnez un travail de sauvegarde</system:String>
+    <system:String x:Key="save_button">Enregistrer</system:String>
+    <system:String x:Key="complete">Complète</system:String>
+    <system:String x:Key="differencial">Différentielle</system:String>
+    <system:String x:Key="run_button">Lancer</system:String>
+</ResourceDictionary>

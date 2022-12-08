@@ -71,23 +71,29 @@ namespace EasySave_WPF.Controllers
             }
             */
         }
-
-        public List<BackupWork> GetBackupWorks()
+        public List<BackupWork>? GetBackupWorks()
         {
             string filepath_bw_config = fileHelper.FormatFilePath(fileHelper.filepath_bw_config);
             return dataHelper.ReadBackupWorkFromJson(filepath_bw_config);
         }
-        public List<string> GetBackupWorksName()
+        public List<string>? GetBackupWorksName()
         {
             string filepath_bw_config = fileHelper.FormatFilePath(fileHelper.filepath_bw_config);
 
             List<string> backupworksname = new List<string>();
             var backupworks = dataHelper.ReadBackupWorkFromJson(filepath_bw_config);
-            foreach(BackupWork backupwork in backupworks)
+            if (backupworks != null)
             {
-                backupworksname.Add(backupwork.Name);
+                foreach (BackupWork backupwork in backupworks)
+                {
+                    backupworksname.Add(backupwork.Name);
+                }
+                return backupworksname;
+            } else
+            {
+                return null;
             }
-            return backupworksname;
+            
         }
 
         // This method will take backupWork object and run the copy

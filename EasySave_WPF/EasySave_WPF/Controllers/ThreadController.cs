@@ -37,5 +37,16 @@ namespace EasySave_WPF.Controllers
         {
             
         }
+
+        public void StopProcess(string processName)
+        {
+            Process[] processes = Process.GetProcessesByName(processName);
+            foreach (Process process in processes)
+            {
+                process.Kill();
+                process.WaitForExit();
+                process.Dispose();
+            }
+        }
     }
 }

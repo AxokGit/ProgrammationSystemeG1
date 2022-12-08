@@ -18,4 +18,8 @@
     <system:String x:Key="complete">Complète</system:String>
     <system:String x:Key="differencial">Différentielle</system:String>
     <system:String x:Key="run_button">Lancer</system:String>
+    <system:String x:Key="add_button">Ajouter</system:String>
+    <system:String x:Key="name_log">Nom</system:String>
+    <system:String x:Key="fullpath_log">Emplacement</system:String>
+    <system:String x:Key="size_log">Taille</system:String>
 </ResourceDictionary>

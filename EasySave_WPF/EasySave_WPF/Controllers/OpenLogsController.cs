@@ -11,14 +11,18 @@ namespace EasySave_WPF.Controllers
         FileHelper fileHelper = new FileHelper();
         DataHelper dataHelper = new DataHelper();
         public OpenLogsController()
+
         {
 
         }
 
-        public List<Log> GetLogs()
+        public List<FileModel> GetLogs()
         {
             string filepath_log = fileHelper.FormatFilePath(fileHelper.filepath_log);
-            return dataHelper.ReadLog(filepath_log);
+            string dirpath_log = fileHelper.GetDirectoryName(filepath_log);
+
+            return fileHelper.GetAllFile(dirpath_log);
+
         }
         public List<string> GetLogName()
         {

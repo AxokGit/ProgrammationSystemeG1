@@ -93,5 +93,11 @@ namespace EasySave_WPF
         {
 
         }
+
+        private void OpenLogButtonClick(object sender, RoutedEventArgs e)
+        {
+            var item = LogListView.SelectedItems[0].ToString();
+            
+        }
     }
 }

@@ -15,10 +15,11 @@ namespace EasySave_WPF.Controllers
 
         }
 
-        public List<Log> GetLogs()
+        public List<FileModel> GetLogs()
         {
             string filepath_log = fileHelper.FormatFilePath(fileHelper.filepath_log);
-            return dataHelper.ReadLog(filepath_log);
+            string dirpath_log = fileHelper.GetDirectoryName(filepath_log);
+            return fileHelper.GetAllFile(filepath_log);
         }
         public List<string> GetLogName()
         {

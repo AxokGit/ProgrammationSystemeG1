@@ -22,4 +22,12 @@
     <system:String x:Key="name_log">Nom</system:String>
     <system:String x:Key="fullpath_log">Emplacement</system:String>
     <system:String x:Key="size_log">Taille</system:String>
+    <system:String x:Key="delete_button">Supprimer</system:String>
+    <system:String x:Key="complete_input_correctly">Erreur d'entrée. Merci de vérifier les informations.</system:String>
+    <system:String x:Key="check_input_folder">Erreur d'entrée. Merci de vérifier le dossier source ou le dossier de destination.</system:String>
+    <system:String x:Key="backupwork_added">Travail de sauvegarde ajouté !</system:String>
+    <system:String x:Key="backupwork_edited">Travail de sauvegarde modifié !</system:String>
+    <system:String x:Key="backupwork_deleted">Travail de sauvegarde supprimé !</system:String>
+    <system:String x:Key="xorKey">Clé de chiffrement</system:String>
+    <system:String x:Key="extention_file_to_encrypt">Extensions de fichier à chiffrer</system:String>
 </ResourceDictionary>

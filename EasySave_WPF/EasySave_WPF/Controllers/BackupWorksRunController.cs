@@ -17,60 +17,6 @@ namespace EasySave_WPF.Controllers
         string filepath_statelog;
         string filepath_log;
 
-        public BackupWorksRunController()
-        {
-            /*
-            // Definition of variables
-            filepath_bw_config = fileHelper.FormatFilePath(fileHelper.filepath_bw_config);
-            filepath_statelog = fileHelper.FormatFilePath(fileHelper.filepath_statelog);
-            filepath_log = fileHelper.FormatFilePath(fileHelper.filepath_log).Replace("{}", DateTime.Now.ToString("yyyyMMdd"));
-            
-            // Getting all backup works configured
-            List<BackupWork>? backupWorks = dataHelper.ReadBackupWorkFromJson(filepath_bw_config);
-            
-            // If null, creating backup works configuration with null
-            if (backupWorks == null)
-            {
-                List<BackupWork> list_temp = new List<BackupWork>();
-
-                for (int i = 0; i < 5; i++)
-                {
-                    list_temp.Add(new BackupWork(null, null, null, null));
-                }
-                dataHelper.WriteBackupWorkToJson(filepath_bw_config, list_temp);
-                backupWorks = dataHelper.ReadBackupWorkFromJson(filepath_bw_config);
-            }
-
-            bool optionSelected = false;
-            while (!optionSelected) // While user selected no valid choice
-            {
-                string menuBWOption = "oui";
-                if (menuBWOption == "0") // Go back
-                {
-                    optionSelected = true;
-                }
-                else if (menuBWOption == "1" || menuBWOption == "2" || menuBWOption == "3" || menuBWOption == "4" || menuBWOption == "5") // If specific backup work selected
-                {
-                    int i = Convert.ToInt32(menuBWOption) - 1;
-                    if (backupWorks[i].IsEmpty())
-                    {
-                    }
-                    else
-                    {
-                        RunCopy(backupWorks[i]);
-                    }
-                }
-                else if (menuBWOption == "a") // If all backup works selected
-                {
-                    RunCopy(backupWorks[0], false);
-                    RunCopy(backupWorks[1], false);
-                    RunCopy(backupWorks[2], false);
-                    RunCopy(backupWorks[3], false);
-                    RunCopy(backupWorks[4], false);
-                }
-            }
-            */
-        }
         public List<BackupWork>? GetBackupWorks()
         {
             string filepath_bw_config = fileHelper.FormatFilePath(fileHelper.filepath_bw_config);
@@ -97,7 +43,7 @@ namespace EasySave_WPF.Controllers
         }
 
         // This method will take backupWork object and run the copy
-        public void RunCopy(BackupWork backupWork, bool enterToContinue=true)
+        public void RunCopy(BackupWork backupWork)
         {
             //Definition of the variables
             filepath_bw_config = fileHelper.FormatFilePath(fileHelper.filepath_bw_config);

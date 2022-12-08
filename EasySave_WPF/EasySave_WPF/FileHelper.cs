@@ -8,7 +8,7 @@ using System.Text;
 
 namespace EasySave_WPF
 {
-    class FileHelper
+    public class FileHelper
     {
         // Default path to all configuration files and logs
         public string filepath_settings = @"%AppData%\EasySave\Settings.json";
@@ -106,7 +106,7 @@ namespace EasySave_WPF
             return File.Exists(filepath);
         }
         // Method to open a file
-        public static void OpenFile(FileModel fileModel)
+        public void OpenFile(FileModel fileModel)
         {
            var p = new Process();
            p.StartInfo = new ProcessStartInfo(fileModel.FullPath)

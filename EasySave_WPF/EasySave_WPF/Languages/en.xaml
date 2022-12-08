@@ -22,4 +22,12 @@
     <system:String x:Key="name_log">Name</system:String>
     <system:String x:Key="fullpath_log">Location</system:String>
     <system:String x:Key="size_log">Size</system:String>
+    <system:String x:Key="delete_button">Delete</system:String>
+    <system:String x:Key="complete_input_correctly">Entry error. Please check your informations.</system:String>
+    <system:String x:Key="check_input_folder">Entry error. Please check your source folder or your destination folder.</system:String>
+    <system:String x:Key="backupwork_added">Backup work added !</system:String>
+    <system:String x:Key="backupwork_edited">Backup work edited !</system:String>
+    <system:String x:Key="backupwork_deleted">Backup work deleted !</system:String>
+    <system:String x:Key="xorKey">Encryption key</system:String>
+    <system:String x:Key="extention_file_to_encrypt">File extentions to encrypt</system:String>
 </ResourceDictionary>

@@ -9,26 +9,20 @@
         MinHeight="400" MinWidth="850">
     <Grid>
         <TabControl>
-            <TabItem Header="{DynamicResource backup_work}">
+            <TabItem Header="{DynamicResource backup_work}" Name="BackupworkTab">
                 <Grid Background="#FFE5E5E5">
-                    <TabControl>
-                        <TabItem Header="{DynamicResource run_backupwork}">
+                    <TabControl Name="BackupWorkTabControl">
+                        <TabItem Header="{DynamicResource run_backupwork}" Name="RunBackupWorkTabItem">
                             <Grid Background="#FFE5E5E5">
                                 <Grid.RowDefinitions>
                                     <RowDefinition Height="9*"/>
                                     <RowDefinition Height="*"/>
                                 </Grid.RowDefinitions>
-                                <ListView Grid.Row="0" x:Name="BackupWorkRunListView">
+                                <ListView SelectionMode="Multiple" Grid.Row="0" x:Name="BackupWorkRunListView">
                                     <ListView.View>
                                         <GridView>
                                             <GridView.Columns>
-                                                <GridViewColumn Header="{DynamicResource name_backupwork}" Width="Auto">
-                                                    <GridViewColumn.CellTemplate>
-                                                        <DataTemplate>
-                                                            <CheckBox Content="{Binding Name}"/>
-                                                        </DataTemplate>
-                                                    </GridViewColumn.CellTemplate>
-                                                </GridViewColumn>
+                                                <GridViewColumn Header="{DynamicResource name_backupwork}" Width="Auto" DisplayMemberBinding="{Binding Name}"/>
                                                 <GridViewColumn Header="{DynamicResource src_folder_backupwork}" Width="Auto" DisplayMemberBinding="{Binding SrcFolder}"/>
                                                 <GridViewColumn Header="{DynamicResource dst_folder_backupwork}" Width="Auto" DisplayMemberBinding="{Binding DstFolder}"/>
                                                 <GridViewColumn Header="{DynamicResource type_folder_backupwork}" Width="Auto" DisplayMemberBinding="{Binding Type}"/>
@@ -36,10 +30,10 @@
                                         </GridView>
                                     </ListView.View>
                                 </ListView>
-                                <Button Grid.Row="1" Content="{DynamicResource run_button}" HorizontalAlignment="Right" VerticalAlignment="Center" Padding="5,5,5,5"/>
+                                <Button Grid.Row="1" Name="RunBackupworkButton" Content="{DynamicResource run_button}" HorizontalAlignment="Right" VerticalAlignment="Center" Padding="5,5,5,5" Click="RunBackupworkButton_Click"/>
                             </Grid>
                         </TabItem>
-                        <TabItem Header="{DynamicResource add_backupwork}">
+                        <TabItem Name="CreateBackupWorkTabItem" Header="{DynamicResource add_backupwork}">
                             <Grid Background="#FFE5E5E5">
                                 <Grid.RowDefinitions>
                                     <RowDefinition Height="9*"/>
@@ -68,7 +62,7 @@
                                 <Button Grid.Row="1" Content="{DynamicResource add_button}" HorizontalAlignment="Right" VerticalAlignment="Center" Padding="5,5,5,5" Click="ButtonClickCreateBackupWork"/>
                             </Grid>
                         </TabItem>
-                        <TabItem Header="{DynamicResource edit_backupwork}">
+                        <TabItem Name="EditBackupWorkTabItem" Header="{DynamicResource edit_backupwork}">
                             <Grid Background="#FFE5E5E5">
                                 <Grid.RowDefinitions>
                                     <RowDefinition Height="9*"/>
@@ -86,27 +80,28 @@
                                     <Label Grid.Row="0" Content="{DynamicResource select_backupwork}" HorizontalAlignment="Left" VerticalAlignment="Top"/>
                                     <ComboBox Grid.Row="0" Name="BackupWorksListEditComboBox" HorizontalAlignment="Left" VerticalAlignment="Top" Width="250" SelectionChanged="BackupWorksListEditComboBox_SelectionChanged" Margin="0,26,0,0"/>
                                     <Label Grid.Row="1" Content="{DynamicResource name_backupwork}" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-                                    <TextBox Grid.Row="1" IsEnabled="False" HorizontalAlignment="Left" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="250" Margin="0,26,0,0"/>
+                                    <TextBox Grid.Row="1" Name="NameBackupWorkEditTextBox" IsEnabled="False" HorizontalAlignment="Left" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="250" Margin="0,26,0,0"/>
                                     <Label Grid.Row="2" Content="{DynamicResource src_folder_backupwork}" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-                                    <TextBox Grid.Row="2" IsEnabled="False" HorizontalAlignment="Left" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="250" Margin="0,26,0,0"/>
+                                    <TextBox Grid.Row="2" Name="SrcFolderBackupWorkEditTextBox" IsEnabled="False" HorizontalAlignment="Left" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="250" Margin="0,26,0,0"/>
                                     <Label Grid.Row="3" Content="{DynamicResource dst_folder_backupwork}" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-                                    <TextBox Grid.Row="3" IsEnabled="False" HorizontalAlignment="Left" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="250" Margin="0,26,0,0"/>
+                                    <TextBox Grid.Row="3" Name="DstFolderBackupWorkEditTextBox" IsEnabled="False" HorizontalAlignment="Left" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="250" Margin="0,26,0,0"/>
                                     <Label Grid.Row="4" Content="{DynamicResource type_folder_backupwork}" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-                                    <ComboBox Grid.Row="4" IsEnabled="False" HorizontalAlignment="Left" VerticalAlignment="Top" Width="250" Margin="0,26,0,0"/>
+                                    <ComboBox Grid.Row="4" Name="TypeBackupWorkEditComboBox" IsEnabled="False" HorizontalAlignment="Left" VerticalAlignment="Top" Width="250" Margin="0,26,0,0">
+                                        <ComboBoxItem Content="{DynamicResource complete}" Tag="complete" />
+                                        <ComboBoxItem Content="{DynamicResource differencial}" Tag="differencial" />
+                                    </ComboBox>
                                 </Grid>
-                                <Button Grid.Row="1" IsEnabled="False" Content="{DynamicResource save_button}" Padding="5,5,5,5"  HorizontalAlignment="Right" VerticalAlignment="Center"/>
+                                <Button Grid.Row="1" Name="DeleteBackupWorkEditButton" IsEnabled="False" Content="{DynamicResource delete_button}" Padding="5,5,5,5"  HorizontalAlignment="Left" VerticalAlignment="Center" Click="DeleteBackupWorkEditButton_Click" Margin="695,0,0,0"/>
+                                <Button Grid.Row="1" Name="SaveBackupWorkEditButton" IsEnabled="False" Content="{DynamicResource save_button}" Padding="5,5,5,5"  HorizontalAlignment="Right" VerticalAlignment="Center" Click="SaveBackupWorkEditButton_Click"/>
+
                             </Grid>
                         </TabItem>
                     </TabControl>
                 </Grid>
             </TabItem>
-            <TabItem Header="{DynamicResource log}">
+            <TabItem Header="{DynamicResource log}" Name="LogTab">
                 <Grid Background="#FFE5E5E5">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="9*"/>
-                        <RowDefinition Height="*"/>
-                    </Grid.RowDefinitions>
-                    <ListView Grid.Row="0" x:Name="LogListView">
+                    <ListView SelectionMode="Single" x:Name="LogListView" MouseDoubleClick="LogListView_MouseDoubleClick" Height="Auto">
                         <ListView.View>
                             <GridView>
                                 <GridView.Columns>
@@ -117,7 +112,6 @@
                             </GridView>
                         </ListView.View>
                     </ListView>
-                    <Button Grid.Row="1" Content="Run" Padding="5,5,5,5" HorizontalAlignment="Right" VerticalAlignment="Center" Click="OpenLogButtonClick"/>
                 </Grid>
             </TabItem>
             <TabItem Header="{DynamicResource settings}">
@@ -131,16 +125,41 @@
                             <RowDefinition Height="*"/>
                             <RowDefinition Height="*"/>
                             <RowDefinition Height="*"/>
-                            <RowDefinition Height="*"/>
-                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="2*"/>
                             <RowDefinition Height="*"/>
                         </Grid.RowDefinitions>
                         <Label Grid.Row="0" Content="{DynamicResource language}" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-                        <ComboBox Grid.Row="0" Name="LanguageSettingsComboBox" HorizontalAlignment="Left" VerticalAlignment="Top" Width="120" Margin="0,26,0,0"/>
+                        <ComboBox Grid.Row="0" Name="LanguageSettingsComboBox" HorizontalAlignment="Left" VerticalAlignment="Top" Width="120" Margin="0,26,0,0">
+                            <ComboBoxItem Content="English" Tag="en" />
+                            <ComboBoxItem Content="Français" Tag="fr" />
+                        </ComboBox>
                         <Label Grid.Row="1" Content="{DynamicResource format}" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-                        <ComboBox Grid.Row="1" Name="LogFormatSettingsComboBox" HorizontalAlignment="Left" VerticalAlignment="Top" Width="120" Margin="0,26,0,0"/>
+                        <ComboBox Grid.Row="1" Name="LogFormatSettingsComboBox" HorizontalAlignment="Left" VerticalAlignment="Top" Width="120" Margin="0,26,0,0">
+                            <ComboBoxItem Content="JSON" Tag=".json" />
+                            <ComboBoxItem Content="XML" Tag=".xml" />
+                        </ComboBox>
+                        <Label Grid.Row="2" Content="{DynamicResource xorKey}" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+                        <TextBox Name="XorKeyTextBox" Grid.Row="2" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Width="250" Margin="0,26,0,0"/>
+                        <Grid Grid.Row="3">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="2*"/>
+                                <RowDefinition Height="6*"/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="2*"/>
+                                <ColumnDefinition Width="2*"/>
+                                <ColumnDefinition Width="3*"/>
+                            </Grid.ColumnDefinitions>
+                            <Label Grid.Row="0" Grid.Column="0" Content="{DynamicResource extention_file_to_encrypt}" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+                            <ListBox Name="FileExtentionEncryptListBox" Grid.Row="1" Grid.Column="0">
+                            </ListBox>
+                            <TextBox Name="FileExtentionEncryptTextBox" Grid.Row="1" Grid.Column="1" TextWrapping="Wrap" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="5,0,0,0" Width="120"/>
+                            <Button Name="InsertFileExtentionEncryptButton" Grid.Row="1" Grid.Column="1" Content="{DynamicResource add_button}" HorizontalAlignment="Left" Margin="5,23,0,0" VerticalAlignment="Top" Click="InsertFileExtentionEncryptButton_Click"/>
+                            <Button Name="DeleteFileExtentionEncryptButton" Grid.Row="1" Grid.Column="1" Content="{DynamicResource delete_button}" HorizontalAlignment="Left" Margin="5,48,0,0" VerticalAlignment="Top" Click="DeleteFileExtentionEncryptButton_Click"/>
+                        </Grid>
+
                     </Grid>
-                    <Button Grid.Row="1" Content="{DynamicResource save_button}" Padding="5,5,5,5" HorizontalAlignment="Right" VerticalAlignment="Center" Click="ButtonClickSaveSettings"/>
+                    <Button Grid.Row="1" Name="SaveSettingsButton" Content="{DynamicResource save_button}" Padding="5,5,5,5" HorizontalAlignment="Right" VerticalAlignment="Center" Click="SaveSettingsButton_Click"/>
                 </Grid>
             </TabItem>
         </TabControl>

@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Text;
+using System.Windows;
 
 namespace EasySave_WPF.Controllers
 {
@@ -62,9 +63,19 @@ namespace EasySave_WPF.Controllers
                     List<FileModel> files = fileHelper.GetAllFile(backupWork.SrcFolder);
                     backupWork.Files = files;
                     long filesSize = new long();
+                    List<FileModel> files_sorted = new List<FileModel>();
                     foreach (FileModel file in files)
                     {
                         filesSize += file.Size;
+
+                        string file_extension = "." + file.Name.Split('.')[^1];
+                        if (settings.PriorityFiles.Contains(file_extension))
+                        {
+                            files_sorted.Insert(0, file);
+                        } else
+                        {
+                            files_sorted.Add(file);
+                        }
                     }
                     StateLog stateLog = new StateLog(
                         backupWork.Name, //BW name
@@ -79,7 +90,7 @@ namespace EasySave_WPF.Controllers
                     );
 
                     // Each file will be copied, log will be added to the daily log and this will update monitor status
-                    foreach (FileModel file in files)
+                    foreach (FileModel file in files_sorted)
                     {
                         dataHelper.WriteStateLog(filepath_statelog, stateLog);
 
@@ -149,10 +160,19 @@ namespace EasySave_WPF.Controllers
                     List<FileModel> files = fileHelper.GetAllEditedFile(backupWork.SrcFolder, backupWork.DstFolder + @"\complete");
                     backupWork.Files = files;
                     long filesSize = new long();
-
+                    List<FileModel> files_sorted = new List<FileModel>();
                     foreach (FileModel file in files)
                     {
                         filesSize += file.Size;
+                        string file_extension = "." + file.Name.Split('.')[^1];
+                        if (settings.PriorityFiles.Contains(file_extension))
+                        {
+                            files_sorted.Insert(0, file);
+                        }
+                        else
+                        {
+                            files_sorted.Add(file);
+                        }
                     }
 
                     StateLog stateLog = new StateLog(
@@ -167,7 +187,7 @@ namespace EasySave_WPF.Controllers
                         backupWork.DstFolder + subDstPath // Dst folder
                     );
                     // For each file edited since the last complete backup
-                    foreach (FileModel file in files)
+                    foreach (FileModel file in files_sorted)
                     {
                         dataHelper.WriteStateLog(filepath_statelog, stateLog);
 

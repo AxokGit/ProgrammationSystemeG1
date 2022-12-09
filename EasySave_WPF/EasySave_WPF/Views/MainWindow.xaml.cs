@@ -51,6 +51,7 @@ namespace EasySave_WPF
 
             XorKeyTextBox.Text = settings.XorKey;
             FileExtentionEncryptListBox.ItemsSource = settings.ExtentionFileToEncrypt;
+            PriorityFilesListBox.ItemsSource = settings.PriorityFiles;
         }
 
         private void RunBackupworkButton_Click(object sender, RoutedEventArgs e)
@@ -226,6 +227,42 @@ namespace EasySave_WPF
             }
         }
 
+        private void InsertPriorityFilesButton_Click(object sender, RoutedEventArgs e)
+        {
+            string text = PriorityFilesTextBox.Text;
+            if (text != "")
+            {
+                string filepath_settings = fileHelper.FormatFilePath(fileHelper.filepath_settings);
+
+                Settings settings = dataHelper.ReadSettingsFromJson(filepath_settings);
+
+                if (text.StartsWith("."))
+                    settings.PriorityFiles.Add(text);
+                else
+                    settings.PriorityFiles.Add("." + text);
+                
+                dataHelper.WriteSettingsToJson(filepath_settings, settings);
+                PriorityFilesTextBox.Text = "";
+                UpdateView(); // Updating all window
+            }
+        }
+
+        private void DeletePriorityFilesButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (PriorityFilesListBox.SelectedIndex >= 0)
+            {
+                int index = PriorityFilesListBox.SelectedIndex;
+
+                string filepath_settings = fileHelper.FormatFilePath(fileHelper.filepath_settings);
+                Settings settings = dataHelper.ReadSettingsFromJson(filepath_settings);
+
+                settings.PriorityFiles.RemoveAt(index);
+
+                dataHelper.WriteSettingsToJson(filepath_settings, settings);
+                UpdateView(); // Updating all window
+            }
+        }
+
         private void SaveSettingsButton_Click(object sender, RoutedEventArgs e)
         {
             //Language
@@ -243,12 +280,16 @@ namespace EasySave_WPF
             //ExtentionFileToEncrypt
             List<string> extentionfiletoencrypt = (List<string>)FileExtentionEncryptListBox.ItemsSource;
 
+
+            //PriorityFiles
+            List<string> priorityfiles = (List<string>)PriorityFilesListBox.ItemsSource;
             string filepath_settings = fileHelper.FormatFilePath(fileHelper.filepath_settings);
             var settings = dataHelper.ReadSettingsFromJson(filepath_settings);
             settings.Language = language;
             settings.LogExtension = format;
             settings.XorKey = xorkey;
             settings.ExtentionFileToEncrypt = extentionfiletoencrypt;
+            settings.PriorityFiles = priorityfiles;
 
             dataHelper.WriteSettingsToJson(filepath_settings, settings);
             UpdateView(); // Updating all window

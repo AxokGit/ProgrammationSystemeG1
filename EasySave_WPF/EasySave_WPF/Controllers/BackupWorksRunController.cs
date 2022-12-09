@@ -2,6 +2,7 @@
 using EasySave_WPF.Views;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Text;
 
@@ -16,6 +17,7 @@ namespace EasySave_WPF.Controllers
         string filepath_bw_config;
         string filepath_statelog;
         string filepath_log;
+        string filepath_settings;
 
         public List<BackupWork>? GetBackupWorks()
         {
@@ -39,7 +41,6 @@ namespace EasySave_WPF.Controllers
             {
                 return null;
             }
-            
         }
 
         // This method will take backupWork object and run the copy
@@ -49,6 +50,10 @@ namespace EasySave_WPF.Controllers
             filepath_bw_config = fileHelper.FormatFilePath(fileHelper.filepath_bw_config);
             filepath_statelog = fileHelper.FormatFilePath(fileHelper.filepath_statelog);
             filepath_log = fileHelper.FormatFilePath(fileHelper.filepath_log).Replace("{}", DateTime.Now.ToString("yyyyMMdd"));
+            filepath_settings = fileHelper.FormatFilePath(@"%AppData%\EasySave\Settings.json");
+
+            Settings settings = dataHelper.ReadSettingsFromJson(filepath_settings);
+
             if (backupWork.Type == "complete") // If backup work is type complete
             {
                 try
@@ -78,18 +83,26 @@ namespace EasySave_WPF.Controllers
                     {
                         dataHelper.WriteStateLog(filepath_statelog, stateLog);
 
-                        //  Show status of backup work
-
                         // Measure time to copy
-                        var watch = new System.Diagnostics.Stopwatch();
+                        var watch = new Stopwatch();
                         watch.Start();
                         string relativePathFile = Path.GetRelativePath(backupWork.SrcFolder, file.FullPath);
                         try
                         {
                             // Start copy
+                            var fileExt = "." + file.Name.Split('.')[^1];
                             if (!Directory.Exists(backupWork.DstFolder + @"\" + relativePathFile))
                                 Directory.CreateDirectory(Path.GetDirectoryName(backupWork.DstFolder + @"\" + relativePathFile));
-                            File.Copy(file.FullPath, backupWork.DstFolder + @"\" + relativePathFile, true);
+
+                            if (settings.ExtentionFileToEncrypt.Contains(fileExt)){
+                                ProcessStartInfo startInfo = new ProcessStartInfo("CryptoSoft_Console.exe", "run " + file.FullPath + " " + backupWork.DstFolder + @"\" + relativePathFile + " " + settings.XorKey);
+                                Process process = Process.Start(startInfo);
+                                process.WaitForExit();
+                            }
+                            else
+                            {
+                                File.Copy(file.FullPath, backupWork.DstFolder + @"\" + relativePathFile, true);
+                            }
                         }
                         catch { }
                         watch.Stop();

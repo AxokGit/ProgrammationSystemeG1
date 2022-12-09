@@ -211,6 +211,17 @@ namespace EasySave_WPF
                     dataHelper.WriteBackupWorkToJson(filepath_bw_config, backupworks);
                     BackupWorksListEditComboBox.ItemsSource = backupWorksRunController.GetBackupWorksName();
                     BackupWorksListEditComboBox.SelectedIndex = -1;
+
+                    NameBackupWorkEditTextBox.IsEnabled = false;
+                    SrcFolderBackupWorkEditTextBox.IsEnabled = false;
+                    DstFolderBackupWorkEditTextBox.IsEnabled = false;
+                    TypeBackupWorkEditComboBox.IsEnabled = false;
+                    SelectSrcFolderEditBackupWorkButton.IsEnabled = false;
+                    SelectDstFolderEditBackupWorkButton.IsEnabled = false;
+                    SaveBackupWorkEditButton.IsEnabled = false;
+                    DeleteBackupWorkEditButton.IsEnabled = false;
+
+
                     MessageBox.Show(
                         (string)Application.Current.FindResource("backupwork_edited"),
                         (string)Application.Current.FindResource("application_name"),
@@ -257,6 +268,16 @@ namespace EasySave_WPF
             dataHelper.WriteBackupWorkToJson(filepath_bw_config, backupworks);
             BackupWorksListEditComboBox.ItemsSource = backupWorksRunController.GetBackupWorksName();
             BackupWorksListEditComboBox.SelectedIndex = -1;
+
+            NameBackupWorkEditTextBox.IsEnabled = false;
+            SrcFolderBackupWorkEditTextBox.IsEnabled = false;
+            DstFolderBackupWorkEditTextBox.IsEnabled = false;
+            TypeBackupWorkEditComboBox.IsEnabled = false;
+            SelectSrcFolderEditBackupWorkButton.IsEnabled = false;
+            SelectDstFolderEditBackupWorkButton.IsEnabled = false;
+            SaveBackupWorkEditButton.IsEnabled = false;
+            DeleteBackupWorkEditButton.IsEnabled = false;
+
             MessageBox.Show(
                 (string)Application.Current.FindResource("backupwork_deleted"),
                 (string)Application.Current.FindResource("application_name"),

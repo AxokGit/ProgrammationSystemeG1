@@ -100,8 +100,8 @@
                                         <ComboBoxItem Content="{DynamicResource differencial}" Tag="differencial" />
                                     </ComboBox>
                                 </Grid>
-                                <Button Grid.Row="1" Name="DeleteBackupWorkEditButton" IsEnabled="False" Content="{DynamicResource delete_button}" Padding="5,5,5,5"  HorizontalAlignment="Left" VerticalAlignment="Center" Click="DeleteBackupWorkEditButton_Click" Margin="695,0,0,0"/>
-                                <Button Grid.Row="1" Name="SaveBackupWorkEditButton" IsEnabled="False" Content="{DynamicResource save_button}" Padding="5,5,5,5"  HorizontalAlignment="Right" VerticalAlignment="Center" Click="SaveBackupWorkEditButton_Click"/>
+                                <Button Grid.Row="1" Name="DeleteBackupWorkEditButton" IsEnabled="False" Content="{DynamicResource delete_button}" Padding="5,5,5,5"  HorizontalAlignment="Right" VerticalAlignment="Center" Width="100" Margin="0,0,105,0" Click="DeleteBackupWorkEditButton_Click"/>
+                                <Button Grid.Row="1" Name="SaveBackupWorkEditButton" IsEnabled="False" Content="{DynamicResource save_button}" Padding="5,5,5,5"  HorizontalAlignment="Right" VerticalAlignment="Center" Width="100" Click="SaveBackupWorkEditButton_Click"/>
 
                             </Grid>
                         </TabItem>

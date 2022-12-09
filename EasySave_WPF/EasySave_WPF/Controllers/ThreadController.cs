@@ -51,7 +51,7 @@ namespace EasySave_WPF.Controllers
 
         public void LaunchThread(string BackupWork)
         {
-            MessageBoxButton buttons = MessageBoxButton.
+            //MessageBoxButton buttons = MessageBoxButton.
         }
     }
 }

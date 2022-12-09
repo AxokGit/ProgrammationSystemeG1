@@ -191,15 +191,24 @@ namespace EasySave_WPF.Controllers
                     {
                         dataHelper.WriteStateLog(filepath_statelog, stateLog);
 
-
-                        var watch = new System.Diagnostics.Stopwatch();
+                        var watch = new Stopwatch();
                         watch.Start();
                         string relativePathFile = Path.GetRelativePath(backupWork.SrcFolder, file.FullPath);
                         try
                         {
+                            var fileExt = "." + file.Name.Split('.')[^1];
                             if (!Directory.Exists(backupWork.DstFolder + @"\" + subDstPath + @"\" + relativePathFile))
                                 Directory.CreateDirectory(Path.GetDirectoryName(backupWork.DstFolder + @"\" + subDstPath + @"\" + relativePathFile));
-                            File.Copy(file.FullPath, backupWork.DstFolder + @"\" + subDstPath + @"\" + relativePathFile, true);
+                            if (settings.ExtentionFileToEncrypt.Contains(fileExt))
+                            {
+                                ProcessStartInfo startInfo = new ProcessStartInfo("CryptoSoft_Console.exe", "run " + file.FullPath + " " + backupWork.DstFolder + @"\" + subDstPath + @"\" + relativePathFile + " " + settings.XorKey);
+                                Process process = Process.Start(startInfo);
+                                process.WaitForExit();
+                            }
+                            else
+                            {
+                                File.Copy(file.FullPath, backupWork.DstFolder + @"\" + subDstPath + @"\" + relativePathFile, true);
+                            }
                         }
                         catch { }
                         watch.Stop();

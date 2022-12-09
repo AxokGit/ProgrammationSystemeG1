@@ -51,6 +51,7 @@ namespace EasySave_WPF
 
             XorKeyTextBox.Text = settings.XorKey;
             FileExtentionEncryptListBox.ItemsSource = settings.ExtentionFileToEncrypt;
+            StopProcessListBox.ItemsSource = settings.StopProcesses;
             PriorityFilesListBox.ItemsSource = settings.PriorityFiles;
         }
 
@@ -207,6 +208,7 @@ namespace EasySave_WPF
                 else
                     settings.ExtentionFileToEncrypt.Add("." + text);
                 dataHelper.WriteSettingsToJson(filepath_settings, settings);
+                FileExtentionEncryptTextBox.Text = "";
                 UpdateView(); // Updating all window
             }
         }
@@ -221,6 +223,38 @@ namespace EasySave_WPF
                 Settings settings = dataHelper.ReadSettingsFromJson(filepath_settings);
 
                 settings.ExtentionFileToEncrypt.RemoveAt(index);
+
+                dataHelper.WriteSettingsToJson(filepath_settings, settings);
+                UpdateView(); // Updating all window
+            }
+        }
+
+        private void InsertStopProcessButton_Click(object sender, RoutedEventArgs e)
+        {
+            string text = StopProcessTextBox.Text;
+            if (text != "")
+            {
+                string filepath_settings = fileHelper.FormatFilePath(fileHelper.filepath_settings);
+
+                Settings settings = dataHelper.ReadSettingsFromJson(filepath_settings);
+
+                settings.StopProcesses.Add(text);
+                dataHelper.WriteSettingsToJson(filepath_settings, settings);
+                StopProcessTextBox.Text = "";
+                UpdateView(); // Updating all window
+            }
+        }
+
+        private void DeleteStopProcessButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (StopProcessListBox.SelectedIndex >= 0)
+            {
+                int index = StopProcessListBox.SelectedIndex;
+
+                string filepath_settings = fileHelper.FormatFilePath(fileHelper.filepath_settings);
+                Settings settings = dataHelper.ReadSettingsFromJson(filepath_settings);
+
+                settings.StopProcesses.RemoveAt(index);
 
                 dataHelper.WriteSettingsToJson(filepath_settings, settings);
                 UpdateView(); // Updating all window
@@ -280,15 +314,19 @@ namespace EasySave_WPF
             //ExtentionFileToEncrypt
             List<string> extentionfiletoencrypt = (List<string>)FileExtentionEncryptListBox.ItemsSource;
 
+            //StopProcesses
+            List<string> stopprocesses = (List<string>)StopProcessListBox.ItemsSource;
 
             //PriorityFiles
             List<string> priorityfiles = (List<string>)PriorityFilesListBox.ItemsSource;
+
             string filepath_settings = fileHelper.FormatFilePath(fileHelper.filepath_settings);
             var settings = dataHelper.ReadSettingsFromJson(filepath_settings);
             settings.Language = language;
             settings.LogExtension = format;
             settings.XorKey = xorkey;
             settings.ExtentionFileToEncrypt = extentionfiletoencrypt;
+            settings.StopProcesses = stopprocesses;
             settings.PriorityFiles = priorityfiles;
 
             dataHelper.WriteSettingsToJson(filepath_settings, settings);

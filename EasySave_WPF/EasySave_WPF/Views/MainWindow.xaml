@@ -169,11 +169,25 @@
                                 <ColumnDefinition Width="7*"/>
                             </Grid.ColumnDefinitions>
                             <Label Grid.Row="0" Grid.Column="0" Content="{DynamicResource extention_file_to_encrypt}" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-                            <ListBox Name="FileExtentionEncryptListBox" Grid.Row="1" Grid.Column="0">
-                            </ListBox>
+                            <ListBox Name="FileExtentionEncryptListBox" Grid.Row="1" Grid.Column="0" />
                             <TextBox Name="FileExtentionEncryptTextBox" Grid.Row="1" Grid.Column="1" TextWrapping="Wrap" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="5,0,0,0" Width="120"/>
-                            <Button Name="InsertFileExtentionEncryptButton" Grid.Row="1" Grid.Column="1" Content="{DynamicResource add_button}" HorizontalAlignment="Left" Margin="5,23,0,0" VerticalAlignment="Top" Click="InsertFileExtentionEncryptButton_Click"/>
-                            <Button Name="DeleteFileExtentionEncryptButton" Grid.Row="1" Grid.Column="1" Content="{DynamicResource delete_button}" HorizontalAlignment="Left" Margin="5,48,0,0" VerticalAlignment="Top" Click="DeleteFileExtentionEncryptButton_Click"/>
+                            <Button Name="InsertFileExtentionEncryptButton" Grid.Row="1" Grid.Column="1" Content="{DynamicResource add_button}" HorizontalAlignment="Left" Margin="5,23,0,0" Width="120" VerticalAlignment="Top" Click="InsertFileExtentionEncryptButton_Click"/>
+                            <Button Name="DeleteFileExtentionEncryptButton" Grid.Row="1" Grid.Column="1" Content="{DynamicResource delete_button}" HorizontalAlignment="Left" Margin="5,48,0,0" Width="120" VerticalAlignment="Top" Click="DeleteFileExtentionEncryptButton_Click"/>
+                        </Grid>
+                        <Grid Grid.Row="3" Grid.Column="1">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="2*"/>
+                                <RowDefinition Height="6*"/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="10*"/>
+                                <ColumnDefinition Width="7*"/>
+                            </Grid.ColumnDefinitions>
+                            <Label Grid.Row="0" Grid.Column="0" Content="{DynamicResource process_stop_copy}" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+                            <ListBox Name="StopProcessListBox" Grid.Row="1" Grid.Column="0" />
+                            <TextBox Name="StopProcessTextBox" Grid.Row="1" Grid.Column="1" TextWrapping="Wrap" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="5,0,0,0" Width="120"/>
+                            <Button Name="InsertStopProcessButton" Grid.Row="1" Grid.Column="1" Content="{DynamicResource add_button}" HorizontalAlignment="Left" Margin="5,23,0,0" Width="120" VerticalAlignment="Top" Click="InsertStopProcessButton_Click"/>
+                            <Button Name="DeleteStopProcessButton" Grid.Row="1" Grid.Column="1" Content="{DynamicResource delete_button}" HorizontalAlignment="Left" Margin="5,48,0,0" Width="120" VerticalAlignment="Top" Click="DeleteStopProcessButton_Click"/>
                         </Grid>
 
                     </Grid>

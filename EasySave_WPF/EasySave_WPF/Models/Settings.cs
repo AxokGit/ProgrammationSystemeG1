@@ -14,6 +14,7 @@ namespace EasySave_WPF.Models
         public string[] AvailableLogExtension = { ".json", ".xml" };
         public string XorKey = "12345678";
         public List<string>? ExtentionFileToEncrypt;
+        public List<string>? StopProcesses;
         public List<string>? PriorityFiles;
         /// <summary>
         /// Constructor of the Settings class
@@ -24,6 +25,10 @@ namespace EasySave_WPF.Models
         {
             if (ExtentionFileToEncrypt == null)
                 ExtentionFileToEncrypt = new List<string>();
+
+            if (StopProcesses == null)
+                StopProcesses = new List<string>();
+
             if (PriorityFiles == null)
                 PriorityFiles = new List<string>();
 

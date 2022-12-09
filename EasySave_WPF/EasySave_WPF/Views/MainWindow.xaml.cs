@@ -1,12 +1,12 @@
 ﻿using EasySave_WPF.Controllers;
 using EasySave_WPF.Models;
-using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Controls.Primitives;
+using System.Windows.Forms;
+using Application = System.Windows.Application;
+using MessageBox = System.Windows.MessageBox;
 
 namespace EasySave_WPF
 {
@@ -60,7 +60,28 @@ namespace EasySave_WPF
             var items = BackupWorkRunListView.SelectedItems;
             foreach (BackupWork backupWork in items)
             {
-                backupWorksRunController.RunCopy(backupWork);
+                Thread t = new Thread(() => new BackupWorksRunController().RunCopy(backupWork));
+                t.Start();
+            }
+        }
+
+        private void SelectSrcFolderCreateBackupWorkButton_Click(object sender, RoutedEventArgs e)
+        {
+            using (var dialog = new FolderBrowserDialog())
+            {
+                DialogResult result = dialog.ShowDialog();
+                if (dialog.SelectedPath != "")
+                    SrcFolderBackupworkCreateTextBox.Text = dialog.SelectedPath;
+            }
+        }
+
+        private void SelectDstFolderCreateBackupWorkButton_Click(object sender, RoutedEventArgs e)
+        {
+            using (var dialog = new FolderBrowserDialog())
+            {
+                DialogResult result = dialog.ShowDialog();
+                if (dialog.SelectedPath != "")
+                    DstFolderBackupworkCreateTextBox.Text = dialog.SelectedPath;
             }
         }
 
@@ -83,74 +104,33 @@ namespace EasySave_WPF
                     SrcFolderBackupworkCreateTextBox.Text = "";
                     DstFolderBackupworkCreateTextBox.Text = "";
                     TypeBackupworkCreateComboBox.SelectedItem = -1;
-                    MessageBox.Show((string)Application.Current.FindResource("backupwork_added"));
+                    MessageBox.Show(
+                        (string)Application.Current.FindResource("backupwork_added"),
+                        (string)Application.Current.FindResource("application_name"),
+                        MessageBoxButton.OK,
+                        MessageBoxImage.Information
+                    );
                     UpdateView(); // Updating all window
                 }
                 else
                 {
-                    MessageBox.Show((string)Application.Current.FindResource("check_input_folder"));
+                    MessageBox.Show(
+                        (string)Application.Current.FindResource("check_input_folder"),
+                        (string)Application.Current.FindResource("application_name"),
+                        MessageBoxButton.OK,
+                        MessageBoxImage.Error
+                    );
                 }
             }
             else
             {
-                MessageBox.Show((string)Application.Current.FindResource("complete_input_correctly"));
+                MessageBox.Show(
+                    (string)Application.Current.FindResource("complete_input_correctly"),
+                    (string)Application.Current.FindResource("application_name"),
+                    MessageBoxButton.OK,
+                    MessageBoxImage.Error
+                );
             }
-        }
-        private void SaveBackupWorkEditButton_Click(object sender, RoutedEventArgs e)
-        {
-            string name = NameBackupWorkEditTextBox.Text;
-            string srcFolder = SrcFolderBackupWorkEditTextBox.Text;
-            string dstFolder = DstFolderBackupWorkEditTextBox.Text;
-            ComboBoxItem typeItem = (ComboBoxItem)TypeBackupWorkEditComboBox.SelectedItem;
-            if (name != "" && srcFolder != "" && dstFolder != "" && typeItem != null)
-            {
-                string type = typeItem.Tag.ToString();
-
-                if (fileHelper.DirectoryExists(srcFolder) && fileHelper.DirectoryExists(dstFolder))
-                {
-                    string filepath_bw_config = fileHelper.FormatFilePath(fileHelper.filepath_bw_config);
-                    List<BackupWork> backupworks = dataHelper.ReadBackupWorkFromJson(filepath_bw_config);
-
-                    int index = BackupWorksListEditComboBox.SelectedIndex;
-
-                    backupworks[index] = new BackupWork(name, srcFolder, dstFolder, type);
-
-                    dataHelper.WriteBackupWorkToJson(filepath_bw_config, backupworks);
-                    BackupWorksListEditComboBox.ItemsSource = backupWorksRunController.GetBackupWorksName();
-                    BackupWorksListEditComboBox.SelectedIndex = -1;
-                    MessageBox.Show((string)Application.Current.FindResource("backupwork_edited"));
-                    UpdateView(); // Updating all window
-                }
-                else
-                {
-                    MessageBox.Show((string)Application.Current.FindResource("check_input_folder"));
-                }
-            }
-            else
-            {
-                MessageBox.Show((string)Application.Current.FindResource("complete_input_correctly"));
-            }
-        }
-        private void DeleteBackupWorkEditButton_Click(object sender, RoutedEventArgs e)
-        {
-            int index = BackupWorksListEditComboBox.SelectedIndex;
-
-            string filepath_bw_config = fileHelper.FormatFilePath(fileHelper.filepath_bw_config);
-            List<BackupWork> backupworks = dataHelper.ReadBackupWorkFromJson(filepath_bw_config);
-
-            string typeBackupwork;
-            if (TypeBackupWorkEditComboBox.SelectedIndex == 0)
-                typeBackupwork = "complete";
-            else
-                typeBackupwork = "differencial";
-
-            backupworks.RemoveAt(index);
-
-            dataHelper.WriteBackupWorkToJson(filepath_bw_config, backupworks);
-            BackupWorksListEditComboBox.ItemsSource = backupWorksRunController.GetBackupWorksName();
-            BackupWorksListEditComboBox.SelectedIndex = -1;
-            MessageBox.Show((string)Application.Current.FindResource("backupwork_deleted"));
-            UpdateView(); // Updating all window
         }
 
         private void BackupWorksListEditComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -181,11 +161,111 @@ namespace EasySave_WPF
                 else if (backupworks[index].Type == "differencial")
                     TypeBackupWorkEditComboBox.SelectedIndex = 1;
 
-
+                SelectSrcFolderEditBackupWorkButton.IsEnabled = true;
+                SelectDstFolderEditBackupWorkButton.IsEnabled = true;
                 SaveBackupWorkEditButton.IsEnabled = true;
                 DeleteBackupWorkEditButton.IsEnabled = true;
             }
         }
+
+
+        private void SelectSrcFolderEditBackupWorkButton_Click(object sender, RoutedEventArgs e)
+        {
+            using (var dialog = new FolderBrowserDialog())
+            {
+                DialogResult result = dialog.ShowDialog();
+                if (dialog.SelectedPath != "")
+                    SrcFolderBackupWorkEditTextBox.Text = dialog.SelectedPath;
+            }
+        }
+
+        private void SelectDstFolderEditBackupWorkButton_Click(object sender, RoutedEventArgs e)
+        {
+            using (var dialog = new FolderBrowserDialog())
+            {
+                DialogResult result = dialog.ShowDialog();
+                if (dialog.SelectedPath != "")
+                    DstFolderBackupWorkEditTextBox.Text = dialog.SelectedPath;
+            }
+        }
+
+        private void SaveBackupWorkEditButton_Click(object sender, RoutedEventArgs e)
+        {
+            string name = NameBackupWorkEditTextBox.Text;
+            string srcFolder = SrcFolderBackupWorkEditTextBox.Text;
+            string dstFolder = DstFolderBackupWorkEditTextBox.Text;
+            ComboBoxItem typeItem = (ComboBoxItem)TypeBackupWorkEditComboBox.SelectedItem;
+            if (name != "" && srcFolder != "" && dstFolder != "" && typeItem != null)
+            {
+                string type = typeItem.Tag.ToString();
+
+                if (fileHelper.DirectoryExists(srcFolder) && fileHelper.DirectoryExists(dstFolder))
+                {
+                    string filepath_bw_config = fileHelper.FormatFilePath(fileHelper.filepath_bw_config);
+                    List<BackupWork> backupworks = dataHelper.ReadBackupWorkFromJson(filepath_bw_config);
+
+                    int index = BackupWorksListEditComboBox.SelectedIndex;
+
+                    backupworks[index] = new BackupWork(name, srcFolder, dstFolder, type);
+
+                    dataHelper.WriteBackupWorkToJson(filepath_bw_config, backupworks);
+                    BackupWorksListEditComboBox.ItemsSource = backupWorksRunController.GetBackupWorksName();
+                    BackupWorksListEditComboBox.SelectedIndex = -1;
+                    MessageBox.Show(
+                        (string)Application.Current.FindResource("backupwork_edited"),
+                        (string)Application.Current.FindResource("application_name"),
+                        MessageBoxButton.OK,
+                        MessageBoxImage.Information
+                    );
+                    UpdateView(); // Updating all window
+                }
+                else
+                {
+                    MessageBox.Show(
+                        (string)Application.Current.FindResource("check_input_folder"),
+                        (string)Application.Current.FindResource("application_name"),
+                        MessageBoxButton.OK,
+                        MessageBoxImage.Error
+                    );
+                }
+            }
+            else
+            {
+                MessageBox.Show(
+                    (string)Application.Current.FindResource("complete_input_correctly"),
+                    (string)Application.Current.FindResource("application_name"),
+                    MessageBoxButton.OK,
+                    MessageBoxImage.Error
+                );
+            }
+        }
+        private void DeleteBackupWorkEditButton_Click(object sender, RoutedEventArgs e)
+        {
+            int index = BackupWorksListEditComboBox.SelectedIndex;
+
+            string filepath_bw_config = fileHelper.FormatFilePath(fileHelper.filepath_bw_config);
+            List<BackupWork> backupworks = dataHelper.ReadBackupWorkFromJson(filepath_bw_config);
+
+            string typeBackupwork;
+            if (TypeBackupWorkEditComboBox.SelectedIndex == 0)
+                typeBackupwork = "complete";
+            else
+                typeBackupwork = "differencial";
+
+            backupworks.RemoveAt(index);
+
+            dataHelper.WriteBackupWorkToJson(filepath_bw_config, backupworks);
+            BackupWorksListEditComboBox.ItemsSource = backupWorksRunController.GetBackupWorksName();
+            BackupWorksListEditComboBox.SelectedIndex = -1;
+            MessageBox.Show(
+                (string)Application.Current.FindResource("backupwork_deleted"),
+                (string)Application.Current.FindResource("application_name"),
+                MessageBoxButton.OK,
+                MessageBoxImage.Information
+            );
+            UpdateView(); // Updating all window
+        }
+
         private void LogListView_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
             FileModel item = (FileModel)LogListView.SelectedItem;
@@ -330,6 +410,12 @@ namespace EasySave_WPF
             settings.PriorityFiles = priorityfiles;
 
             dataHelper.WriteSettingsToJson(filepath_settings, settings);
+            MessageBox.Show(
+                (string)Application.Current.FindResource("settings_saved"),
+                (string)Application.Current.FindResource("application_name"),
+                MessageBoxButton.OK,
+                MessageBoxImage.Information
+            );
             UpdateView(); // Updating all window
         }
     }

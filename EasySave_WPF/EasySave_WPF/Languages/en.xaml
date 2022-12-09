@@ -30,4 +30,5 @@
     <system:String x:Key="backupwork_deleted">Backup work deleted !</system:String>
     <system:String x:Key="xorKey">Encryption key</system:String>
     <system:String x:Key="extention_file_to_encrypt">File extentions to encrypt</system:String>
+    <system:String x:Key="error_double_instance">The application is already running.</system:String>
 </ResourceDictionary>

@@ -14,12 +14,12 @@ namespace EasySave_WPF
     /// </summary>
     public partial class App : Application
     {
-        private Mutex mutex = new System.Threading.Mutex(false, "EasySave_WPF");
+        private Mutex mutex = new Mutex(true, "EasySave_WPF");
         protected override void OnStartup(StartupEventArgs e)
         {
             if(!mutex.WaitOne(TimeSpan.Zero, true))
             {
-                MessageBox.Show("Une autre instance de l'app est déjà en cours", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show((string)Current.FindResource("error_double_instance"), "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 Shutdown();
             }
             else

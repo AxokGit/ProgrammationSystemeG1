@@ -30,4 +30,5 @@
     <system:String x:Key="backupwork_deleted">Travail de sauvegarde supprimé !</system:String>
     <system:String x:Key="xorKey">Clé de chiffrement</system:String>
     <system:String x:Key="extention_file_to_encrypt">Extensions de fichier à chiffrer</system:String>
+    <system:String x:Key="error_double_instance">L'application est déjà en cours d'éxecution.</system:String>
 </ResourceDictionary>

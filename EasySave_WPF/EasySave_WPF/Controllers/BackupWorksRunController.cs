@@ -91,15 +91,24 @@ namespace EasySave_WPF.Controllers
                         backupWork.DstFolder // Dst folder
                     );
 
+                    backupWork.TotalFiles = files.Count;
+                    backupWork.RemainingFiles = files.Count;
+
+                    backupWork.Running = true;
+                    dataHelper.WriteBackupWorkToJson(filepath_bw_config, backupWork);
+
+                    //new CopyStatus(backupWork);
+
                     // Each file will be copied, log will be added to the daily log and this will update monitor status
                     foreach (FileModel file in files_sorted)
                     {
+                        
                         dataHelper.WriteStateLog(filepath_statelog, stateLog);
 
                         // Measure time to copy
                         var watch = new Stopwatch();
-                        watch.Start();
                         string relativePathFile = Path.GetRelativePath(backupWork.SrcFolder, file.FullPath);
+                        watch.Start();
                         try
                         {
                             // Start copy
@@ -119,7 +128,7 @@ namespace EasySave_WPF.Controllers
                                 File.Copy(file.FullPath, backupWork.DstFolder + @"\" + relativePathFile, true);
                             }
                         }
-                        catch { }
+                        catch (Exception e) { System.Windows.MessageBox.Show(e.Message); }
                         watch.Stop();
 
                         // Write log to daily log
@@ -135,14 +144,20 @@ namespace EasySave_WPF.Controllers
                         stateLog.RemainingFiles--;
                         stateLog.RemainingSize -= file.Size;
                         dataHelper.WriteStateLog(filepath_statelog, stateLog);
+                        backupWork.RemainingFiles = stateLog.RemainingFiles;
+                        backupWork.FileNameInCopy = file.Name;
+                        backupWork.Progression = (int)(((float)stateLog.TotalFiles - (float)stateLog.RemainingFiles) / (float)stateLog.TotalFiles * 100);
+                        dataHelper.WriteBackupWorkToJson(filepath_bw_config, backupWork);
                     }
                     // Write StateLog.json
                     stateLog.Active = false;
                     dataHelper.WriteStateLog(filepath_statelog, stateLog);
+                    backupWork.Running = false;
+                    dataHelper.WriteBackupWorkToJson(filepath_bw_config, backupWork);
 
                     // Show backup work finished status
                 }
-                catch { }
+                catch (Exception e) { System.Windows.MessageBox.Show(e.Message); }
             }
             else if (backupWork.Type == "differencial") // If backup work is type differencial
             {
@@ -162,7 +177,7 @@ namespace EasySave_WPF.Controllers
                     }
                     // Get all edited file between source folder and complete backup folder
                     List<FileModel> files = fileHelper.GetAllEditedFile(backupWork.SrcFolder, backupWork.DstFolder + @"\complete");
-                    backupWork.Files = files;
+
                     long filesSize = new long();
                     List<FileModel> files_sorted = new List<FileModel>();
                     foreach (FileModel file in files)
@@ -190,14 +205,18 @@ namespace EasySave_WPF.Controllers
                         backupWork.SrcFolder, // Src folder
                         backupWork.DstFolder + subDstPath // Dst folder
                     );
+
+                    backupWork.Running = true;
+                    dataHelper.WriteBackupWorkToJson(filepath_bw_config, backupWork);
+
                     // For each file edited since the last complete backup
                     foreach (FileModel file in files_sorted)
                     {
                         dataHelper.WriteStateLog(filepath_statelog, stateLog);
 
                         var watch = new Stopwatch();
-                        watch.Start();
                         string relativePathFile = Path.GetRelativePath(backupWork.SrcFolder, file.FullPath);
+                        watch.Start();
                         try
                         {
                             var fileExt = "." + file.Name.Split('.')[^1];
@@ -216,7 +235,7 @@ namespace EasySave_WPF.Controllers
                                 File.Copy(file.FullPath, backupWork.DstFolder + @"\" + subDstPath + @"\" + relativePathFile, true);
                             }
                         }
-                        catch { }
+                        catch (Exception e) { System.Windows.MessageBox.Show("inside" + e.Message); }
                         watch.Stop();
 
                         // Write log to daily log
@@ -232,12 +251,16 @@ namespace EasySave_WPF.Controllers
                         stateLog.RemainingFiles--;
                         stateLog.RemainingSize -= file.Size;
                         dataHelper.WriteStateLog(filepath_statelog, stateLog);
+                        backupWork.Progression = (int)(((float)stateLog.TotalFiles - (float)stateLog.RemainingFiles) / (float)stateLog.TotalFiles * 100);
+                        dataHelper.WriteBackupWorkToJson(filepath_bw_config, backupWork);
                     }
                     // Write StateLog.json
                     stateLog.Active = false;
                     dataHelper.WriteStateLog(filepath_statelog, stateLog);
+                    backupWork.Running = false;
+                    dataHelper.WriteBackupWorkToJson(filepath_bw_config, backupWork);
                 }
-                catch { }
+                catch (Exception e) { System.Windows.MessageBox.Show("outside" + e.Message); }
             }
         }
     }

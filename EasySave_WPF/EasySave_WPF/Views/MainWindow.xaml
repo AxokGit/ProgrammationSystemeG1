@@ -6,7 +6,8 @@
         xmlns:local="clr-namespace:EasySave_WPF"
         mc:Ignorable="d"
         Title="{DynamicResource application_name}" Height="450" Width="850"
-        MinHeight="400" MinWidth="850">
+        MinHeight="450" MinWidth="850"
+        MaxHeight="450" MaxWidth="850">
     <Grid>
         <TabControl>
             <TabItem Header="{DynamicResource backup_work}" Name="BackupworkTab">
@@ -18,14 +19,14 @@
                                     <RowDefinition Height="9*"/>
                                     <RowDefinition Height="*"/>
                                 </Grid.RowDefinitions>
-                                <ListView SelectionMode="Multiple" Grid.Row="0" x:Name="BackupWorkRunListView">
+                                <ListView SelectionMode="Multiple" Grid.Row="0" x:Name="BackupWorkRunListView" SelectionChanged="BackupWorkRunListView_SelectionChanged">
                                     <ListView.ItemContainerStyle>
                                         <Style TargetType="ListBoxItem">
                                             <Setter Property="Height" Value="30" />
                                         </Style>
                                     </ListView.ItemContainerStyle>
                                     <ListView.View>
-                                        <GridView>
+                                        <GridView x:Name="RunBackupWorkGridView">
                                             <GridView.Columns>
                                                 <GridViewColumn Header="{DynamicResource name_backupwork}" Width="Auto" DisplayMemberBinding="{Binding Name}"/>
                                                 <GridViewColumn Header="{DynamicResource src_folder_backupwork}" Width="Auto" DisplayMemberBinding="{Binding SrcFolder}"/>
@@ -35,7 +36,7 @@
                                         </GridView>
                                     </ListView.View>
                                 </ListView>
-                                <Button Grid.Row="1" Name="RunBackupworkButton" Content="{DynamicResource run_button}" HorizontalAlignment="Right" VerticalAlignment="Center" Padding="5,5,5,5" Click="RunBackupworkButton_Click"/>
+                                <Button Grid.Row="1" Name="RunBackupworkButton" IsEnabled="False" Content="{DynamicResource run_button}" Padding="5,5,5,5"  HorizontalAlignment="Right" VerticalAlignment="Center" Width="100" Click="RunBackupworkButton_Click" />
                             </Grid>
                         </TabItem>
                         <TabItem Name="CreateBackupWorkTabItem" Header="{DynamicResource add_backupwork}">
@@ -66,7 +67,7 @@
                                         <ComboBoxItem Content="{DynamicResource differencial}" Tag="differencial" />
                                     </ComboBox>
                                 </Grid>
-                                <Button Grid.Row="1" Content="{DynamicResource add_button}" HorizontalAlignment="Right" VerticalAlignment="Center" Padding="5,5,5,5" Click="ButtonClickCreateBackupWork"/>
+                                <Button Grid.Row="1" Content="{DynamicResource add_button}" HorizontalAlignment="Right" VerticalAlignment="Center" Padding="5,5,5,5" Width="100" Click="ButtonClickCreateBackupWork"/>
                             </Grid>
                         </TabItem>
                         <TabItem Name="EditBackupWorkTabItem" Header="{DynamicResource edit_backupwork}">
@@ -200,7 +201,7 @@
                         </Grid>
 
                     </Grid>
-                    <Button Grid.Row="1" Name="SaveSettingsButton" Content="{DynamicResource save_button}" Padding="5,5,5,5" HorizontalAlignment="Right" VerticalAlignment="Center" Click="SaveSettingsButton_Click"/>
+                    <Button Grid.Row="1" Name="SaveSettingsButton" Content="{DynamicResource save_button}" Padding="5,5,5,5" HorizontalAlignment="Right" VerticalAlignment="Center" Width="100" Click="SaveSettingsButton_Click"/>
                 </Grid>
             </TabItem>
         </TabControl>

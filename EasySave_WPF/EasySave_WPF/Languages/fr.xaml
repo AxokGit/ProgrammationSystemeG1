@@ -36,4 +36,11 @@
     <system:String x:Key="settings_saved">Les paramètres ont été enregistré !</system:String>
     <system:String x:Key="priority_files">Extensions de fichier prioritaires</system:String>
     <system:String x:Key="select_folder_button">Choisir...</system:String>
+    <system:String x:Key="pause_button">Pause</system:String>
+    <system:String x:Key="progression_backupwork">Progression</system:String>
+    <system:String x:Key="running_backupwork">En cours de sauvegarde</system:String>
+    <system:String x:Key="backupwork_status">Status du travail de sauvegarde</system:String>
+    <system:String x:Key="remaining_files">Fichiers restants</system:String>
+    <system:String x:Key="current_file_in_copy">Fichiers en cours de copie</system:String>
+    <system:String x:Key="ok">Ok</system:String>
 </ResourceDictionary>

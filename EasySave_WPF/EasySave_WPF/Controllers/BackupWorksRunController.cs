@@ -108,7 +108,9 @@ namespace EasySave_WPF.Controllers
                                 Directory.CreateDirectory(Path.GetDirectoryName(backupWork.DstFolder + @"\" + relativePathFile));
 
                             if (settings.ExtentionFileToEncrypt.Contains(fileExt)){
-                                ProcessStartInfo startInfo = new ProcessStartInfo("CryptoSoft_Console.exe", "run " + file.FullPath + " " + backupWork.DstFolder + @"\" + relativePathFile + " " + settings.XorKey);
+                                string cmd = "CryptoSoft_Console.exe";
+                                string args = "run \"" + file.FullPath + "\" \"" + backupWork.DstFolder + @"\" + relativePathFile + "\" " + settings.XorKey;
+                                ProcessStartInfo startInfo = new ProcessStartInfo(cmd, args);
                                 Process process = Process.Start(startInfo);
                                 process.WaitForExit();
                             }
@@ -203,7 +205,9 @@ namespace EasySave_WPF.Controllers
                                 Directory.CreateDirectory(Path.GetDirectoryName(backupWork.DstFolder + @"\" + subDstPath + @"\" + relativePathFile));
                             if (settings.ExtentionFileToEncrypt.Contains(fileExt))
                             {
-                                ProcessStartInfo startInfo = new ProcessStartInfo("CryptoSoft_Console.exe", "run " + file.FullPath + " " + backupWork.DstFolder + @"\" + subDstPath + @"\" + relativePathFile + " " + settings.XorKey);
+                                string cmd = "CryptoSoft_Console.exe";
+                                string args = "run \"" + file.FullPath + "\" \"" + backupWork.DstFolder + @"\" + subDstPath + @"\" + relativePathFile + "\" " + settings.XorKey;
+                                ProcessStartInfo startInfo = new ProcessStartInfo(cmd, args);
                                 Process process = Process.Start(startInfo);
                                 process.WaitForExit();
                             }

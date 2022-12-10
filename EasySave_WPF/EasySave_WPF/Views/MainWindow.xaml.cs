@@ -146,7 +146,7 @@ namespace EasySave_WPF
             else
             {
                 string filepath_bw_config = fileHelper.FormatFilePath(fileHelper.filepath_bw_config);
-                List<BackupWork> backupworks = dataHelper.ReadBackupWorkFromJson(filepath_bw_config);
+                List<BackupWork> backupworks = dataHelper.ReadBackupWorksFromJson(filepath_bw_config);
 
                 NameBackupWorkEditTextBox.IsEnabled = true;
                 NameBackupWorkEditTextBox.Text = backupworks[index].Name;
@@ -202,13 +202,13 @@ namespace EasySave_WPF
                 if (fileHelper.DirectoryExists(srcFolder) && fileHelper.DirectoryExists(dstFolder))
                 {
                     string filepath_bw_config = fileHelper.FormatFilePath(fileHelper.filepath_bw_config);
-                    List<BackupWork> backupworks = dataHelper.ReadBackupWorkFromJson(filepath_bw_config);
+                    List<BackupWork> backupworks = dataHelper.ReadBackupWorksFromJson(filepath_bw_config);
 
                     int index = BackupWorksListEditComboBox.SelectedIndex;
 
                     backupworks[index] = new BackupWork(name, srcFolder, dstFolder, type);
 
-                    dataHelper.WriteBackupWorkToJson(filepath_bw_config, backupworks);
+                    dataHelper.WriteBackupWorksToJson(filepath_bw_config, backupworks);
                     BackupWorksListEditComboBox.ItemsSource = backupWorksRunController.GetBackupWorksName();
                     BackupWorksListEditComboBox.SelectedIndex = -1;
 
@@ -255,7 +255,7 @@ namespace EasySave_WPF
             int index = BackupWorksListEditComboBox.SelectedIndex;
 
             string filepath_bw_config = fileHelper.FormatFilePath(fileHelper.filepath_bw_config);
-            List<BackupWork> backupworks = dataHelper.ReadBackupWorkFromJson(filepath_bw_config);
+            List<BackupWork> backupworks = dataHelper.ReadBackupWorksFromJson(filepath_bw_config);
 
             string typeBackupwork;
             if (TypeBackupWorkEditComboBox.SelectedIndex == 0)
@@ -265,7 +265,7 @@ namespace EasySave_WPF
 
             backupworks.RemoveAt(index);
 
-            dataHelper.WriteBackupWorkToJson(filepath_bw_config, backupworks);
+            dataHelper.WriteBackupWorksToJson(filepath_bw_config, backupworks);
             BackupWorksListEditComboBox.ItemsSource = backupWorksRunController.GetBackupWorksName();
             BackupWorksListEditComboBox.SelectedIndex = -1;
 

@@ -5,7 +5,9 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Text;
+using System.Threading;
 using System.Windows;
+using System.Windows.Threading;
 
 namespace EasySave_WPF.Controllers
 {
@@ -23,14 +25,14 @@ namespace EasySave_WPF.Controllers
         public List<BackupWork>? GetBackupWorks()
         {
             string filepath_bw_config = fileHelper.FormatFilePath(fileHelper.filepath_bw_config);
-            return dataHelper.ReadBackupWorkFromJson(filepath_bw_config);
+            return dataHelper.ReadBackupWorksFromJson(filepath_bw_config);
         }
         public List<string>? GetBackupWorksName()
         {
             string filepath_bw_config = fileHelper.FormatFilePath(fileHelper.filepath_bw_config);
 
             List<string> backupworksname = new List<string>();
-            var backupworks = dataHelper.ReadBackupWorkFromJson(filepath_bw_config);
+            var backupworks = dataHelper.ReadBackupWorksFromJson(filepath_bw_config);
             if (backupworks != null)
             {
                 foreach (BackupWork backupwork in backupworks)
@@ -61,9 +63,9 @@ namespace EasySave_WPF.Controllers
                 {
                     // Getting all files from source folder
                     List<FileModel> files = fileHelper.GetAllFile(backupWork.SrcFolder);
-                    backupWork.Files = files;
                     long filesSize = new long();
                     List<FileModel> files_sorted = new List<FileModel>();
+
                     foreach (FileModel file in files)
                     {
                         filesSize += file.Size;

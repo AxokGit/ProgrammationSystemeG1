@@ -40,19 +40,8 @@ namespace EasySave_WPF
                 Directory.CreateDirectory(directoryName);
             File.WriteAllText($@"{filepath}", json);
         }
-        // Method to write backup work to BackupWorks.json
-        public void WriteBackupWorkToJson(string filepath, List<BackupWork> content)
-        {
-            string json = JsonConvert.SerializeObject(content.ToArray(), Newtonsoft.Json.Formatting.Indented);
-            string directoryName = Path.GetDirectoryName(filepath);
-            if (!Directory.Exists(directoryName))
-            {
-                Directory.CreateDirectory(directoryName);
-            }
-            File.WriteAllText($@"{filepath}", json);
-        }
         // Method to read backup works from BackupWorks.json
-        public List<BackupWork>? ReadBackupWorkFromJson(string filepath)
+        public List<BackupWork>? ReadBackupWorksFromJson(string filepath)
         {
             if (File.Exists(filepath))
             {
@@ -63,6 +52,63 @@ namespace EasySave_WPF
             {
                 return null;
             }
+        }
+        // Method to read backup work from BackupWorks.json
+        public BackupWork? ReadBackupWorkFromJson(string filepath, BackupWork backupWork)
+        {
+            if (File.Exists(filepath))
+            {
+                string json = File.ReadAllText($@"{filepath}");
+                List<BackupWork> backupWorks = JsonConvert.DeserializeObject<List<BackupWork>>(json);
+
+                for (int i = 0; i < backupWorks.Count; i++)
+                {
+                    if (backupWorks[i].Name == backupWork.Name)
+                    {
+                        return backupWorks[i];
+                    } else
+                    {
+                        return null;
+                    }
+                }
+                return null;
+            }
+            else
+            {
+                return null;
+            }
+        }
+        // Method to write backup works to BackupWorks.json
+        public void WriteBackupWorksToJson(string filepath, List<BackupWork> content)
+        {
+            string json = JsonConvert.SerializeObject(content.ToArray(), Newtonsoft.Json.Formatting.Indented);
+            string directoryName = Path.GetDirectoryName(filepath);
+            if (!Directory.Exists(directoryName))
+            {
+                Directory.CreateDirectory(directoryName);
+            }
+            File.WriteAllText($@"{filepath}", json);
+        }
+        // Method to write backup work to BackupWorks.json
+        public void WriteBackupWorkToJson(string filepath, BackupWork content)
+        {
+            List<BackupWork> backupWorks = ReadBackupWorksFromJson(filepath);
+
+            for (int i = 0; i < backupWorks.Count; i ++)
+            {
+                if (backupWorks[i].Name == content.Name)
+                {
+                    backupWorks[i] = content;
+                }
+            }
+
+            string json = JsonConvert.SerializeObject(backupWorks.ToArray(), Newtonsoft.Json.Formatting.Indented);
+            string directoryName = Path.GetDirectoryName(filepath);
+            if (!Directory.Exists(directoryName))
+            {
+                Directory.CreateDirectory(directoryName);
+            }
+            File.WriteAllText($@"{filepath}", json);
         }
         // Method to write StateLog to StateLog.json
         public void WriteStateLog(string filepath, StateLog content)

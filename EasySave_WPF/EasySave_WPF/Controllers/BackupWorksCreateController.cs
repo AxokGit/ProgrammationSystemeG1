@@ -23,8 +23,6 @@ namespace EasySave_WPF.Controllers
                 backupworks = new List<BackupWork>();
                 backupworks.Add(backupWork);
             }
-
-            
             dataHelper.WriteBackupWorksToJson(filepath_bw_config, backupworks);
         }
     }

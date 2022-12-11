@@ -17,7 +17,6 @@ namespace EasySave_WPF.Controllers
         FileHelper fileHelper = new FileHelper(); // Instantiation of the file helper
 
         // Declaration of needed variables
-        string filepath_bw_config;
         string filepath_statelog;
         string filepath_log;
         string filepath_settings;
@@ -58,7 +57,6 @@ namespace EasySave_WPF.Controllers
         public void RunCopy(BackupWork backupWork, MainWindow mainWindow)
         {
             //Definition of the variables
-            filepath_bw_config = fileHelper.FormatFilePath(fileHelper.filepath_bw_config);
             filepath_statelog = fileHelper.FormatFilePath(fileHelper.filepath_statelog);
             filepath_log = fileHelper.FormatFilePath(fileHelper.filepath_log).Replace("{}", DateTime.Now.ToString("yyyyMMdd"));
             filepath_settings = fileHelper.FormatFilePath(@"%AppData%\EasySave\Settings.json");
@@ -102,6 +100,14 @@ namespace EasySave_WPF.Controllers
                     // Each file will be copied, log will be added to the daily log and this will update monitor status
                     foreach (FileModel file in files_sorted)
                     {
+                        while (MainWindow.Paused)
+                        {
+                            App.Current.Dispatcher.BeginInvoke(DispatcherPriority.Normal, (SendOrPostCallback)delegate
+                            {
+                                mainWindow.UpdateProgressionStatusLabel($" ({backupWork.Name}) : {(string)Application.Current.FindResource("paused")}");
+                            }, null);
+                            Thread.Sleep(1000);
+                        }
                         dataHelper.WriteStateLog(filepath_statelog, stateLog);
                         // Measure time to copy
                         var watch = new Stopwatch();
@@ -147,6 +153,7 @@ namespace EasySave_WPF.Controllers
                         App.Current.Dispatcher.BeginInvoke(DispatcherPriority.Normal, (SendOrPostCallback)delegate
                         {
                             mainWindow.UpdateProgression(Progression ?? 0.0);
+                            mainWindow.UpdateProgressionStatusLabel($" ({backupWork.Name}) : {file.Name} ({stateLog.TotalFiles - stateLog.RemainingFiles}/{stateLog.TotalFiles})");
                         }, null);
                     }
                     // Write StateLog.json
@@ -156,6 +163,9 @@ namespace EasySave_WPF.Controllers
                     App.Current.Dispatcher.BeginInvoke(DispatcherPriority.Normal, (SendOrPostCallback)delegate
                     {
                         mainWindow.UpdateProgression(0.0);
+                        mainWindow.UpdateProgressionStatusLabel("");
+
+
                     }, null);
                 }
                 catch (Exception e) { System.Windows.MessageBox.Show(e.Message); }
@@ -176,6 +186,12 @@ namespace EasySave_WPF.Controllers
                     {
                         subDstPath = @"\partial_" + DateTime.Now.ToString("yyyyMMdd_HHmmss");
                     }
+                    
+
+                    App.Current.Dispatcher.BeginInvoke(DispatcherPriority.Normal, (SendOrPostCallback)delegate
+                    {
+                        mainWindow.UpdateProgressionStatusLabel($" ({backupWork.Name}) : {(string)Application.Current.FindResource("getting_different_files")}");
+                    }, null);
                     // Get all edited file between source folder and complete backup folder
                     List<FileModel> files = fileHelper.GetAllEditedFile(backupWork.SrcFolder, backupWork.DstFolder + @"\complete");
 
@@ -210,6 +226,14 @@ namespace EasySave_WPF.Controllers
                     // For each file edited since the last complete backup
                     foreach (FileModel file in files_sorted)
                     {
+                        while (MainWindow.Paused)
+                        {
+                            App.Current.Dispatcher.BeginInvoke(DispatcherPriority.Normal, (SendOrPostCallback)delegate
+                            {
+                                mainWindow.UpdateProgressionStatusLabel($" ({backupWork.Name}) : {(string)Application.Current.FindResource("paused")}");
+                            }, null);
+                            Thread.Sleep(1000);
+                        }
                         dataHelper.WriteStateLog(filepath_statelog, stateLog);
 
                         var watch = new Stopwatch();
@@ -254,6 +278,7 @@ namespace EasySave_WPF.Controllers
                         App.Current.Dispatcher.BeginInvoke(DispatcherPriority.Normal, (SendOrPostCallback)delegate
                         {
                             mainWindow.UpdateProgression(Progression ?? 0.0);
+                            mainWindow.UpdateProgressionStatusLabel($" ({backupWork.Name}) : {file.Name} ({stateLog.TotalFiles-stateLog.RemainingFiles}/{stateLog.TotalFiles})");
                         }, null);
                     }
                     // Write StateLog.json
@@ -262,6 +287,7 @@ namespace EasySave_WPF.Controllers
                     App.Current.Dispatcher.BeginInvoke(DispatcherPriority.Normal, (SendOrPostCallback)delegate
                     {
                         mainWindow.UpdateProgression(0.0);
+                        mainWindow.UpdateProgressionStatusLabel("");
                     }, null);
                 }
                 catch (Exception e) { System.Windows.MessageBox.Show("outside" + e.Message); }

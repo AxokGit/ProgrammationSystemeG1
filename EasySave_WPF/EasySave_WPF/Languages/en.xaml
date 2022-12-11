@@ -37,9 +37,11 @@
     <system:String x:Key="process_stop_copy">Processes warning of a backup</system:String>
     <system:String x:Key="select_folder_button">Choose...</system:String>
     <system:String x:Key="pause_button">Pause</system:String>
-    <system:String x:Key="progression_backupwork">Progression</system:String>
+    <system:String x:Key="status_backupwork">Status</system:String>
     <system:String x:Key="backupwork_status">Backup work status</system:String>
     <system:String x:Key="remaining_files">Remaining files</system:String>
     <system:String x:Key="current_file_in_copy">Current file in copy</system:String>
     <system:String x:Key="ok">Ok</system:String>
+    <system:String x:Key="getting_different_files">Identification of files to be backed up...</system:String>
+    <system:String x:Key="paused">Paused...</system:String>
 </ResourceDictionary>

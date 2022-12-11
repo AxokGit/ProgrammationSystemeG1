@@ -9,8 +9,8 @@
       Title="MessageBox">
 
     <Grid Background="White" Height="100" Width="500">
-        <Button Content="Pause" HorizontalAlignment="Left" Margin="85,63,0,0" VerticalAlignment="Top" Click="Pause_Button_Click"/>
-        <Label Content="BackupWork in progress" HorizontalAlignment="Left" Margin="219,24,0,0" VerticalAlignment="Top"/>
+        <Button Content="Pause" HorizontalAlignment="Left" Margin="68,63,0,0" VerticalAlignment="Top" Click="Pause_Button_Click"/>
+        <Label Content="BackupWork in progress" HorizontalAlignment="Left" Margin="168,24,0,0" VerticalAlignment="Top"/>
         <Button Content="Resume" HorizontalAlignment="Left" Margin="388,63,0,0" VerticalAlignment="Top" Click="Resume_Button_Click"/>
 
     </Grid>

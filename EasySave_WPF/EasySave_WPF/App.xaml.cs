@@ -25,6 +25,8 @@ namespace EasySave_WPF
             }
             else
             {
+                MainWindow mainWindow = new MainWindow();
+                mainWindow.Show();
                 base.OnStartup(e);
             }
         }

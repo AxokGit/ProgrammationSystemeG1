@@ -108,12 +108,12 @@ namespace EasySave_WPF
         // Method to open a file
         public void OpenFile(FileModel fileModel)
         {
-           var p = new Process();
-           p.StartInfo = new ProcessStartInfo(fileModel.FullPath)
-              {
+            var p = new Process();
+            p.StartInfo = new ProcessStartInfo(fileModel.FullPath)
+            {
                 UseShellExecute = true
-              };
-           p.Start();   
+            };
+            p.Start();
         }
 
     }

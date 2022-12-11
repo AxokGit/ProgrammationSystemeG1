@@ -20,7 +20,8 @@ namespace EasySave_WPF.Controllers
             }
             else
             {
-                //backupworks = new List<BackupWork>().Add(backupWork);
+                backupworks = new List<BackupWork>();
+                backupworks.Add(backupWork);
             }
 
             

@@ -12,11 +12,7 @@ namespace EasySave_WPF.Models
         public string? DstFolder { get; set; }
         public string? Type { get; set; }
         public bool Running { get; set; } = false;
-        public int? Progression { get; set; }
-        public int? TotalFiles { get; set; }
-        public int? RemainingFiles { get; set; }
-        public string FileNameInCopy { get; set; }
-        public List<StateLog>? Logs;
+        public double? Progression { get; set; }
 
         /// <summary>
         /// Constructor of our class

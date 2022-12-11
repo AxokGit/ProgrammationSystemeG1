@@ -57,6 +57,13 @@ namespace EasySave_WPF
             PriorityFilesListBox.ItemsSource = settings.PriorityFiles;
         }
 
+        public void UpdateProgression(double progression)
+        {
+            BackupWorkProgressBar.Value = progression;
+        }
+
+
+
         private void BackupWorkRunListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             int selectionCount = BackupWorkRunListView.SelectedItems.Count;
@@ -80,12 +87,14 @@ namespace EasySave_WPF
 
         private void RunBackupworkButton_Click(object sender, RoutedEventArgs e)
         {
+            List<BackupWork> backupWorks = new List<BackupWork>();
             var backupworksSelected = BackupWorkRunListView.SelectedItems;
-            foreach (BackupWork backupWork in backupworksSelected)
+            foreach(BackupWork backupwork in backupworksSelected)
             {
-                Thread t = new Thread(() => new BackupWorksRunController().RunCopy(backupWork));
-                t.Start();
+                backupWorks.Add(backupwork);
             }
+            Thread t = new Thread(() => new BackupWorksRunController().StartCopy(backupWorks, this));
+            t.Start();
             UpdateView();
         }
 

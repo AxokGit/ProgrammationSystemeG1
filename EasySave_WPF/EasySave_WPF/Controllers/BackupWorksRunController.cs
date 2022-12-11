@@ -46,8 +46,16 @@ namespace EasySave_WPF.Controllers
             }
         }
 
+        public void StartCopy(List<BackupWork> backupworks, MainWindow mainWindow)
+        {
+            foreach (BackupWork backupWork in backupworks)
+            {
+                RunCopy(backupWork, mainWindow);
+            }
+        }
+
         // This method will take backupWork object and run the copy
-        public void RunCopy(BackupWork backupWork)
+        public void RunCopy(BackupWork backupWork, MainWindow mainWindow)
         {
             //Definition of the variables
             filepath_bw_config = fileHelper.FormatFilePath(fileHelper.filepath_bw_config);
@@ -91,20 +99,10 @@ namespace EasySave_WPF.Controllers
                         backupWork.DstFolder // Dst folder
                     );
 
-                    backupWork.TotalFiles = files.Count;
-                    backupWork.RemainingFiles = files.Count;
-
-                    backupWork.Running = true;
-                    dataHelper.WriteBackupWorkToJson(filepath_bw_config, backupWork);
-
-                    //new CopyStatus(backupWork);
-
                     // Each file will be copied, log will be added to the daily log and this will update monitor status
                     foreach (FileModel file in files_sorted)
                     {
-                        
                         dataHelper.WriteStateLog(filepath_statelog, stateLog);
-
                         // Measure time to copy
                         var watch = new Stopwatch();
                         string relativePathFile = Path.GetRelativePath(backupWork.SrcFolder, file.FullPath);
@@ -144,18 +142,21 @@ namespace EasySave_WPF.Controllers
                         stateLog.RemainingFiles--;
                         stateLog.RemainingSize -= file.Size;
                         dataHelper.WriteStateLog(filepath_statelog, stateLog);
-                        backupWork.RemainingFiles = stateLog.RemainingFiles;
-                        backupWork.FileNameInCopy = file.Name;
-                        backupWork.Progression = (int)(((float)stateLog.TotalFiles - (float)stateLog.RemainingFiles) / (float)stateLog.TotalFiles * 100);
-                        dataHelper.WriteBackupWorkToJson(filepath_bw_config, backupWork);
+                        double? Progression = ((float)stateLog.TotalFiles - (float)stateLog.RemainingFiles) / (float)stateLog.TotalFiles * 100;
+
+                        App.Current.Dispatcher.BeginInvoke(DispatcherPriority.Normal, (SendOrPostCallback)delegate
+                        {
+                            mainWindow.UpdateProgression(Progression ?? 0.0);
+                        }, null);
                     }
                     // Write StateLog.json
                     stateLog.Active = false;
                     dataHelper.WriteStateLog(filepath_statelog, stateLog);
-                    backupWork.Running = false;
-                    dataHelper.WriteBackupWorkToJson(filepath_bw_config, backupWork);
 
-                    // Show backup work finished status
+                    App.Current.Dispatcher.BeginInvoke(DispatcherPriority.Normal, (SendOrPostCallback)delegate
+                    {
+                        mainWindow.UpdateProgression(0.0);
+                    }, null);
                 }
                 catch (Exception e) { System.Windows.MessageBox.Show(e.Message); }
             }
@@ -206,9 +207,6 @@ namespace EasySave_WPF.Controllers
                         backupWork.DstFolder + subDstPath // Dst folder
                     );
 
-                    backupWork.Running = true;
-                    dataHelper.WriteBackupWorkToJson(filepath_bw_config, backupWork);
-
                     // For each file edited since the last complete backup
                     foreach (FileModel file in files_sorted)
                     {
@@ -251,14 +249,20 @@ namespace EasySave_WPF.Controllers
                         stateLog.RemainingFiles--;
                         stateLog.RemainingSize -= file.Size;
                         dataHelper.WriteStateLog(filepath_statelog, stateLog);
-                        backupWork.Progression = (int)(((float)stateLog.TotalFiles - (float)stateLog.RemainingFiles) / (float)stateLog.TotalFiles * 100);
-                        dataHelper.WriteBackupWorkToJson(filepath_bw_config, backupWork);
+                        double? Progression = ((float)stateLog.TotalFiles - (float)stateLog.RemainingFiles) / (float)stateLog.TotalFiles * 100;
+
+                        App.Current.Dispatcher.BeginInvoke(DispatcherPriority.Normal, (SendOrPostCallback)delegate
+                        {
+                            mainWindow.UpdateProgression(Progression ?? 0.0);
+                        }, null);
                     }
                     // Write StateLog.json
                     stateLog.Active = false;
                     dataHelper.WriteStateLog(filepath_statelog, stateLog);
-                    backupWork.Running = false;
-                    dataHelper.WriteBackupWorkToJson(filepath_bw_config, backupWork);
+                    App.Current.Dispatcher.BeginInvoke(DispatcherPriority.Normal, (SendOrPostCallback)delegate
+                    {
+                        mainWindow.UpdateProgression(0.0);
+                    }, null);
                 }
                 catch (Exception e) { System.Windows.MessageBox.Show("outside" + e.Message); }
             }

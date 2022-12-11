@@ -16,6 +16,7 @@ namespace EasySave_WPF
 {
     public partial class MainWindow : Window
     {
+        Socket sck;
         public static bool StopProcess { get; set; }
         public static bool Paused { get; set; }
         BackupWorksRunController backupWorksRunController = new BackupWorksRunController();

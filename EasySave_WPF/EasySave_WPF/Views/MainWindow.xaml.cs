@@ -227,6 +227,7 @@ namespace EasySave_WPF
                 else if (backupworks[index].Type == "differencial")
                     TypeBackupWorkEditComboBox.SelectedIndex = 1;
 
+
                 SelectSrcFolderEditBackupWorkButton.IsEnabled = true;
                 SelectDstFolderEditBackupWorkButton.IsEnabled = true;
                 SaveBackupWorkEditButton.IsEnabled = true;

@@ -1,6 +1,9 @@
 ﻿using EasySave_WPF.Controllers;
 using EasySave_WPF.Models;
 using System.Collections.Generic;
+using System.Net;
+using System.Net.Sockets;
+using System.Text;
 using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
@@ -13,6 +16,9 @@ namespace EasySave_WPF
 {
     public partial class MainWindow : Window
     {
+        static byte[] Buffer { get; set; }
+        static Socket sck;
+        
         BackupWorksRunController backupWorksRunController = new BackupWorksRunController();
         BackupWorksCreateController backupWorksCreateController = new BackupWorksCreateController();
         OpenLogsController openLogsController = new OpenLogsController();
@@ -22,7 +28,6 @@ namespace EasySave_WPF
         {
             InitializeComponent();
             new MainController();
-
             UpdateView();
         }
 
@@ -55,6 +60,15 @@ namespace EasySave_WPF
             FileExtentionEncryptListBox.ItemsSource = settings.ExtentionFileToEncrypt;
             StopProcessListBox.ItemsSource = settings.StopProcesses;
             PriorityFilesListBox.ItemsSource = settings.PriorityFiles;
+        }
+
+        public void ConnectToClient()
+        {
+            sck = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
+            sck.Bind(new IPEndPoint(0, 1234));
+            sck.Listen(10);
+
+            Socket accepted = sck.Accept();
         }
 
         public void UpdateProgression(double progression)

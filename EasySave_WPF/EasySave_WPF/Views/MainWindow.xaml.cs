@@ -16,9 +16,8 @@ namespace EasySave_WPF
 {
     public partial class MainWindow : Window
     {
-        static byte[] Buffer { get; set; }
-        static Socket sck;
-        
+        public static bool StopProcess { get; set; }
+        public static bool Paused { get; set; }
         BackupWorksRunController backupWorksRunController = new BackupWorksRunController();
         BackupWorksCreateController backupWorksCreateController = new BackupWorksCreateController();
         OpenLogsController openLogsController = new OpenLogsController();
@@ -28,6 +27,10 @@ namespace EasySave_WPF
         {
             InitializeComponent();
             new MainController();
+
+            Thread t = new Thread(() => new StopProcessController(this));
+            t.Start();
+
             UpdateView();
         }
 
@@ -75,41 +78,69 @@ namespace EasySave_WPF
         {
             BackupWorkProgressBar.Value = progression;
         }
-
-
+        public void UpdateProgressionStatusLabel(string message)
+        {
+            ProgressionStatusLabel.Content = (string)Application.Current.FindResource("status_backupwork") + message;
+        }
 
         private void BackupWorkRunListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            int selectionCount = BackupWorkRunListView.SelectedItems.Count;
-
-            if (selectionCount > 0)
-            {
-                var items = BackupWorkRunListView.SelectedItems;
-                bool runable = false;
-                foreach (BackupWork backupWork in items)
-                {
-                    if (!backupWork.Running)
-                        runable = true;
-                }
-                RunBackupworkButton.IsEnabled = runable;
-            } 
-            else
+            if (StopProcess)
             {
                 RunBackupworkButton.IsEnabled = false;
             }
+            else 
+            { 
+                int selectionCount = BackupWorkRunListView.SelectedItems.Count;
+
+                if (selectionCount > 0)
+                {
+                    var items = BackupWorkRunListView.SelectedItems;
+                    bool run = false;
+                    bool pause = true;
+                    foreach (BackupWork backupWork in items)
+                    {
+                        if (!backupWork.Running)
+                            run = true;
+                        else
+                        {
+                            pause = true;
+                        }
+                    }
+                    RunBackupworkButton.IsEnabled = run;
+                    PauseBackupworkButton.IsEnabled = pause;
+                }
+                else
+                {
+                    RunBackupworkButton.IsEnabled = false;
+                    PauseBackupworkButton.IsEnabled = false;
+                }
+            }
+            
         }
 
         private void RunBackupworkButton_Click(object sender, RoutedEventArgs e)
         {
-            List<BackupWork> backupWorks = new List<BackupWork>();
-            var backupworksSelected = BackupWorkRunListView.SelectedItems;
-            foreach(BackupWork backupwork in backupworksSelected)
+            if (Paused)
             {
-                backupWorks.Add(backupwork);
+                Paused = false;
+            } else
+            {
+                List<BackupWork> backupWorks = new List<BackupWork>();
+                var backupworksSelected = BackupWorkRunListView.SelectedItems;
+                foreach (BackupWork backupwork in backupworksSelected)
+                {
+                    backupWorks.Add(backupwork);
+                }
+                Thread t = new Thread(() => new BackupWorksRunController().StartCopy(backupWorks, this));
+                t.Start();
+                UpdateView();
             }
-            Thread t = new Thread(() => new BackupWorksRunController().StartCopy(backupWorks, this));
-            t.Start();
-            UpdateView();
+        }
+
+        private void PauseBackupworkButton_Click(object sender, RoutedEventArgs e)
+        {
+            Paused = true;
         }
 
         private void SelectSrcFolderCreateBackupWorkButton_Click(object sender, RoutedEventArgs e)
@@ -207,6 +238,7 @@ namespace EasySave_WPF
                     TypeBackupWorkEditComboBox.SelectedIndex = 0;
                 else if (backupworks[index].Type == "differencial")
                     TypeBackupWorkEditComboBox.SelectedIndex = 1;
+
 
                 SelectSrcFolderEditBackupWorkButton.IsEnabled = true;
                 SelectDstFolderEditBackupWorkButton.IsEnabled = true;

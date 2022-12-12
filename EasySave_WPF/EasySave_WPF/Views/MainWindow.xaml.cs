@@ -1,6 +1,9 @@
 ﻿using EasySave_WPF.Controllers;
 using EasySave_WPF.Models;
 using System.Collections.Generic;
+using System.Net;
+using System.Net.Sockets;
+using System.Text;
 using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
@@ -13,6 +16,7 @@ namespace EasySave_WPF
 {
     public partial class MainWindow : Window
     {
+        Socket sck;
         public static bool StopProcess { get; set; }
         public static bool Paused { get; set; }
         BackupWorksRunController backupWorksRunController = new BackupWorksRunController();
@@ -60,6 +64,15 @@ namespace EasySave_WPF
             FileExtentionEncryptListBox.ItemsSource = settings.ExtentionFileToEncrypt;
             StopProcessListBox.ItemsSource = settings.StopProcesses;
             PriorityFilesListBox.ItemsSource = settings.PriorityFiles;
+        }
+
+        public void ConnectToClient()
+        {
+            sck = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
+            sck.Bind(new IPEndPoint(0, 1234));
+            sck.Listen(10);
+
+            Socket accepted = sck.Accept();
         }
 
         public void UpdateProgression(double progression)
@@ -225,6 +238,7 @@ namespace EasySave_WPF
                     TypeBackupWorkEditComboBox.SelectedIndex = 0;
                 else if (backupworks[index].Type == "differencial")
                     TypeBackupWorkEditComboBox.SelectedIndex = 1;
+
 
                 SelectSrcFolderEditBackupWorkButton.IsEnabled = true;
                 SelectDstFolderEditBackupWorkButton.IsEnabled = true;

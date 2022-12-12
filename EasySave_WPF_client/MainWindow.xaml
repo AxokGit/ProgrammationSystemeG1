@@ -12,7 +12,7 @@
             <RowDefinition Height="5*"/>
             <RowDefinition Height="3*"/>
         </Grid.RowDefinitions>
-        <ListView SelectionMode="Multiple" Grid.Row="0" x:Name="BackupWorkRunListView" SelectionChanged="BackupWorkRunListView_SelectionChanged">
+        <ListView SelectionMode="Multiple" Grid.Row="0" x:Name="BackupWorkRunListView">
             <ListView.ItemContainerStyle>
                 <Style TargetType="ListBoxItem">
                     <Setter Property="Height" Value="30" />
@@ -31,9 +31,10 @@
         </ListView>
         <Label Name="ProgressionStatusLabel" Content="{DynamicResource status_backupwork}" HorizontalAlignment="Left" Margin="0,0,0,0" Grid.Row="1" VerticalAlignment="Top"/>
         <ProgressBar Name="BackupWorkProgressBar" HorizontalAlignment="Center" Height="20" Margin="0,26,0,0" Grid.Row="1" VerticalAlignment="Top" Width="800"/>
-        <Button Grid.Row="2" Name="ConnectBackupworkButton" Content="{DynamicResource connect_button}" Padding="5,5,5,5"  HorizontalAlignment="Left" VerticalAlignment="Center" Width="100" Click="RunBackupworkButton_Click" />
-        <Button Grid.Row="2" Name="GetBackupworkButton" IsEnabled="False" Content="{DynamicResource get_backupwork_button}" Padding="5,5,5,5" HorizontalAlignment="Left" VerticalAlignment="Center" Width="250" Click="PauseBackupworkButton_Click" Margin="105,0,0,0" />
-        <Button Grid.Row="2" Name="RunBackupworkButton" IsEnabled="False" Content="{DynamicResource run_button}" Padding="5,5,5,5"  HorizontalAlignment="Right" VerticalAlignment="Center" Width="100" Click="RunBackupworkButton_Click" />
-        <Button Grid.Row="2" Name="PauseBackupworkButton" IsEnabled="False" Content="{DynamicResource pause_button}" Padding="5,5,5,5" HorizontalAlignment="Right" VerticalAlignment="Center" Width="100" Click="PauseBackupworkButton_Click" Margin="0,0,105,0" />
+        <Button Grid.Row="2" Name="ConnectToServerButton" Content="{DynamicResource connect_button}" Padding="5,5,5,5" HorizontalAlignment="Left" VerticalAlignment="Center" Width="100" Click="ConnectToServerButton_Click" />
+        <Button Grid.Row="2" Name="GetBackupworkButton" Content="{DynamicResource get_backupwork_button}" Margin="105,0,0,0" Padding="5,5,5,5" HorizontalAlignment="Left" VerticalAlignment="Center" Width="250" Click="GetBackupworkButton_Click" />
+        <Button Grid.Row="2" Name="RunBackupworkButton" Content="{DynamicResource run_button}" Padding="5,5,5,5"  HorizontalAlignment="Right" VerticalAlignment="Center" Width="100" Click="RunBackupworkButton_Click" />
+        <Button Grid.Row="2" Name="PauseBackupworkButton" Content="{DynamicResource pause_button}" Padding="5,5,5,5" HorizontalAlignment="Right" VerticalAlignment="Center" Width="100" Click="PauseBackupworkButton_Click" Margin="0,0,105,0" />
+        <Label Grid.Row="2" Name="ConnectedStatus" Content="{DynamicResource disconnected}" HorizontalAlignment="Left" Margin="365,10,0,0" VerticalAlignment="Top"/>
     </Grid>
 </Window>

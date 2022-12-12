@@ -1,17 +1,8 @@
-﻿using System;
+﻿using EasySave_WPF_client.Controllers;
+using EasySave_WPF_client.Models;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Threading;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace EasySave_WPF_client
 {
@@ -23,16 +14,40 @@ namespace EasySave_WPF_client
         public MainWindow()
         {
             InitializeComponent();
+            Thread t = new Thread(() => SocketController.EcouterReseau(this));
+            t.Start();
+        }
+
+        private void ConnectToServerButton_Click(object sender, RoutedEventArgs e)
+        {
+            SocketController.Connect(this);
+        }
+
+        private void GetBackupworkButton_Click(object sender, RoutedEventArgs e)
+        {
+            SocketController.GetAllBackupWorks();
         }
 
         private void RunBackupworkButton_Click(object sender, RoutedEventArgs e)
         {
-
+            List<BackupWork> backupWorks = new List<BackupWork>();
+            var backupworksSelected = BackupWorkRunListView.SelectedItems;
+            foreach (BackupWork backupwork in backupworksSelected)
+            {
+                backupWorks.Add(backupwork);
+            }
+            SocketController.RunBackupworks(backupWorks);
         }
 
         private void PauseBackupworkButton_Click(object sender, RoutedEventArgs e)
         {
 
+        }
+
+        protected override void OnClosing(System.ComponentModel.CancelEventArgs e)
+        {
+            System.Diagnostics.Process.GetCurrentProcess().Kill();
+            base.OnClosing(e);
         }
     }
 }

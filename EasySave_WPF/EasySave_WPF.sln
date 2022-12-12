@@ -7,6 +7,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EasySave_WPF", "EasySave_WP
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CryptoSoft_Console", "..\CryptoSoft_Console\CryptoSoft_Console\CryptoSoft_Console.csproj", "{E37FA11C-36F1-4DB3-8B0C-49BDEF84B470}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EasySave_WPF_client", "..\EasySave_WPF_client\EasySave_WPF_client.csproj", "{04D48280-87FF-46F8-816F-4EEE4CA591DB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{E37FA11C-36F1-4DB3-8B0C-49BDEF84B470}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E37FA11C-36F1-4DB3-8B0C-49BDEF84B470}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E37FA11C-36F1-4DB3-8B0C-49BDEF84B470}.Release|Any CPU.Build.0 = Release|Any CPU
+		{04D48280-87FF-46F8-816F-4EEE4CA591DB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{04D48280-87FF-46F8-816F-4EEE4CA591DB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{04D48280-87FF-46F8-816F-4EEE4CA591DB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{04D48280-87FF-46F8-816F-4EEE4CA591DB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

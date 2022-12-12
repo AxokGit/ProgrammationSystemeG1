@@ -1,0 +1,39 @@
+﻿<Window x:Class="EasySave_WPF_client.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:EasySave_WPF_client"
+        mc:Ignorable="d"
+        Title="{DynamicResource application_name}" Height="450" Width="800">
+    <Grid Background="#FFE5E5E5">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="21*"/>
+            <RowDefinition Height="5*"/>
+            <RowDefinition Height="3*"/>
+        </Grid.RowDefinitions>
+        <ListView SelectionMode="Multiple" Grid.Row="0" x:Name="BackupWorkRunListView" SelectionChanged="BackupWorkRunListView_SelectionChanged">
+            <ListView.ItemContainerStyle>
+                <Style TargetType="ListBoxItem">
+                    <Setter Property="Height" Value="30" />
+                </Style>
+            </ListView.ItemContainerStyle>
+            <ListView.View>
+                <GridView x:Name="RunBackupWorkGridView">
+                    <GridView.Columns>
+                        <GridViewColumn Header="{DynamicResource name_backupwork}" Width="Auto" DisplayMemberBinding="{Binding Name}"/>
+                        <GridViewColumn Header="{DynamicResource src_folder_backupwork}" Width="Auto" DisplayMemberBinding="{Binding SrcFolder}"/>
+                        <GridViewColumn Header="{DynamicResource dst_folder_backupwork}" Width="Auto" DisplayMemberBinding="{Binding DstFolder}"/>
+                        <GridViewColumn Header="{DynamicResource type_folder_backupwork}" Width="Auto" DisplayMemberBinding="{Binding Type}"/>
+                    </GridView.Columns>
+                </GridView>
+            </ListView.View>
+        </ListView>
+        <Label Name="ProgressionStatusLabel" Content="{DynamicResource status_backupwork}" HorizontalAlignment="Left" Margin="0,0,0,0" Grid.Row="1" VerticalAlignment="Top"/>
+        <ProgressBar Name="BackupWorkProgressBar" HorizontalAlignment="Center" Height="20" Margin="0,26,0,0" Grid.Row="1" VerticalAlignment="Top" Width="800"/>
+        <Button Grid.Row="2" Name="ConnectBackupworkButton" Content="{DynamicResource connect_button}" Padding="5,5,5,5"  HorizontalAlignment="Left" VerticalAlignment="Center" Width="100" Click="RunBackupworkButton_Click" />
+        <Button Grid.Row="2" Name="GetBackupworkButton" IsEnabled="False" Content="{DynamicResource get_backupwork_button}" Padding="5,5,5,5" HorizontalAlignment="Left" VerticalAlignment="Center" Width="250" Click="PauseBackupworkButton_Click" Margin="105,0,0,0" />
+        <Button Grid.Row="2" Name="RunBackupworkButton" IsEnabled="False" Content="{DynamicResource run_button}" Padding="5,5,5,5"  HorizontalAlignment="Right" VerticalAlignment="Center" Width="100" Click="RunBackupworkButton_Click" />
+        <Button Grid.Row="2" Name="PauseBackupworkButton" IsEnabled="False" Content="{DynamicResource pause_button}" Padding="5,5,5,5" HorizontalAlignment="Right" VerticalAlignment="Center" Width="100" Click="PauseBackupworkButton_Click" Margin="0,0,105,0" />
+    </Grid>
+</Window>

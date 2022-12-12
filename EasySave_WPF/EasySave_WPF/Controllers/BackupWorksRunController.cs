@@ -1,4 +1,5 @@
 ﻿using EasySave_WPF.Models;
+using EasySave_WPF.Models;
 using EasySave_WPF.Views;
 using System;
 using System.Collections.Generic;
@@ -104,7 +105,10 @@ namespace EasySave_WPF.Controllers
                         {
                             App.Current.Dispatcher.BeginInvoke(DispatcherPriority.Normal, (SendOrPostCallback)delegate
                             {
-                                mainWindow.UpdateProgressionStatusLabel($" ({backupWork.Name}) : {(string)Application.Current.FindResource("paused")}");
+                                string status = $" ({backupWork.Name}) : {(string)Application.Current.FindResource("paused")}";
+                                SocketController.UpdateProgressLabel(mainWindow, status);
+                                mainWindow.UpdateProgressionStatusLabel(status);
+
                             }, null);
                             Thread.Sleep(1000);
                         }
@@ -153,7 +157,10 @@ namespace EasySave_WPF.Controllers
                         App.Current.Dispatcher.BeginInvoke(DispatcherPriority.Normal, (SendOrPostCallback)delegate
                         {
                             mainWindow.UpdateProgression(Progression ?? 0.0);
-                            mainWindow.UpdateProgressionStatusLabel($" ({backupWork.Name}) : {file.Name} ({stateLog.TotalFiles - stateLog.RemainingFiles}/{stateLog.TotalFiles})");
+                            SocketController.UpdateProgress(mainWindow, Progression ?? 0.0);
+                            string status = $" ({backupWork.Name}) : {file.Name} ({stateLog.TotalFiles - stateLog.RemainingFiles}/{stateLog.TotalFiles})";
+                            mainWindow.UpdateProgressionStatusLabel(status);
+                            SocketController.UpdateProgressLabel(mainWindow, status);
                         }, null);
                     }
                     // Write StateLog.json
@@ -163,7 +170,9 @@ namespace EasySave_WPF.Controllers
                     App.Current.Dispatcher.BeginInvoke(DispatcherPriority.Normal, (SendOrPostCallback)delegate
                     {
                         mainWindow.UpdateProgression(0.0);
+                        SocketController.UpdateProgress(mainWindow, 0.0);
                         mainWindow.UpdateProgressionStatusLabel("");
+                        SocketController.UpdateProgressLabel(mainWindow, "");
 
 
                     }, null);
@@ -190,7 +199,9 @@ namespace EasySave_WPF.Controllers
 
                     App.Current.Dispatcher.BeginInvoke(DispatcherPriority.Normal, (SendOrPostCallback)delegate
                     {
-                        mainWindow.UpdateProgressionStatusLabel($" ({backupWork.Name}) : {(string)Application.Current.FindResource("getting_different_files")}");
+                        string status = $" ({backupWork.Name}) : {(string)Application.Current.FindResource("getting_different_files")}";
+                        mainWindow.UpdateProgressionStatusLabel(status);
+                        SocketController.UpdateProgressLabel(mainWindow, status);
                     }, null);
                     // Get all edited file between source folder and complete backup folder
                     List<FileModel> files = fileHelper.GetAllEditedFile(backupWork.SrcFolder, backupWork.DstFolder + @"\complete");
@@ -230,7 +241,9 @@ namespace EasySave_WPF.Controllers
                         {
                             App.Current.Dispatcher.BeginInvoke(DispatcherPriority.Normal, (SendOrPostCallback)delegate
                             {
-                                mainWindow.UpdateProgressionStatusLabel($" ({backupWork.Name}) : {(string)Application.Current.FindResource("paused")}");
+                                string status = $" ({backupWork.Name}) : {(string)Application.Current.FindResource("paused")}";
+                                mainWindow.UpdateProgressionStatusLabel(status);
+                                SocketController.UpdateProgressLabel(mainWindow, status);
                             }, null);
                             Thread.Sleep(1000);
                         }
@@ -278,7 +291,10 @@ namespace EasySave_WPF.Controllers
                         App.Current.Dispatcher.BeginInvoke(DispatcherPriority.Normal, (SendOrPostCallback)delegate
                         {
                             mainWindow.UpdateProgression(Progression ?? 0.0);
-                            mainWindow.UpdateProgressionStatusLabel($" ({backupWork.Name}) : {file.Name} ({stateLog.TotalFiles-stateLog.RemainingFiles}/{stateLog.TotalFiles})");
+                            SocketController.UpdateProgress(mainWindow, Progression ?? 0.0);
+                            string status = $" ({backupWork.Name}) : {file.Name} ({stateLog.TotalFiles - stateLog.RemainingFiles}/{stateLog.TotalFiles})";
+                            SocketController.UpdateProgressLabel(mainWindow, status);
+                            mainWindow.UpdateProgressionStatusLabel(status);
                         }, null);
                     }
                     // Write StateLog.json
@@ -287,6 +303,8 @@ namespace EasySave_WPF.Controllers
                     App.Current.Dispatcher.BeginInvoke(DispatcherPriority.Normal, (SendOrPostCallback)delegate
                     {
                         mainWindow.UpdateProgression(0.0);
+                        SocketController.UpdateProgress(mainWindow, 0.0);
+                        SocketController.UpdateProgressLabel(mainWindow, "");
                         mainWindow.UpdateProgressionStatusLabel("");
                     }, null);
                 }

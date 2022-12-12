@@ -47,5 +47,10 @@
     <system:String x:Key="paused">En pause...</system:String>
     <system:String x:Key="connect_button">Se connecter</system:String>
     <system:String x:Key="get_backupwork_button">Récupérer les travaux de sauvegarde</system:String>
+    <system:String x:Key="not_connected">Pas connecté au serveur</system:String>
+    <system:String x:Key="impossible_connection">Impossible de se connecter au serveur</system:String>
+    <system:String x:Key="connected">Connecté !</system:String>
+    <system:String x:Key="disconnected">Déconnecté</system:String>
+    <system:String x:Key="already_connected">Déjà connecté au serveur !</system:String>
 </ResourceDictionary>
 

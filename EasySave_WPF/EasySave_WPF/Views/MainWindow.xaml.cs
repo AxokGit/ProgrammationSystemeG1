@@ -16,7 +16,6 @@ namespace EasySave_WPF
 {
     public partial class MainWindow : Window
     {
-        Socket sck;
         public static bool StopProcess { get; set; }
         public static bool Paused { get; set; }
         BackupWorksRunController backupWorksRunController = new BackupWorksRunController();
@@ -29,8 +28,10 @@ namespace EasySave_WPF
             InitializeComponent();
             new MainController();
 
-            Thread t = new Thread(() => new StopProcessController(this));
-            t.Start();
+            Thread t1 = new Thread(() => new StopProcessController(this));
+            Thread t2 = new Thread(() => new SocketController(this));
+            t1.Start();
+            t2.Start();
 
             UpdateView();
         }
@@ -64,15 +65,6 @@ namespace EasySave_WPF
             FileExtentionEncryptListBox.ItemsSource = settings.ExtentionFileToEncrypt;
             StopProcessListBox.ItemsSource = settings.StopProcesses;
             PriorityFilesListBox.ItemsSource = settings.PriorityFiles;
-        }
-
-        public void ConnectToClient()
-        {
-            sck = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
-            sck.Bind(new IPEndPoint(0, 1234));
-            sck.Listen(10);
-
-            Socket accepted = sck.Accept();
         }
 
         public void UpdateProgression(double progression)
@@ -124,7 +116,8 @@ namespace EasySave_WPF
             if (Paused)
             {
                 Paused = false;
-            } else
+            }
+            else
             {
                 List<BackupWork> backupWorks = new List<BackupWork>();
                 var backupworksSelected = BackupWorkRunListView.SelectedItems;

@@ -1,6 +1,7 @@
 {
   "ExpandedNodes": [
     "",
+<<<<<<< Updated upstream
     "\\EasySave_WPF",
     "\\EasySave_WPF\\EasySave_WPF",
     "\\EasySave_WPF\\EasySave_WPF\\Languages",
@@ -8,5 +9,14 @@
     "\\EasySave_WPF\\EasySave_WPF\\Views"
   ],
   "SelectedNode": "\\EasySave_WPF\\EasySave_WPF\\Views\\MainWindow.xaml",
+=======
+    "\\EasySave_Console",
+    "\\EasySave_Console\\EasySave_Console",
+    "\\EasySave_Console\\EasySave_Console\\Controllers",
+    "\\EasySave_Console\\EasySave_Console\\Models",
+    "\\EasySave_Console\\EasySave_Console\\Views"
+  ],
+  "SelectedNode": "\\EasySave_Console\\EasySave_Console\\Controllers\\BackupWorksEditController.cs",
+>>>>>>> Stashed changes
   "PreviewInSolutionExplorer": false
 }

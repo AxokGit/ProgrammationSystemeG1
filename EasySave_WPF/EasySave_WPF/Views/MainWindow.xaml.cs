@@ -104,7 +104,6 @@ namespace EasySave_WPF
                     PauseBackupworkButton.IsEnabled = false;
                 }
             }
-            
         }
 
         private void RunBackupworkButton_Click(object sender, RoutedEventArgs e)

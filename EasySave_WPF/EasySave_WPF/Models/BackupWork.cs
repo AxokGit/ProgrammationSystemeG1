@@ -11,8 +11,8 @@ namespace EasySave_WPF.Models
         public string? SrcFolder { get; set; }
         public string? DstFolder { get; set; }
         public string? Type { get; set; }
-        public List<FileModel>? Files;
-        public List<StateLog>? Logs;
+        public bool Running { get; set; } = false;
+        public double? Progression { get; set; }
 
         /// <summary>
         /// Constructor of our class
@@ -27,21 +27,6 @@ namespace EasySave_WPF.Models
             this.SrcFolder = src_folder;
             this.DstFolder = dst_folder;
             this.Type = type;
-        }
-        /// <summary>
-        /// Check of our backupwork is empty
-        /// </summary>
-        /// <returns></returns>
-        public bool IsEmpty()
-        {
-            if (this.Name == null || this.SrcFolder == null || this.DstFolder == null || this.Type == null)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
         }
     }
 }

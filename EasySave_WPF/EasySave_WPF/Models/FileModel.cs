@@ -9,9 +9,9 @@ namespace EasySave_WPF.Models
     /// </summary>
     public class FileModel
     {
-        public string Name;
-        public string FullPath;
-        public long Size;
+        public string Name { get; set; }
+        public string FullPath { get; set; }
+        public long Size { get; set; }
 
         /// <summary>
         /// Constructor of the FileModel classdel

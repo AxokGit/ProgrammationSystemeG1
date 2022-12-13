@@ -2,8 +2,11 @@
 using EasySave_WPF.Views;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
-using System.Text;
+using System.Threading;
+using System.Windows;
+using System.Windows.Threading;
 
 namespace EasySave_WPF.Controllers
 {
@@ -11,91 +14,150 @@ namespace EasySave_WPF.Controllers
     {
         DataHelper dataHelper = new DataHelper(); // Instantiation of the json helper
         FileHelper fileHelper = new FileHelper(); // Instantiation of the file helper
+        string cmd = "CryptoSoft_Console.exe";
 
         // Declaration of needed variables
-        string filepath_bw_config;
         string filepath_statelog;
         string filepath_log;
+        string filepath_settings;
 
-        public BackupWorksRunController()
+        public void BackupWorkListView_SelectionChanged(MainWindow mainWindow)
         {
-            /*
-            // Definition of variables
-            filepath_bw_config = fileHelper.FormatFilePath(fileHelper.filepath_bw_config);
-            filepath_statelog = fileHelper.FormatFilePath(fileHelper.filepath_statelog);
-            filepath_log = fileHelper.FormatFilePath(fileHelper.filepath_log).Replace("{}", DateTime.Now.ToString("yyyyMMdd"));
-            
-            // Getting all backup works configured
-            List<BackupWork>? backupWorks = dataHelper.ReadBackupWorkFromJson(filepath_bw_config);
-            
-            // If null, creating backup works configuration with null
-            if (backupWorks == null)
+            if (MainController.StopProcess)
             {
-                List<BackupWork> list_temp = new List<BackupWork>();
-
-                for (int i = 0; i < 5; i++)
-                {
-                    list_temp.Add(new BackupWork(null, null, null, null));
-                }
-                dataHelper.WriteBackupWorkToJson(filepath_bw_config, list_temp);
-                backupWorks = dataHelper.ReadBackupWorkFromJson(filepath_bw_config);
+                mainWindow.RunBackupworkButton.IsEnabled = false;
             }
-
-            bool optionSelected = false;
-            while (!optionSelected) // While user selected no valid choice
+            else
             {
-                string menuBWOption = "oui";
-                if (menuBWOption == "0") // Go back
+                int selectionCount = mainWindow.BackupWorkRunListView.SelectedItems.Count;
+
+                if (selectionCount > 0)
                 {
-                    optionSelected = true;
-                }
-                else if (menuBWOption == "1" || menuBWOption == "2" || menuBWOption == "3" || menuBWOption == "4" || menuBWOption == "5") // If specific backup work selected
-                {
-                    int i = Convert.ToInt32(menuBWOption) - 1;
-                    if (backupWorks[i].IsEmpty())
+                    var items = mainWindow.BackupWorkRunListView.SelectedItems;
+                    bool run = false;
+                    bool pause = true;
+                    foreach (BackupWork backupWork in items)
                     {
+                        if (!backupWork.Running)
+                            run = true;
+                        else
+                        {
+                            pause = true;
+                        }
                     }
-                    else
-                    {
-                        RunCopy(backupWorks[i]);
-                    }
+                    mainWindow.RunBackupworkButton.IsEnabled = run;
+                    mainWindow.PauseBackupworkButton.IsEnabled = pause;
                 }
-                else if (menuBWOption == "a") // If all backup works selected
+                else
                 {
-                    RunCopy(backupWorks[0], false);
-                    RunCopy(backupWorks[1], false);
-                    RunCopy(backupWorks[2], false);
-                    RunCopy(backupWorks[3], false);
-                    RunCopy(backupWorks[4], false);
+                    mainWindow.RunBackupworkButton.IsEnabled = false;
+                    mainWindow.PauseBackupworkButton.IsEnabled = false;
                 }
             }
-            */
         }
 
-        public List<BackupWork> GetBackupWorks()
+        public void RunBackupworkButton_Click(MainWindow mainWindow, MainController mainController)
+        {
+            if (MainController.Paused)
+            {
+                MainController.Paused = false;
+            }
+            else
+            {
+                List<BackupWork> backupWorks = new List<BackupWork>();
+                var backupworksSelected = mainWindow.BackupWorkRunListView.SelectedItems;
+                foreach (BackupWork backupwork in backupworksSelected)
+                {
+                    backupWorks.Add(backupwork);
+                }
+                Thread t = new Thread(() => new BackupWorksRunController().StartCopy(backupWorks, mainWindow, mainController));
+                t.Start();
+                mainController.UpdateView(mainWindow);
+            }
+        }
+
+        public void PauseBackupworkButton_Click(MainWindow mainWindow)
+        {
+            MainController.Paused = true;
+        }
+
+        public List<BackupWork>? GetBackupWorks()
         {
             string filepath_bw_config = fileHelper.FormatFilePath(fileHelper.filepath_bw_config);
-            return dataHelper.ReadBackupWorkFromJson(filepath_bw_config);
+            return dataHelper.ReadBackupWorksFromJson(filepath_bw_config);
+        }
+        public List<string>? GetBackupWorksName()
+        {
+            string filepath_bw_config = fileHelper.FormatFilePath(fileHelper.filepath_bw_config);
+
+            List<string> backupworksname = new List<string>();
+            var backupworks = dataHelper.ReadBackupWorksFromJson(filepath_bw_config);
+            if (backupworks != null)
+            {
+                foreach (BackupWork backupwork in backupworks)
+                {
+                    backupworksname.Add(backupwork.Name);
+                }
+                return backupworksname;
+            } else
+            {
+                return null;
+            }
+        }
+
+        public void StartCopy(List<BackupWork> backupworks, MainWindow mainWindow, MainController mainController)
+        {
+            foreach (BackupWork backupWork in backupworks)
+            {
+                RunCopy(backupWork, mainWindow, mainController);
+            }
         }
 
         // This method will take backupWork object and run the copy
-        public void RunCopy(BackupWork backupWork, bool enterToContinue=true)
+        public void RunCopy(BackupWork backupWork, MainWindow mainWindow, MainController mainController)
         {
             //Definition of the variables
-            filepath_bw_config = fileHelper.FormatFilePath(fileHelper.filepath_bw_config);
             filepath_statelog = fileHelper.FormatFilePath(fileHelper.filepath_statelog);
             filepath_log = fileHelper.FormatFilePath(fileHelper.filepath_log).Replace("{}", DateTime.Now.ToString("yyyyMMdd"));
+            filepath_settings = fileHelper.FormatFilePath(@"%AppData%\EasySave\Settings.json");
+
+            Settings settings = dataHelper.ReadSettingsFromJson(filepath_settings);
+
+            if (settings.ExtentionFileToEncrypt.Count > 0)
+            {
+                if (!fileHelper.FileExists(cmd))
+                {
+                    MessageBox.Show(
+                        (string)Application.Current.FindResource("cryptosoft_missing"),
+                        (string)Application.Current.FindResource("application_name"),
+                        MessageBoxButton.OK,
+                        MessageBoxImage.Error
+                    );
+                    return;
+                }
+            }
+
             if (backupWork.Type == "complete") // If backup work is type complete
             {
                 try
                 {
                     // Getting all files from source folder
                     List<FileModel> files = fileHelper.GetAllFile(backupWork.SrcFolder);
-                    backupWork.Files = files;
                     long filesSize = new long();
+                    List<FileModel> files_sorted = new List<FileModel>();
+
                     foreach (FileModel file in files)
                     {
                         filesSize += file.Size;
+
+                        string file_extension = "." + file.Name.Split('.')[^1];
+                        if (settings.PriorityFiles.Contains(file_extension))
+                        {
+                            files_sorted.Insert(0, file);
+                        } else
+                        {
+                            files_sorted.Add(file);
+                        }
                     }
                     StateLog stateLog = new StateLog(
                         backupWork.Name, //BW name
@@ -110,24 +172,43 @@ namespace EasySave_WPF.Controllers
                     );
 
                     // Each file will be copied, log will be added to the daily log and this will update monitor status
-                    foreach (FileModel file in files)
+                    foreach (FileModel file in files_sorted)
                     {
+                        while (MainController.Paused)
+                        {
+                            App.Current.Dispatcher.BeginInvoke(DispatcherPriority.Normal, (SendOrPostCallback)delegate
+                            {
+                                string status = $" ({backupWork.Name}) : {(string)Application.Current.FindResource("paused")}";
+                                SocketController.UpdateProgressLabel(mainWindow, status);
+                                mainController.UpdateProgressionStatusLabel(status, mainWindow);
+
+                            }, null);
+                            Thread.Sleep(1000);
+                        }
                         dataHelper.WriteStateLog(filepath_statelog, stateLog);
-
-                        //  Show status of backup work
-
                         // Measure time to copy
-                        var watch = new System.Diagnostics.Stopwatch();
-                        watch.Start();
+                        var watch = new Stopwatch();
                         string relativePathFile = Path.GetRelativePath(backupWork.SrcFolder, file.FullPath);
+                        watch.Start();
                         try
                         {
                             // Start copy
+                            var fileExt = "." + file.Name.Split('.')[^1];
                             if (!Directory.Exists(backupWork.DstFolder + @"\" + relativePathFile))
                                 Directory.CreateDirectory(Path.GetDirectoryName(backupWork.DstFolder + @"\" + relativePathFile));
-                            File.Copy(file.FullPath, backupWork.DstFolder + @"\" + relativePathFile, true);
+
+                            if (settings.ExtentionFileToEncrypt.Contains(fileExt)){
+                                string args = "run \"" + file.FullPath + "\" \"" + backupWork.DstFolder + @"\" + relativePathFile + "\" " + settings.XorKey;
+                                ProcessStartInfo startInfo = new ProcessStartInfo(cmd, args);
+                                Process process = Process.Start(startInfo);
+                                process.WaitForExit();
+                            }
+                            else
+                            {
+                                File.Copy(file.FullPath, backupWork.DstFolder + @"\" + relativePathFile, true);
+                            }
                         }
-                        catch { }
+                        catch (Exception e) { System.Windows.MessageBox.Show(e.Message); }
                         watch.Stop();
 
                         // Write log to daily log
@@ -143,14 +224,32 @@ namespace EasySave_WPF.Controllers
                         stateLog.RemainingFiles--;
                         stateLog.RemainingSize -= file.Size;
                         dataHelper.WriteStateLog(filepath_statelog, stateLog);
+                        double? Progression = ((float)stateLog.TotalFiles - (float)stateLog.RemainingFiles) / (float)stateLog.TotalFiles * 100;
+
+                        App.Current.Dispatcher.BeginInvoke(DispatcherPriority.Normal, (SendOrPostCallback)delegate
+                        {
+                            mainController.UpdateProgression(Progression ?? 0.0, mainWindow);
+                            SocketController.UpdateProgress(mainWindow, Progression ?? 0.0);
+                            string status = $" ({backupWork.Name}) : {file.Name} ({stateLog.TotalFiles - stateLog.RemainingFiles}/{stateLog.TotalFiles})";
+                            mainController.UpdateProgressionStatusLabel(status, mainWindow);
+                            SocketController.UpdateProgressLabel(mainWindow, status);
+                        }, null);
                     }
                     // Write StateLog.json
                     stateLog.Active = false;
                     dataHelper.WriteStateLog(filepath_statelog, stateLog);
 
-                    // Show backup work finished status
+                    App.Current.Dispatcher.BeginInvoke(DispatcherPriority.Normal, (SendOrPostCallback)delegate
+                    {
+                        mainController.UpdateProgression(0.0, mainWindow);
+                        SocketController.UpdateProgress(mainWindow, 0.0);
+                        mainController.UpdateProgressionStatusLabel("", mainWindow);
+                        SocketController.UpdateProgressLabel(mainWindow, "");
+
+
+                    }, null);
                 }
-                catch { }
+                catch (Exception e) { System.Windows.MessageBox.Show(e.Message); }
             }
             else if (backupWork.Type == "differencial") // If backup work is type differencial
             {
@@ -168,14 +267,31 @@ namespace EasySave_WPF.Controllers
                     {
                         subDstPath = @"\partial_" + DateTime.Now.ToString("yyyyMMdd_HHmmss");
                     }
+                    
+
+                    App.Current.Dispatcher.BeginInvoke(DispatcherPriority.Normal, (SendOrPostCallback)delegate
+                    {
+                        string status = $" ({backupWork.Name}) : {(string)Application.Current.FindResource("getting_different_files")}";
+                        mainController.UpdateProgressionStatusLabel(status, mainWindow);
+                        SocketController.UpdateProgressLabel(mainWindow, status);
+                    }, null);
                     // Get all edited file between source folder and complete backup folder
                     List<FileModel> files = fileHelper.GetAllEditedFile(backupWork.SrcFolder, backupWork.DstFolder + @"\complete");
-                    backupWork.Files = files;
-                    long filesSize = new long();
 
+                    long filesSize = new long();
+                    List<FileModel> files_sorted = new List<FileModel>();
                     foreach (FileModel file in files)
                     {
                         filesSize += file.Size;
+                        string file_extension = "." + file.Name.Split('.')[^1];
+                        if (settings.PriorityFiles.Contains(file_extension))
+                        {
+                            files_sorted.Insert(0, file);
+                        }
+                        else
+                        {
+                            files_sorted.Add(file);
+                        }
                     }
 
                     StateLog stateLog = new StateLog(
@@ -189,22 +305,44 @@ namespace EasySave_WPF.Controllers
                         backupWork.SrcFolder, // Src folder
                         backupWork.DstFolder + subDstPath // Dst folder
                     );
+
                     // For each file edited since the last complete backup
-                    foreach (FileModel file in files)
+                    foreach (FileModel file in files_sorted)
                     {
+                        while (MainController.Paused)
+                        {
+                            App.Current.Dispatcher.BeginInvoke(DispatcherPriority.Normal, (SendOrPostCallback)delegate
+                            {
+                                string status = $" ({backupWork.Name}) : {(string)Application.Current.FindResource("paused")}";
+                                mainController.UpdateProgressionStatusLabel(status, mainWindow);
+                                SocketController.UpdateProgressLabel(mainWindow, status);
+                            }, null);
+                            Thread.Sleep(1000);
+                        }
                         dataHelper.WriteStateLog(filepath_statelog, stateLog);
 
-
-                        var watch = new System.Diagnostics.Stopwatch();
-                        watch.Start();
+                        var watch = new Stopwatch();
                         string relativePathFile = Path.GetRelativePath(backupWork.SrcFolder, file.FullPath);
+                        watch.Start();
                         try
                         {
+                            var fileExt = "." + file.Name.Split('.')[^1];
                             if (!Directory.Exists(backupWork.DstFolder + @"\" + subDstPath + @"\" + relativePathFile))
                                 Directory.CreateDirectory(Path.GetDirectoryName(backupWork.DstFolder + @"\" + subDstPath + @"\" + relativePathFile));
-                            File.Copy(file.FullPath, backupWork.DstFolder + @"\" + subDstPath + @"\" + relativePathFile, true);
+                            if (settings.ExtentionFileToEncrypt.Contains(fileExt))
+                            {
+                                string cmd = "CryptoSoft_Console.exe";
+                                string args = "run \"" + file.FullPath + "\" \"" + backupWork.DstFolder + @"\" + subDstPath + @"\" + relativePathFile + "\" " + settings.XorKey;
+                                ProcessStartInfo startInfo = new ProcessStartInfo(cmd, args);
+                                Process process = Process.Start(startInfo);
+                                process.WaitForExit();
+                            }
+                            else
+                            {
+                                File.Copy(file.FullPath, backupWork.DstFolder + @"\" + subDstPath + @"\" + relativePathFile, true);
+                            }
                         }
-                        catch { }
+                        catch (Exception e) { System.Windows.MessageBox.Show("inside" + e.Message); }
                         watch.Stop();
 
                         // Write log to daily log
@@ -220,12 +358,29 @@ namespace EasySave_WPF.Controllers
                         stateLog.RemainingFiles--;
                         stateLog.RemainingSize -= file.Size;
                         dataHelper.WriteStateLog(filepath_statelog, stateLog);
+                        double? Progression = ((float)stateLog.TotalFiles - (float)stateLog.RemainingFiles) / (float)stateLog.TotalFiles * 100;
+
+                        App.Current.Dispatcher.BeginInvoke(DispatcherPriority.Normal, (SendOrPostCallback)delegate
+                        {
+                            mainController.UpdateProgression(Progression ?? 0.0, mainWindow);
+                            SocketController.UpdateProgress(mainWindow, Progression ?? 0.0);
+                            string status = $" ({backupWork.Name}) : {file.Name} ({stateLog.TotalFiles - stateLog.RemainingFiles}/{stateLog.TotalFiles})";
+                            SocketController.UpdateProgressLabel(mainWindow, status);
+                            mainController.UpdateProgressionStatusLabel(status, mainWindow);
+                        }, null);
                     }
                     // Write StateLog.json
                     stateLog.Active = false;
                     dataHelper.WriteStateLog(filepath_statelog, stateLog);
+                    App.Current.Dispatcher.BeginInvoke(DispatcherPriority.Normal, (SendOrPostCallback)delegate
+                    {
+                        mainController.UpdateProgression(0.0, mainWindow);
+                        SocketController.UpdateProgress(mainWindow, 0.0);
+                        SocketController.UpdateProgressLabel(mainWindow, "");
+                        mainController.UpdateProgressionStatusLabel("", mainWindow);
+                    }, null);
                 }
-                catch { }
+                catch (Exception e) { System.Windows.MessageBox.Show("outside" + e.Message); }
             }
         }
     }

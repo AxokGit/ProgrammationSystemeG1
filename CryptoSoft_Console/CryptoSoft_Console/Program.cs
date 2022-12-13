@@ -27,6 +27,10 @@ namespace CryptoSoft_Console
             {
                 Console.WriteLine("[ERROR] " + msg);
             }
+            void Message(string msg)
+            {
+                Console.WriteLine("[INFO] " + msg);
+            }
 
             XORCipher cipher = new XORCipher();
             try
@@ -51,7 +55,11 @@ namespace CryptoSoft_Console
                             {
                                 if (key.Length >= 8)
                                 {
+                                    var watch = new System.Diagnostics.Stopwatch();
+                                    watch.Start();
                                     cipher.EncryptFile(srcFile, dstFile, key);
+                                    watch.Stop();
+                                    Message("Done\nEncryptionTime: "+ watch.ElapsedMilliseconds);
                                 }
                                 else
                                 {

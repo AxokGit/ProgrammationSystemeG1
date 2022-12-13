@@ -1,0 +1,9 @@
+﻿<Application x:Class="EasySave_WPF_client.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:EasySave_WPF_client"
+             StartupUri="Views/MainWindow.xaml">
+    <Application.Resources>
+        <ResourceDictionary Source="/Languages/fr.xaml"/>
+    </Application.Resources>
+</Application>

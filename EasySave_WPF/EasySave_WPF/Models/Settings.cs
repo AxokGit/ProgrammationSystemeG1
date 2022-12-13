@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using System.Collections.Generic;
 
 namespace EasySave_WPF.Models
 {
@@ -11,6 +12,10 @@ namespace EasySave_WPF.Models
         public string[] AvailableLanguage = { "en", "fr" };
         public string? LogExtension;
         public string[] AvailableLogExtension = { ".json", ".xml" };
+        public string XorKey = "12345678";
+        public List<string>? ExtentionFileToEncrypt;
+        public List<string>? StopProcesses;
+        public List<string>? PriorityFiles;
         /// <summary>
         /// Constructor of the Settings class
         /// </summary>
@@ -18,6 +23,15 @@ namespace EasySave_WPF.Models
         [JsonConstructor]
         public Settings(string? language = null, string? logExtension= null)
         {
+            if (ExtentionFileToEncrypt == null)
+                ExtentionFileToEncrypt = new List<string>();
+
+            if (StopProcesses == null)
+                StopProcesses = new List<string>();
+
+            if (PriorityFiles == null)
+                PriorityFiles = new List<string>();
+
             if (language != null && logExtension == null)
             {
                 this.Language = language;

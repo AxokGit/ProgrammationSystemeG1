@@ -45,5 +45,6 @@
     <system:String x:Key="ok">Ok</system:String>
     <system:String x:Key="getting_different_files">Identification des fichiers à sauvegarder...</system:String>
     <system:String x:Key="paused">En pause...</system:String>
+    <system:String x:Key="cryptosoft_missing">Le logiciel CryptoSoft est manquant, placez le dans le même dossier que EasySave et retentez !</system:String>
 </ResourceDictionary>
 

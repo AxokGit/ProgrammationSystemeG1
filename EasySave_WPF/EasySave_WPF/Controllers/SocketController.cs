@@ -17,11 +17,11 @@ namespace EasySave_WPF.Controllers
         public static Socket socketServer;
         public static Socket socketClient;
         BackupWorksRunController backupWorksRunController = new BackupWorksRunController();
-        public SocketController(MainWindow mainWindow)
+        public SocketController(MainWindow mainWindow, MainController mainController)
         {
             ListenConnection();
             AcceptConnection();
-            EcouterReseau(mainWindow);
+            EcouterReseau(mainWindow, mainController);
         }
 
         private void ListenConnection()
@@ -36,7 +36,7 @@ namespace EasySave_WPF.Controllers
             IsConnected = true;
         }
 
-        private void EcouterReseau(MainWindow mainWindow)
+        private void EcouterReseau(MainWindow mainWindow, MainController mainController)
         {
             while (true)
             {
@@ -55,11 +55,11 @@ namespace EasySave_WPF.Controllers
                     {
                         msg = msg.Replace("<msg>run_backupworks<msg>", "");
                         List<BackupWork> backupWorks = JsonConvert.DeserializeObject<List<BackupWork>>(msg);
-                        Thread t = new Thread(() => new BackupWorksRunController().StartCopy(backupWorks, mainWindow));
+                        Thread t = new Thread(() => new BackupWorksRunController().StartCopy(backupWorks, mainWindow, mainController));
                         t.Start();
                     }
                 }
-                catch (Exception e)
+                catch (Exception)
                 {
                     IsConnected = false;
                     AcceptConnection();

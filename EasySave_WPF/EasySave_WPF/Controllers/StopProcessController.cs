@@ -1,9 +1,7 @@
 ﻿using EasySave_WPF.Models;
 using System;
-using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
-using System.Text;
 using System.Threading;
 using System.Windows.Threading;
 
@@ -25,36 +23,38 @@ namespace EasySave_WPF.Controllers
                 Process? processus = Process.GetProcesses().FirstOrDefault(p => settings.StopProcesses.Contains(p.ProcessName));
                 if (processus != null)
                 {
-                    MainWindow.StopProcess = true;
+                    MainController.StopProcess = true;
                     App.Current.Dispatcher.BeginInvoke(DispatcherPriority.Normal, (SendOrPostCallback)delegate
                     {
                         mainWindow.RunBackupworkButton.IsEnabled = false;
                     }, null);
-                   
                 }
                 else
                 {
-                    MainWindow.StopProcess = false;
-                    App.Current.Dispatcher.BeginInvoke(DispatcherPriority.Normal, (SendOrPostCallback)delegate
+                    MainController.StopProcess = false;
+                    if (App.Current != null)
                     {
-                        int selectionCount = mainWindow.BackupWorkRunListView.SelectedItems.Count;
+                        App.Current.Dispatcher.BeginInvoke(DispatcherPriority.Normal, (SendOrPostCallback)delegate
+                        {
+                            int selectionCount = mainWindow.BackupWorkRunListView.SelectedItems.Count;
 
-                        if (selectionCount > 0)
-                        {
-                            var items = mainWindow.BackupWorkRunListView.SelectedItems;
-                            bool runable = false;
-                            foreach (BackupWork backupWork in items)
+                            if (selectionCount > 0)
                             {
-                                if (!backupWork.Running)
-                                    runable = true;
+                                var items = mainWindow.BackupWorkRunListView.SelectedItems;
+                                bool runable = false;
+                                foreach (BackupWork backupWork in items)
+                                {
+                                    if (!backupWork.Running)
+                                        runable = true;
+                                }
+                                mainWindow.RunBackupworkButton.IsEnabled = runable;
                             }
-                            mainWindow.RunBackupworkButton.IsEnabled = runable;
-                        }
-                        else
-                        {
-                            mainWindow.RunBackupworkButton.IsEnabled = false;
-                        }
-                    }, null);
+                            else
+                            {
+                                mainWindow.RunBackupworkButton.IsEnabled = false;
+                            }
+                        }, null);
+                    }
                 }
             }
         }

@@ -1,11 +1,8 @@
 ﻿using EasySave_WPF.Models;
-using EasySave_WPF.Models;
-using EasySave_WPF.Views;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
-using System.Text;
 using System.Threading;
 using System.Windows;
 using System.Windows.Threading;
@@ -16,11 +13,72 @@ namespace EasySave_WPF.Controllers
     {
         DataHelper dataHelper = new DataHelper(); // Instantiation of the json helper
         FileHelper fileHelper = new FileHelper(); // Instantiation of the file helper
+        string cmd = "CryptoSoft_Console.exe";
 
         // Declaration of needed variables
         string filepath_statelog;
         string filepath_log;
         string filepath_settings;
+
+        public void BackupWorkListView_SelectionChanged(MainWindow mainWindow)
+        {
+            if (MainController.StopProcess)
+            {
+                mainWindow.RunBackupworkButton.IsEnabled = false;
+            }
+            else
+            {
+                int selectionCount = mainWindow.BackupWorkRunListView.SelectedItems.Count;
+
+                if (selectionCount > 0)
+                {
+                    var items = mainWindow.BackupWorkRunListView.SelectedItems;
+                    bool run = false;
+                    bool pause = true;
+                    foreach (BackupWork backupWork in items)
+                    {
+                        if (!backupWork.Running)
+                            run = true;
+                        else
+                        {
+                            pause = true;
+                        }
+                    }
+                    mainWindow.RunBackupworkButton.IsEnabled = run;
+                    mainWindow.PauseBackupworkButton.IsEnabled = pause;
+                }
+                else
+                {
+                    mainWindow.RunBackupworkButton.IsEnabled = false;
+                    mainWindow.PauseBackupworkButton.IsEnabled = false;
+                }
+            }
+        }
+
+        public void RunBackupworkButton_Click(MainWindow mainWindow, MainController mainController)
+        {
+            if (MainController.Paused)
+            {
+                MainController.Paused = false;
+            }
+            else
+            {
+                List<BackupWork> backupWorks = new List<BackupWork>();
+                var backupworksSelected = mainWindow.BackupWorkRunListView.SelectedItems;
+                foreach (BackupWork backupwork in backupworksSelected)
+                {
+                    backupWorks.Add(backupwork);
+                }
+                Thread t = new Thread(() => new BackupWorksRunController().StartCopy(backupWorks, mainWindow, mainController));
+                t.Start();
+                mainController.UpdateView(mainWindow);
+            }
+        }
+
+        public void PauseBackupworkButton_Click(MainWindow mainWindow)
+        {
+            MainController.Paused = true;
+        }
 
         public List<BackupWork>? GetBackupWorks()
         {
@@ -46,16 +104,16 @@ namespace EasySave_WPF.Controllers
             }
         }
 
-        public void StartCopy(List<BackupWork> backupworks, MainWindow mainWindow)
+        public void StartCopy(List<BackupWork> backupworks, MainWindow mainWindow, MainController mainController)
         {
             foreach (BackupWork backupWork in backupworks)
             {
-                RunCopy(backupWork, mainWindow);
+                RunCopy(backupWork, mainWindow, mainController);
             }
         }
 
         // This method will take backupWork object and run the copy
-        public void RunCopy(BackupWork backupWork, MainWindow mainWindow)
+        public void RunCopy(BackupWork backupWork, MainWindow mainWindow, MainController mainController)
         {
             //Definition of the variables
             filepath_statelog = fileHelper.FormatFilePath(fileHelper.filepath_statelog);
@@ -63,6 +121,20 @@ namespace EasySave_WPF.Controllers
             filepath_settings = fileHelper.FormatFilePath(@"%AppData%\EasySave\Settings.json");
 
             Settings settings = dataHelper.ReadSettingsFromJson(filepath_settings);
+
+            if (settings.ExtentionFileToEncrypt.Count > 0)
+            {
+                if (!fileHelper.FileExists(cmd))
+                {
+                    MessageBox.Show(
+                        (string)Application.Current.FindResource("cryptosoft_missing"),
+                        (string)Application.Current.FindResource("application_name"),
+                        MessageBoxButton.OK,
+                        MessageBoxImage.Error
+                    );
+                    return;
+                }
+            }
 
             if (backupWork.Type == "complete") // If backup work is type complete
             {
@@ -101,13 +173,13 @@ namespace EasySave_WPF.Controllers
                     // Each file will be copied, log will be added to the daily log and this will update monitor status
                     foreach (FileModel file in files_sorted)
                     {
-                        while (MainWindow.Paused)
+                        while (MainController.Paused)
                         {
                             App.Current.Dispatcher.BeginInvoke(DispatcherPriority.Normal, (SendOrPostCallback)delegate
                             {
                                 string status = $" ({backupWork.Name}) : {(string)Application.Current.FindResource("paused")}";
                                 SocketController.UpdateProgressLabel(mainWindow, status);
-                                mainWindow.UpdateProgressionStatusLabel(status);
+                                mainController.UpdateProgressionStatusLabel(status, mainWindow);
 
                             }, null);
                             Thread.Sleep(1000);
@@ -125,7 +197,6 @@ namespace EasySave_WPF.Controllers
                                 Directory.CreateDirectory(Path.GetDirectoryName(backupWork.DstFolder + @"\" + relativePathFile));
 
                             if (settings.ExtentionFileToEncrypt.Contains(fileExt)){
-                                string cmd = "CryptoSoft_Console.exe";
                                 string args = "run \"" + file.FullPath + "\" \"" + backupWork.DstFolder + @"\" + relativePathFile + "\" " + settings.XorKey;
                                 ProcessStartInfo startInfo = new ProcessStartInfo(cmd, args);
                                 Process process = Process.Start(startInfo);
@@ -156,10 +227,10 @@ namespace EasySave_WPF.Controllers
 
                         App.Current.Dispatcher.BeginInvoke(DispatcherPriority.Normal, (SendOrPostCallback)delegate
                         {
-                            mainWindow.UpdateProgression(Progression ?? 0.0);
+                            mainController.UpdateProgression(Progression ?? 0.0, mainWindow);
                             SocketController.UpdateProgress(mainWindow, Progression ?? 0.0);
                             string status = $" ({backupWork.Name}) : {file.Name} ({stateLog.TotalFiles - stateLog.RemainingFiles}/{stateLog.TotalFiles})";
-                            mainWindow.UpdateProgressionStatusLabel(status);
+                            mainController.UpdateProgressionStatusLabel(status, mainWindow);
                             SocketController.UpdateProgressLabel(mainWindow, status);
                         }, null);
                     }
@@ -169,9 +240,9 @@ namespace EasySave_WPF.Controllers
 
                     App.Current.Dispatcher.BeginInvoke(DispatcherPriority.Normal, (SendOrPostCallback)delegate
                     {
-                        mainWindow.UpdateProgression(0.0);
+                        mainController.UpdateProgression(0.0, mainWindow);
                         SocketController.UpdateProgress(mainWindow, 0.0);
-                        mainWindow.UpdateProgressionStatusLabel("");
+                        mainController.UpdateProgressionStatusLabel("", mainWindow);
                         SocketController.UpdateProgressLabel(mainWindow, "");
 
 
@@ -200,7 +271,7 @@ namespace EasySave_WPF.Controllers
                     App.Current.Dispatcher.BeginInvoke(DispatcherPriority.Normal, (SendOrPostCallback)delegate
                     {
                         string status = $" ({backupWork.Name}) : {(string)Application.Current.FindResource("getting_different_files")}";
-                        mainWindow.UpdateProgressionStatusLabel(status);
+                        mainController.UpdateProgressionStatusLabel(status, mainWindow);
                         SocketController.UpdateProgressLabel(mainWindow, status);
                     }, null);
                     // Get all edited file between source folder and complete backup folder
@@ -237,12 +308,12 @@ namespace EasySave_WPF.Controllers
                     // For each file edited since the last complete backup
                     foreach (FileModel file in files_sorted)
                     {
-                        while (MainWindow.Paused)
+                        while (MainController.Paused)
                         {
                             App.Current.Dispatcher.BeginInvoke(DispatcherPriority.Normal, (SendOrPostCallback)delegate
                             {
                                 string status = $" ({backupWork.Name}) : {(string)Application.Current.FindResource("paused")}";
-                                mainWindow.UpdateProgressionStatusLabel(status);
+                                mainController.UpdateProgressionStatusLabel(status, mainWindow);
                                 SocketController.UpdateProgressLabel(mainWindow, status);
                             }, null);
                             Thread.Sleep(1000);
@@ -290,11 +361,11 @@ namespace EasySave_WPF.Controllers
 
                         App.Current.Dispatcher.BeginInvoke(DispatcherPriority.Normal, (SendOrPostCallback)delegate
                         {
-                            mainWindow.UpdateProgression(Progression ?? 0.0);
+                            mainController.UpdateProgression(Progression ?? 0.0, mainWindow);
                             SocketController.UpdateProgress(mainWindow, Progression ?? 0.0);
                             string status = $" ({backupWork.Name}) : {file.Name} ({stateLog.TotalFiles - stateLog.RemainingFiles}/{stateLog.TotalFiles})";
                             SocketController.UpdateProgressLabel(mainWindow, status);
-                            mainWindow.UpdateProgressionStatusLabel(status);
+                            mainController.UpdateProgressionStatusLabel(status, mainWindow);
                         }, null);
                     }
                     // Write StateLog.json
@@ -302,10 +373,10 @@ namespace EasySave_WPF.Controllers
                     dataHelper.WriteStateLog(filepath_statelog, stateLog);
                     App.Current.Dispatcher.BeginInvoke(DispatcherPriority.Normal, (SendOrPostCallback)delegate
                     {
-                        mainWindow.UpdateProgression(0.0);
+                        mainController.UpdateProgression(0.0, mainWindow);
                         SocketController.UpdateProgress(mainWindow, 0.0);
                         SocketController.UpdateProgressLabel(mainWindow, "");
-                        mainWindow.UpdateProgressionStatusLabel("");
+                        mainController.UpdateProgressionStatusLabel("", mainWindow);
                     }, null);
                 }
                 catch (Exception e) { System.Windows.MessageBox.Show("outside" + e.Message); }

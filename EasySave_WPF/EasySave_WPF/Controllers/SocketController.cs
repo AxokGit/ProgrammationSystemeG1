@@ -74,13 +74,6 @@ namespace EasySave_WPF.Controllers
                 string json = "<msg>progress_update<msg>" + JsonConvert.SerializeObject(progress, Formatting.Indented);
                 socketClient.Send(Encoding.ASCII.GetBytes(json));
             }
-            else
-                MessageBox.Show(
-                    (string)Application.Current.FindResource("not_connected"),
-                    (string)Application.Current.FindResource("application_name"),
-                    MessageBoxButton.OK,
-                    MessageBoxImage.Error
-                );
         }
 
         public static void UpdateProgressLabel(MainWindow mainWindow, string progressLabel)
@@ -90,13 +83,6 @@ namespace EasySave_WPF.Controllers
                 string json = "<msg>progressLabel_update<msg>" + JsonConvert.SerializeObject(progressLabel, Formatting.Indented);
                 socketClient.Send(Encoding.ASCII.GetBytes(json));
             }
-            else
-                MessageBox.Show(
-                    (string)Application.Current.FindResource("not_connected"),
-                    (string)Application.Current.FindResource("application_name"),
-                    MessageBoxButton.OK,
-                    MessageBoxImage.Error
-                );
         }
     }
 }

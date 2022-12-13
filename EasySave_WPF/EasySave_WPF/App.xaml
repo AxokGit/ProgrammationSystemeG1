@@ -4,6 +4,6 @@
              xmlns:local="clr-namespace:EasySave_WPF"
              >
     <Application.Resources>
-        <ResourceDictionary Source="/Languages/fr.xaml"/>
+        <!--<ResourceDictionary Source="/Languages/fr.xaml"/>-->
     </Application.Resources>
 </Application>

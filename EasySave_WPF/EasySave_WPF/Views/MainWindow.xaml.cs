@@ -18,6 +18,7 @@ namespace EasySave_WPF
             mainController = new MainController(this);
             backupWorksCreateController = new BackupWorksCreateController();
             backupWorksRunController = new BackupWorksRunController();
+            backupWorksEditController = new BackupWorksEditController();
             openLogsController = new OpenLogsController();
             settingsController = new SettingsController();
         }

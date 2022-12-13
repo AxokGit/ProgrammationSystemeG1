@@ -32,7 +32,7 @@ namespace EasySave_WPF_client.Controllers
                         mainWindow.ConnectedStatus.Content = (string)Application.Current.FindResource("connected");
                     }, null);
                 }
-                catch (Exception e)
+                catch (Exception)
                 {
                     MessageBox.Show(
                         (string)Application.Current.FindResource("impossible_connection"),

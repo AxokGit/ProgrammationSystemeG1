@@ -7,7 +7,12 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EasySave_WPF", "EasySave_WP
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CryptoSoft_Console", "..\CryptoSoft_Console\CryptoSoft_Console\CryptoSoft_Console.csproj", "{E37FA11C-36F1-4DB3-8B0C-49BDEF84B470}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EasySave_WPF_client", "..\EasySave_WPF_client\EasySave_WPF_client.csproj", "{04D48280-87FF-46F8-816F-4EEE4CA591DB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EasySave_WPF_client", "..\EasySave_WPF_client\EasySave_WPF_client.csproj", "{04D48280-87FF-46F8-816F-4EEE4CA591DB}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{7DD8B1CF-D67D-421D-A65F-FE5164A080A5}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

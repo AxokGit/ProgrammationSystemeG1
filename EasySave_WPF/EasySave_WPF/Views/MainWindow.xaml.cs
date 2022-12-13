@@ -18,6 +18,7 @@ namespace EasySave_WPF
             mainController = new MainController(this);
             backupWorksCreateController = new BackupWorksCreateController();
             backupWorksRunController = new BackupWorksRunController();
+            backupWorksEditController = new BackupWorksEditController();
             openLogsController = new OpenLogsController();
             settingsController = new SettingsController();
         }
@@ -35,6 +36,10 @@ namespace EasySave_WPF
         private void PauseBackupworkButton_Click(object sender, RoutedEventArgs e)
         {
             backupWorksRunController.PauseBackupworkButton_Click(this);
+        }
+        private void StopBackupworkButton_Click(object sender, RoutedEventArgs e)
+        {
+            backupWorksRunController.StopBackupworkButton_Click(this);
         }
 
         private void SelectSrcFolderCreateBackupWorkButton_Click(object sender, RoutedEventArgs e)
@@ -114,6 +119,12 @@ namespace EasySave_WPF
         private void SaveSettingsButton_Click(object sender, RoutedEventArgs e)
         {
             settingsController.SaveSettingsButton_Click(this, mainController);
+        }
+
+        protected override void OnClosing(System.ComponentModel.CancelEventArgs e)
+        {
+            System.Diagnostics.Process.GetCurrentProcess().Kill();
+            base.OnClosing(e);
         }
     }
 }

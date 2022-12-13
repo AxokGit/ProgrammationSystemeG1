@@ -13,6 +13,7 @@ namespace EasySave_WPF.Controllers
     class MainController
     {
         public static bool StopProcess { get; set; }
+        public static bool StopButton { get; set; }
         public static bool Paused { get; set; }
         BackupWorksRunController backupWorksRunController = new BackupWorksRunController();
         BackupWorksCreateController backupWorksCreateController = new BackupWorksCreateController();

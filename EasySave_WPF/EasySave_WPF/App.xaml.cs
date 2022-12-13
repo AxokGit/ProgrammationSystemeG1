@@ -20,7 +20,7 @@ namespace EasySave_WPF
         {
             if(!mutex.WaitOne(TimeSpan.Zero, true))
             {
-                MessageBox.Show((string)Current.FindResource("error_double_instance"), "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show((string)Current.FindResource("error_double_instance"), (string)Current.FindResource("application_name"), MessageBoxButton.OK, MessageBoxImage.Error);
                 Shutdown();
             }
             else

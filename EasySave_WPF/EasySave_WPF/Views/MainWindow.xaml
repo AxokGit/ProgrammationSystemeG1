@@ -41,6 +41,7 @@
                                 <ProgressBar Name="BackupWorkProgressBar" HorizontalAlignment="Center" Height="20" Margin="0,26,0,0" Grid.Row="1" VerticalAlignment="Top" Width="800"/>
                                 <Button Grid.Row="2" Name="RunBackupworkButton" IsEnabled="False" Content="{DynamicResource run_button}" Padding="5,5,5,5"  HorizontalAlignment="Right" VerticalAlignment="Center" Width="100" Click="RunBackupworkButton_Click" />
                                 <Button Grid.Row="2" Name="PauseBackupworkButton" IsEnabled="False" Content="{DynamicResource pause_button}" Padding="5,5,5,5" HorizontalAlignment="Right" VerticalAlignment="Center" Width="100" Click="PauseBackupworkButton_Click" Margin="0,0,105,0" />
+                                <Button Grid.Row="2" Name="StopBackupworkButton" IsEnabled="False" Content="{DynamicResource stop_button}" Padding="5,5,5,5" HorizontalAlignment="Right" VerticalAlignment="Center" Width="100" Click="StopBackupworkButton_Click" Margin="0,0,210,0" />
                             </Grid>
                         </TabItem>
                         <TabItem Name="CreateBackupWorkTabItem" Header="{DynamicResource add_backupwork}">

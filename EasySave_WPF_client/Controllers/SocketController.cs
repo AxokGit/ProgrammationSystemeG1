@@ -32,7 +32,7 @@ namespace EasySave_WPF_client.Controllers
                         mainWindow.ConnectedStatus.Content = (string)Application.Current.FindResource("connected");
                     }, null);
                 }
-                catch (Exception e)
+                catch (Exception)
                 {
                     MessageBox.Show(
                         (string)Application.Current.FindResource("impossible_connection"),
@@ -123,6 +123,36 @@ namespace EasySave_WPF_client.Controllers
             if (IsConnected)
             {
                 string json = "<msg>run_backupworks<msg>" + JsonConvert.SerializeObject(backupWorks.ToArray(), Formatting.Indented);
+                socketClient.Send(Encoding.ASCII.GetBytes(json));
+            }
+            else
+                MessageBox.Show(
+                    (string)Application.Current.FindResource("not_connected"),
+                    (string)Application.Current.FindResource("application_name"),
+                    MessageBoxButton.OK,
+                    MessageBoxImage.Error
+                );
+        }
+        public static void PauseBackupworks()
+        {
+            if (IsConnected)
+            {
+                string json = "<msg>pause_backupworks<msg>";
+                socketClient.Send(Encoding.ASCII.GetBytes(json));
+            }
+            else
+                MessageBox.Show(
+                    (string)Application.Current.FindResource("not_connected"),
+                    (string)Application.Current.FindResource("application_name"),
+                    MessageBoxButton.OK,
+                    MessageBoxImage.Error
+                );
+        }
+        public static void StopBackupworks()
+        {
+            if (IsConnected)
+            {
+                string json = "<msg>stop_backupworks<msg>";
                 socketClient.Send(Encoding.ASCII.GetBytes(json));
             }
             else

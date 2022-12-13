@@ -120,5 +120,11 @@ namespace EasySave_WPF
         {
             settingsController.SaveSettingsButton_Click(this, mainController);
         }
+
+        protected override void OnClosing(System.ComponentModel.CancelEventArgs e)
+        {
+            System.Diagnostics.Process.GetCurrentProcess().Kill();
+            base.OnClosing(e);
+        }
     }
 }

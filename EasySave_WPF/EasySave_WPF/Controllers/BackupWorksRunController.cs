@@ -1,5 +1,4 @@
 ﻿using EasySave_WPF.Models;
-using EasySave_WPF.Models;
 using EasySave_WPF.Views;
 using System;
 using System.Collections.Generic;

@@ -37,6 +37,10 @@ namespace EasySave_WPF
         {
             backupWorksRunController.PauseBackupworkButton_Click(this);
         }
+        private void StopBackupworkButton_Click(object sender, RoutedEventArgs e)
+        {
+            backupWorksRunController.StopBackupworkButton_Click(this);
+        }
 
         private void SelectSrcFolderCreateBackupWorkButton_Click(object sender, RoutedEventArgs e)
         {

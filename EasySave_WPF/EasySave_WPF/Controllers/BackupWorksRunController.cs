@@ -35,23 +35,25 @@ namespace EasySave_WPF.Controllers
                 {
                     var items = mainWindow.BackupWorkRunListView.SelectedItems;
                     bool run = false;
-                    bool pause = true;
+                    bool pause_or_stop = true;
                     foreach (BackupWork backupWork in items)
                     {
                         if (!backupWork.Running)
                             run = true;
                         else
                         {
-                            pause = true;
+                            pause_or_stop = true;
                         }
                     }
                     mainWindow.RunBackupworkButton.IsEnabled = run;
-                    mainWindow.PauseBackupworkButton.IsEnabled = pause;
+                    mainWindow.PauseBackupworkButton.IsEnabled = pause_or_stop;
+                    mainWindow.StopBackupworkButton.IsEnabled = pause_or_stop;
                 }
                 else
                 {
                     mainWindow.RunBackupworkButton.IsEnabled = false;
                     mainWindow.PauseBackupworkButton.IsEnabled = false;
+                    mainWindow.StopBackupworkButton.IsEnabled = false;
                 }
             }
         }
@@ -79,6 +81,11 @@ namespace EasySave_WPF.Controllers
         public void PauseBackupworkButton_Click(MainWindow mainWindow)
         {
             MainController.Paused = true;
+        }
+        
+        public void StopBackupworkButton_Click(MainWindow mainWindow)
+        {
+            MainController.StopButton = true;
         }
 
         public List<BackupWork>? GetBackupWorks()
@@ -176,15 +183,42 @@ namespace EasySave_WPF.Controllers
                     {
                         while (MainController.Paused)
                         {
+                            if (MainController.StopButton || MainController.StopProcess)
+                            {
+                                App.Current.Dispatcher.BeginInvoke(DispatcherPriority.Normal, (SendOrPostCallback)delegate
+                                {
+                                    string status = $" ({backupWork.Name}) : {(string)Application.Current.FindResource("stopped")}";
+                                    mainController.UpdateProgression(0.0, mainWindow);
+                                    SocketController.UpdateProgress(mainWindow, 0.0);
+                                    mainController.UpdateProgressionStatusLabel(status, mainWindow);
+                                    SocketController.UpdateProgressLabel(mainWindow, status);
+                                }, null);
+                                MainController.StopButton = false;
+                                return;
+                            }
                             App.Current.Dispatcher.BeginInvoke(DispatcherPriority.Normal, (SendOrPostCallback)delegate
                             {
                                 string status = $" ({backupWork.Name}) : {(string)Application.Current.FindResource("paused")}";
                                 SocketController.UpdateProgressLabel(mainWindow, status);
                                 mainController.UpdateProgressionStatusLabel(status, mainWindow);
-
                             }, null);
                             Thread.Sleep(1000);
                         }
+
+                        if (MainController.StopButton || MainController.StopProcess)
+                        {
+                            App.Current.Dispatcher.BeginInvoke(DispatcherPriority.Normal, (SendOrPostCallback)delegate
+                            {
+                                string status = $" ({backupWork.Name}) : {(string)Application.Current.FindResource("stopped")}";
+                                mainController.UpdateProgression(0.0, mainWindow);
+                                SocketController.UpdateProgress(mainWindow, 0.0);
+                                mainController.UpdateProgressionStatusLabel(status, mainWindow);
+                                SocketController.UpdateProgressLabel(mainWindow, status);
+                            }, null);
+                            MainController.StopButton = false;
+                            return;
+                        }
+
                         dataHelper.WriteStateLog(filepath_statelog, stateLog);
                         // Measure time to copy
                         var watch = new Stopwatch();

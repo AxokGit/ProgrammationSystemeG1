@@ -45,5 +45,7 @@
     <system:String x:Key="getting_different_files">Identification of files to be backed up...</system:String>
     <system:String x:Key="paused">Paused...</system:String>
     <system:String x:Key="cryptosoft_missing">The CryptoSoft software is missing, place it in the same folder as EasySave and try again!</system:String>
+    <system:String x:Key="stopped">The backup work has been stopped and cancelled!</system:String>
+    <system:String x:Key="stop_button">Stop</system:String>
 </ResourceDictionary>
 

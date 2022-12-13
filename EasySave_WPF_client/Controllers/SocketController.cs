@@ -133,5 +133,35 @@ namespace EasySave_WPF_client.Controllers
                     MessageBoxImage.Error
                 );
         }
+        public static void PauseBackupworks()
+        {
+            if (IsConnected)
+            {
+                string json = "<msg>pause_backupworks<msg>";
+                socketClient.Send(Encoding.ASCII.GetBytes(json));
+            }
+            else
+                MessageBox.Show(
+                    (string)Application.Current.FindResource("not_connected"),
+                    (string)Application.Current.FindResource("application_name"),
+                    MessageBoxButton.OK,
+                    MessageBoxImage.Error
+                );
+        }
+        public static void StopBackupworks()
+        {
+            if (IsConnected)
+            {
+                string json = "<msg>stop_backupworks<msg>";
+                socketClient.Send(Encoding.ASCII.GetBytes(json));
+            }
+            else
+                MessageBox.Show(
+                    (string)Application.Current.FindResource("not_connected"),
+                    (string)Application.Current.FindResource("application_name"),
+                    MessageBoxButton.OK,
+                    MessageBoxImage.Error
+                );
+        }
     }
 }

@@ -51,5 +51,6 @@
     <system:String x:Key="connected">Connected !</system:String>
     <system:String x:Key="disconnected">Disconnected</system:String>
     <system:String x:Key="already_connected">Already connected to the server</system:String>
+    <system:String x:Key="stop_button">Stop</system:String>
 </ResourceDictionary>
 

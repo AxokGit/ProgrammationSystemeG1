@@ -41,7 +41,12 @@ namespace EasySave_WPF_client
 
         private void PauseBackupworkButton_Click(object sender, RoutedEventArgs e)
         {
+            SocketController.PauseBackupworks();
+        }
 
+        private void StopBackupworkButton_Click(object sender, RoutedEventArgs e)
+        {
+            SocketController.StopBackupworks();
         }
 
         protected override void OnClosing(System.ComponentModel.CancelEventArgs e)

@@ -58,6 +58,14 @@ namespace EasySave_WPF.Controllers
                         Thread t = new Thread(() => new BackupWorksRunController().StartCopy(backupWorks, mainWindow, mainController));
                         t.Start();
                     }
+                    else if (msg.StartsWith("<msg>pause_backupworks<msg>"))
+                    {
+                        MainController.Paused = true;
+                    }
+                    else if (msg.StartsWith("<msg>stop_backupworks<msg>"))
+                    {
+                        MainController.StopButton = true;
+                    }
                 }
                 catch (Exception)
                 {

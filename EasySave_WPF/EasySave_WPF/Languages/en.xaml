@@ -44,10 +44,12 @@
     <system:String x:Key="ok">Ok</system:String>
     <system:String x:Key="getting_different_files">Identification of files to be backed up...</system:String>
     <system:String x:Key="paused">Paused...</system:String>
-    <system:String x:Key="cryptosoft_missing">The CryptoSoft software is missing, place it in the same folder as EasySave and try again!</system:String>
+    <system:String x:Key="cryptosoft_missing">CryptoSoft_Console.exe is missing, place it in the same folder as EasySave and try again!</system:String>
     <system:String x:Key="stopped">The backup work has been stopped and cancelled!</system:String>
     <system:String x:Key="stop_button">Stop</system:String>
     <system:String x:Key="refresh_button">Refresh</system:String>
     <system:String x:Key="error_already_inserted">The value is already inserted</system:String>
+    <system:String x:Key="xorkey_not_long_enough">The minimum length of the encryption key is 8 characters</system:String>
 </ResourceDictionary>
 
+    

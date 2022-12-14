@@ -45,10 +45,11 @@
     <system:String x:Key="ok">Ok</system:String>
     <system:String x:Key="getting_different_files">Identification des fichiers à sauvegarder...</system:String>
     <system:String x:Key="paused">En pause...</system:String>
-    <system:String x:Key="cryptosoft_missing">Le logiciel CryptoSoft est manquant, placez le dans le même dossier que EasySave et retentez !</system:String>
+    <system:String x:Key="cryptosoft_missing">CryptoSoft_Console.exe est manquant, placez le dans le même dossier que EasySave et retentez !</system:String>
     <system:String x:Key="stopped">Le travail de sauvegarde a été stoppée et annulée !</system:String>
     <system:String x:Key="stop_button">Stop</system:String>
     <system:String x:Key="refresh_button">Actualiser</system:String>
     <system:String x:Key="error_already_inserted">La valeur est déjà insérée</system:String>
+    <system:String x:Key="xorkey_not_long_enough">La longueur minimale de la clé de cryptage est de 8 caractères.</system:String>
 </ResourceDictionary>
 

@@ -156,6 +156,16 @@ namespace EasySave_WPF.Controllers
 
             //Xor key
             string xorkey = mainWindow.XorKeyTextBox.Text;
+            if (xorkey.Length < 8)
+            {
+                MessageBox.Show(
+                    (string)Application.Current.FindResource("xorkey_not_long_enough"),
+                    (string)Application.Current.FindResource("application_name"),
+                    MessageBoxButton.OK,
+                    MessageBoxImage.Error
+                );
+                return;
+            }
 
             //ExtentionFileToEncrypt
             List<string> extentionfiletoencrypt = (List<string>)mainWindow.FileExtentionEncryptListBox.ItemsSource;

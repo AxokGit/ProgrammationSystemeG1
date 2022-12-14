@@ -49,5 +49,6 @@
     <system:String x:Key="stopped">Le travail de sauvegarde a été stoppée et annulée !</system:String>
     <system:String x:Key="stop_button">Stop</system:String>
     <system:String x:Key="refresh_button">Actualiser</system:String>
+    <system:String x:Key="error_already_inserted">La valeur est déjà insérée</system:String>
 </ResourceDictionary>
 

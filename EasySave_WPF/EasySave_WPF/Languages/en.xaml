@@ -48,5 +48,6 @@
     <system:String x:Key="stopped">The backup work has been stopped and cancelled!</system:String>
     <system:String x:Key="stop_button">Stop</system:String>
     <system:String x:Key="refresh_button">Refresh</system:String>
+    <system:String x:Key="error_already_inserted">The value is already inserted</system:String>
 </ResourceDictionary>
 

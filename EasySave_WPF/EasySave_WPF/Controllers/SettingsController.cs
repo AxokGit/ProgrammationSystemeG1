@@ -20,13 +20,29 @@ namespace EasySave_WPF.Controllers
 
                 Settings settings = dataHelper.ReadSettingsFromJson(filepath_settings);
 
-                if (text.StartsWith("."))
-                    settings.ExtentionFileToEncrypt.Add(text);
+                while (text.StartsWith("."))
+                {
+                    text = text.Remove(0, 1);
+                }
+
+                if (settings.ExtentionFileToEncrypt.Contains("." + text))
+                {
+                    MessageBox.Show(
+                        (string)Application.Current.FindResource("error_already_inserted"),
+                        (string)Application.Current.FindResource("application_name"),
+                        MessageBoxButton.OK,
+                        MessageBoxImage.Error
+                    );
+                }
                 else
+                {
                     settings.ExtentionFileToEncrypt.Add("." + text);
-                dataHelper.WriteSettingsToJson(filepath_settings, settings);
-                mainWindow.FileExtentionEncryptTextBox.Text = "";
-                mainController.UpdateView(mainWindow); // Updating all window
+                    dataHelper.WriteSettingsToJson(filepath_settings, settings);
+                    mainWindow.FileExtentionEncryptTextBox.Text = "";
+                    mainController.UpdateView(mainWindow); // Updating all window
+                }
+
+                
             }
         }
 
@@ -87,14 +103,27 @@ namespace EasySave_WPF.Controllers
 
                 Settings settings = dataHelper.ReadSettingsFromJson(filepath_settings);
 
-                if (text.StartsWith("."))
-                    settings.PriorityFiles.Add(text);
-                else
-                    settings.PriorityFiles.Add("." + text);
+                while (text.StartsWith("."))
+                {
+                    text = text.Remove(0, 1);
+                }
 
-                dataHelper.WriteSettingsToJson(filepath_settings, settings);
-                mainWindow.PriorityFilesTextBox.Text = "";
-                mainController.UpdateView(mainWindow); // Updating all window
+                if (settings.PriorityFiles.Contains("." + text))
+                {
+                    MessageBox.Show(
+                        (string)Application.Current.FindResource("error_already_inserted"),
+                        (string)Application.Current.FindResource("application_name"),
+                        MessageBoxButton.OK,
+                        MessageBoxImage.Error
+                    );
+                }
+                else
+                {
+                    settings.PriorityFiles.Add("." + text);
+                    dataHelper.WriteSettingsToJson(filepath_settings, settings);
+                    mainWindow.PriorityFilesTextBox.Text = "";
+                    mainController.UpdateView(mainWindow); // Updating all window
+                }
             }
         }
 

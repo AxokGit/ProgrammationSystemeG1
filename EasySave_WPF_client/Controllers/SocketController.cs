@@ -23,7 +23,7 @@ namespace EasySave_WPF_client.Controllers
             {
                 try
                 {
-                    serverEndPoint = new IPEndPoint(IPAddress.Parse("127.0.0.1"), 11000);
+                    serverEndPoint = new IPEndPoint(IPAddress.Parse("127.0.0.1"), 12000);
                     socketClient = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
                     socketClient.Connect(serverEndPoint);
                     IsConnected = true;

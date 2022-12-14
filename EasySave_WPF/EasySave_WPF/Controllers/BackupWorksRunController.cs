@@ -74,7 +74,6 @@ namespace EasySave_WPF.Controllers
                 }
                 Thread t = new Thread(() => new BackupWorksRunController().StartCopy(backupWorks, mainWindow, mainController));
                 t.Start();
-                mainController.UpdateView(mainWindow);
             }
         }
 
@@ -148,7 +147,7 @@ namespace EasySave_WPF.Controllers
             {
                 try
                 {
-                    if (fileHelper.DirectoryExists(backupWork.SrcFolder))
+                    if (!fileHelper.DirectoryExists(backupWork.SrcFolder))
                     {
                         MessageBox.Show(
                             (string)Application.Current.FindResource("check_input_folder"),
@@ -158,7 +157,7 @@ namespace EasySave_WPF.Controllers
                         );
                         return;
                     }
-                    if (fileHelper.DirectoryExists(backupWork.DstFolder))
+                    if (!fileHelper.DirectoryExists(backupWork.DstFolder))
                     {
                         MessageBox.Show(
                             (string)Application.Current.FindResource("check_input_folder"),
@@ -224,7 +223,7 @@ namespace EasySave_WPF.Controllers
                                 SocketController.UpdateProgressLabel(mainWindow, status);
                                 mainController.UpdateProgressionStatusLabel(status, mainWindow);
                             }, null);
-                            Thread.Sleep(1000);
+                            Thread.Sleep(500);
                         }
 
                         if (MainController.StopButton || MainController.StopProcess)

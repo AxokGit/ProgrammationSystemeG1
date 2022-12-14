@@ -10,17 +10,22 @@ using System.Windows;
 
 namespace EasySave_WPF
 {
-    /// <summary>
-    /// Interaction logic for App.xaml
-    /// </summary>
     public partial class App : Application
     {
         private Mutex mutex = new Mutex(true, "EasySave_WPF");
+        ResourceDictionary dictionary = new ResourceDictionary();
         protected override void OnStartup(StartupEventArgs e)
         {
             if(!mutex.WaitOne(TimeSpan.Zero, true))
             {
-                MessageBox.Show((string)Current.FindResource("error_double_instance"), (string)Current.FindResource("application_name"), MessageBoxButton.OK, MessageBoxImage.Error);
+                dictionary.Source = new Uri("../../Languages/en.xaml", UriKind.Relative);
+                Application.Current.Resources.MergedDictionaries.Add(dictionary);
+                MessageBox.Show(
+                    (string)Current.FindResource("error_double_instance"),
+                    (string)Current.FindResource("application_name"),
+                    MessageBoxButton.OK,
+                    MessageBoxImage.Error
+                );
                 Shutdown();
             }
             else
@@ -33,7 +38,11 @@ namespace EasySave_WPF
 
         protected override void OnExit(ExitEventArgs e)
         {
-            mutex.ReleaseMutex();
+            try
+            {
+                mutex.ReleaseMutex();
+            }
+            catch { }
             base.OnExit(e);
         }
     }

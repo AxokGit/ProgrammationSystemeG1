@@ -148,6 +148,28 @@ namespace EasySave_WPF.Controllers
             {
                 try
                 {
+                    if (fileHelper.DirectoryExists(backupWork.SrcFolder))
+                    {
+                        MessageBox.Show(
+                            (string)Application.Current.FindResource("check_input_folder"),
+                            (string)Application.Current.FindResource("application_name"),
+                            MessageBoxButton.OK,
+                            MessageBoxImage.Error
+                        );
+                        return;
+                    }
+                    if (fileHelper.DirectoryExists(backupWork.DstFolder))
+                    {
+                        MessageBox.Show(
+                            (string)Application.Current.FindResource("check_input_folder"),
+                            (string)Application.Current.FindResource("application_name"),
+                            MessageBoxButton.OK,
+                            MessageBoxImage.Error
+                        );
+                        return;
+                    }
+
+
                     // Getting all files from source folder
                     List<FileModel> files = fileHelper.GetAllFile(backupWork.SrcFolder);
                     long filesSize = new long();

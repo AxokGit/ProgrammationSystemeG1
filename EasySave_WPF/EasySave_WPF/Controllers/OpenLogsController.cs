@@ -11,6 +11,11 @@ namespace EasySave_WPF.Controllers
         FileHelper fileHelper = new FileHelper();
         DataHelper dataHelper = new DataHelper();
 
+        public void RefreshLogListView_ButtonClick(MainWindow mainWindow, MainController mainController)
+        {
+            mainController.UpdateView(mainWindow);
+        }
+
         public void LogListView_MouseDoubleClick(MainWindow mainWindow)
         {
             FileModel item = (FileModel)mainWindow.LogListView.SelectedItem;

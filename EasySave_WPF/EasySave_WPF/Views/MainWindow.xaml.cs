@@ -82,6 +82,11 @@ namespace EasySave_WPF
             backupWorksEditController.DeleteBackupWorkEditButton_Click(this, mainController, backupWorksRunController);
         }
 
+        private void RefreshLogListView_Click(object sender, RoutedEventArgs e)
+        {
+            openLogsController.RefreshLogListView_ButtonClick(this, mainController);
+        }
+
         private void LogListView_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
             openLogsController.LogListView_MouseDoubleClick(this);

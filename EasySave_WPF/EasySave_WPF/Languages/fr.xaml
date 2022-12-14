@@ -48,5 +48,6 @@
     <system:String x:Key="cryptosoft_missing">Le logiciel CryptoSoft est manquant, placez le dans le même dossier que EasySave et retentez !</system:String>
     <system:String x:Key="stopped">Le travail de sauvegarde a été stoppée et annulée !</system:String>
     <system:String x:Key="stop_button">Stop</system:String>
+    <system:String x:Key="refresh_button">Actualiser</system:String>
 </ResourceDictionary>
 

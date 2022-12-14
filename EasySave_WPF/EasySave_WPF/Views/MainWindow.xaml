@@ -116,7 +116,11 @@
             </TabItem>
             <TabItem Header="{DynamicResource log}" Name="LogTab">
                 <Grid Background="#FFE5E5E5">
-                    <ListView SelectionMode="Single" x:Name="LogListView" MouseDoubleClick="LogListView_MouseDoubleClick" Height="Auto">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="9*"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <ListView Grid.Row="0" SelectionMode="Single" x:Name="LogListView" MouseDoubleClick="LogListView_MouseDoubleClick" Height="Auto">
                         <ListView.View>
                             <GridView>
                                 <GridView.Columns>
@@ -127,6 +131,8 @@
                             </GridView>
                         </ListView.View>
                     </ListView>
+                    <Button Grid.Row="1" Name="RefreshLogListView" Content="{DynamicResource refresh_button}" Padding="5,5,5,5"  HorizontalAlignment="Right" VerticalAlignment="Center" Width="100" Click="RefreshLogListView_Click"/>
+
                 </Grid>
             </TabItem>
             <TabItem Header="{DynamicResource settings}">

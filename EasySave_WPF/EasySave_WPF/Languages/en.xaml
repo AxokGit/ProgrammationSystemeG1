@@ -50,6 +50,7 @@
     <system:String x:Key="refresh_button">Refresh</system:String>
     <system:String x:Key="error_already_inserted">The value is already inserted</system:String>
     <system:String x:Key="xorkey_not_long_enough">The minimum length of the encryption key is 8 characters</system:String>
+    <system:String x:Key="error_used_ports">Port 12000 is currently in use. Please release the port so that the server can be started and restart the application.</system:String>
 </ResourceDictionary>
 
     

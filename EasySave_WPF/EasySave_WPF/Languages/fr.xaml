@@ -51,5 +51,6 @@
     <system:String x:Key="refresh_button">Actualiser</system:String>
     <system:String x:Key="error_already_inserted">La valeur est déjà insérée</system:String>
     <system:String x:Key="xorkey_not_long_enough">La longueur minimale de la clé de cryptage est de 8 caractères.</system:String>
+    <system:String x:Key="error_used_ports">Le port 12000 est actuellement en cours d'utilisation. Veuillez libérer le port afin que le serveur puisse être lancé  et redémarrez l'application.</system:String>
 </ResourceDictionary>
 
